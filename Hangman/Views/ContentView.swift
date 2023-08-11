@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    let words = ["apple", "cherry"]
+    let words = ["APPLE", "CHERRY", "BANANA"]
     
     @State private var hiddenWord = ""
     @State private var score = 0
@@ -37,13 +37,8 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-//            HStack {
-//                ForEach(Array(hiddenWord.enumerated()), id: \.offset) {
-//                    char in Text("_")
-//                }
-//            }
-            Text(currentWord)
-            Spacer()
+//            Text(currentWord)
+            CustomKeyboardView(hiddenWord: $hiddenWord, currentWord: $currentWord)
             Button(){
                 self.startGame()
             } label: {
