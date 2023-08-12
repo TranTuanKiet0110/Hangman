@@ -67,6 +67,7 @@ struct EasyGameView: View {
         currentWord = modifiedString
     }
     
+    
     var body: some View {
         return VStack {
             HStack {
