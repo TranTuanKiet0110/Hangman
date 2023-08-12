@@ -81,16 +81,16 @@ struct EasyGameView: View {
                 }
             }.padding(.horizontal).offset(y: -220)
             
-            Text(currentWord)
+            Text(currentWord).offset(y: 150)
             LazyVGrid (columns: gridItemLayout, spacing: 10) {
                 ForEach(0..<26) { index in
                     Button ("\(keys[index])") {
                         currentLetter = keys[index]
                         checkAvailable(inputItem: currentLetter)
                         checkWrongInput(inputItem: currentLetter)
-                    } .frame(width: 40, height: 40).background(.gray)
+                    } .frame(width: 40, height: 40).background(.gray).opacity(0.5)
                 }
-            }
+            }.offset(y: 200)
         }.onAppear { self.startGame() }
     }
 }
