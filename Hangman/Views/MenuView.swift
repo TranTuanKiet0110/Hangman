@@ -8,15 +8,24 @@
 import SwiftUI
 
 struct MenuView: View {
-    @State private var userName = ""
+    
+    @State private var userRecord: [UserRecord] = []
     @State private var isStart = false
+
     
     var body: some View {
         NavigationView {
-            NavigationLink(destination: RegisterView(userName: $userName)) {
-                Text("Start")
-                    .frame(width: 200, height: 60).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(.red))
+            VStack {
+                NavigationLink(destination: RegisterView(userRecord: $userRecord)) {
+                    Text("Start")
+                        .frame(width: 200, height: 60).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(.gray))
+                }
+                NavigationLink(destination: LeaderboardView(userRecord: userRecord)) {
+                    Text("Leaderboard")
+                        .frame(width: 200, height: 60).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(.gray))
+                }
             }
+            
         }
     }
 }

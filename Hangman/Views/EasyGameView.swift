@@ -9,9 +9,10 @@ import SwiftUI
 
 struct EasyGameView: View {
 //    let words = ["APPLE", "CHERRY", "BANANA"]
+    @Binding var score: Int
     @State var words: Array<Word>
     @State private var hiddenWord = ""
-    @State private var score = 0
+//    @State private var score = 0
     @State private var wordCount = 0
     @State private var currentWord = "?"
     @State private var currentLetter = ""
@@ -104,6 +105,6 @@ struct EasyGameView: View {
 
 struct EasyGameView_Previews: PreviewProvider {
     static var previews: some View {
-        EasyGameView(words: words)
+        EasyGameView(score: .constant(0), words: words)
     }
 }
