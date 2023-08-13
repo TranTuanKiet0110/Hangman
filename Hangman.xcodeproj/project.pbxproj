@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		463509A12A889B5C00C31FD3 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463509A02A889B5C00C31FD3 /* RegisterView.swift */; };
 		46400DAC2A85D89200E4D6AC /* HangmanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46400DAB2A85D89200E4D6AC /* HangmanApp.swift */; };
 		46400DAE2A85D89200E4D6AC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46400DAD2A85D89200E4D6AC /* ContentView.swift */; };
 		46400DB02A85D89300E4D6AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46400DAF2A85D89300E4D6AC /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		463509A02A889B5C00C31FD3 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		46400DA82A85D89200E4D6AC /* Hangman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hangman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46400DAB2A85D89200E4D6AC /* HangmanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HangmanApp.swift; sourceTree = "<group>"; };
 		46400DAD2A85D89200E4D6AC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				46C9D2E22A871ED5005FC4CF /* EasyGameView.swift */,
 				46C9D2E42A87296D005FC4CF /* MenuView.swift */,
 				46C9D2E62A872E0E005FC4CF /* HealthBarView.swift */,
+				463509A02A889B5C00C31FD3 /* RegisterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				463509A12A889B5C00C31FD3 /* RegisterView.swift in Sources */,
 				46C9D2E72A872E0E005FC4CF /* HealthBarView.swift in Sources */,
 				46C9D2EE2A874590005FC4CF /* Word.swift in Sources */,
 				46C9D2E52A87296D005FC4CF /* MenuView.swift in Sources */,
