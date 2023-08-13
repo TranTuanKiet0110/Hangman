@@ -8,26 +8,30 @@
 import SwiftUI
 
 struct EasyGameView: View {
-    
-    let words = ["APPLE", "CHERRY", "BANANA"]
-    
+//    let words = ["APPLE", "CHERRY", "BANANA"]
+    @State var words: Array<Word>
     @State private var hiddenWord = ""
     @State private var score = 0
     @State private var wordCount = 0
     @State private var currentWord = "?"
     @State private var currentLetter = ""
     @State private var currentHealth = 5
+    @State private var word: Word?
     let gridItemLayout = Array(repeating: GridItem(.fixed(30), spacing: 20), count: Int(UIScreen.main.bounds.width)/50)
     
     let keys = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     
     func startGame() {
-        hiddenWord = words.randomElement()!
+        word = nil
+        word = words.randomElement()!
+        if word != nil {
+            hiddenWord = word!.word
+            print(hiddenWord)
+        } else {
+            print("Cannot get data!")
+        }
         wordCount = hiddenWord.count
         currentWord = hiddenWord.replacingOccurrences(of: "[^\\s]", with: "_ ", options: .regularExpression, range: hiddenWord.startIndex..<hiddenWord.endIndex)
-        print(hiddenWord)
-        print(currentWord)
-        print(wordCount)
     }
     
     func checkAvailable(inputItem: String) {
@@ -36,10 +40,9 @@ struct EasyGameView: View {
             if String(char) == inputItem {
                 replace(myString: currentWord, index: index, newChar: char)
                 checkWinning()
-                print(index)
             }
             index += 2
-            print(currentWord)
+//            print(currentWord)
         }
     }
     
@@ -51,6 +54,7 @@ struct EasyGameView: View {
     }
     
     func checkWrongInput(inputItem: String) {
+//        print(inputItem)
         if !hiddenWord.contains(inputItem) {
             currentHealth -= 1
         } else {
@@ -87,17 +91,19 @@ struct EasyGameView: View {
                 ForEach(0..<26) { index in
                     Button ("\(keys[index])") {
                         currentLetter = keys[index]
-                        checkAvailable(inputItem: currentLetter)
                         checkWrongInput(inputItem: currentLetter)
+                        checkAvailable(inputItem: currentLetter)
                     } .frame(width: 40, height: 40).background(.gray).opacity(0.5)
                 }
             }.offset(y: 200)
-        }.onAppear { self.startGame() }
+        }.onAppear {
+            self.startGame()
+        }
     }
 }
 
 struct EasyGameView_Previews: PreviewProvider {
     static var previews: some View {
-        EasyGameView()
+        EasyGameView(words: words)
     }
 }

@@ -13,7 +13,7 @@ struct MenuView: View {
     
     var body: some View {
         NavigationView {
-            NavigationLink(destination: EasyGameView()) {
+            NavigationLink(destination: EasyGameView(words: words)) {
                 Text("Start")
                     .frame(width: 200, height: 60).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(.red))
             }
