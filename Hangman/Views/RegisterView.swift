@@ -66,7 +66,7 @@ struct RegisterView: View {
                     scoreStatus = "New High Score!"
                     isHighScore = true
                 } else {
-                    scoreStatus = ""
+                    scoreStatus = "Better luck next time!"
                     isHighScore = false
                 }
             } else {
@@ -74,7 +74,7 @@ struct RegisterView: View {
                     scoreStatus = "New High Score!"
                     isHighScore = true
                 } else {
-                    scoreStatus = ""
+                    scoreStatus = "Better luck next time"
                     isHighScore = false
                 }
             }
