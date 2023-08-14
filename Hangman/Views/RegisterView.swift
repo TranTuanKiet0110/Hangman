@@ -38,19 +38,29 @@ struct RegisterView: View {
     
     var body: some View {
         VStack {
-            TextField("Username", text: $userInput)
-            Button("Save") {
-                if !userInput.isEmpty {
-                    isClick.toggle()
-                    addUserRecord()
-                }
-            }.disabled(isClick == true)
-            
-            NavigationLink(destination: EasyGameView(score: $userScore, words: words)) {
-                Text("Play")
-                    .frame(width: 200, height: 60).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(.gray).opacity(0.5))
-            }.disabled(isClick == false)
+            TextField("Username", text: $userInput).offset(y: -50).frame(width: 150).multilineTextAlignment(.center).textFieldStyle(.roundedBorder)
+            Text("\(userScore)")
+            HStack {
+                Button("Save") {
+                    if !userInput.isEmpty {
+                        isClick.toggle()
+                        addUserRecord()
+                    }
+                }.disabled(isClick == true)
+                    .frame(width: 100, height: 60).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(.gray).opacity(0.5))
+                NavigationLink(destination: EasyGameView(score: $userScore, words: words)) {
+                    Text("Play")
+                    .frame(width: 100, height: 60).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(.gray).opacity(0.5))
+                }.disabled(isClick == false)
+//                Button("Play") {
+//                    isPlay.toggle()
+//                }.disabled(isClick == false)
+//                    .frame(width: 100, height: 60).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(.gray).opacity(0.5))
+            }
         }
+//        if isPlay {
+//            EasyGameView(score: $userScore, isPlay: $isPlay, words: words)
+//        }
     }
 }
 

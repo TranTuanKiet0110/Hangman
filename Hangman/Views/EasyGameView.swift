@@ -18,6 +18,7 @@ struct EasyGameView: View {
     @State private var currentLetter = ""
     @State private var currentHealth = 5
     @State private var word: Word?
+    @Environment(\.dismiss) var dismiss
     let gridItemLayout = Array(repeating: GridItem(.fixed(30), spacing: 20), count: Int(UIScreen.main.bounds.width)/50)
     
     let keys = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
@@ -58,6 +59,7 @@ struct EasyGameView: View {
 //        print(inputItem)
         if !hiddenWord.contains(inputItem) {
             currentHealth -= 1
+            playerLose(healthStatus: currentHealth)
         } else {
             if currentHealth < 5 {
                 currentHealth += 1
@@ -65,6 +67,11 @@ struct EasyGameView: View {
         }
     }
     
+    func playerLose(healthStatus: Int) {
+        if healthStatus == 0 {
+            dismiss()
+        }
+    }
     func replace(myString: String, index: Int, newChar: Character){
         var chars = Array(myString)
         chars[index] = newChar
@@ -74,32 +81,36 @@ struct EasyGameView: View {
     
     
     var body: some View {
-        return VStack {
-            HStack {
+        return ZStack {
+            Color(.white).ignoresSafeArea(.all, edges: .all)
+            VStack {
                 HStack {
-                    Text("HP: ")
-                    HealthBarView(currentHealth: $currentHealth)
-                }
-                Spacer()
-                HStack {
-                    Text("Score: ")
-                    Text("\(score)")
-                }
-            }.padding(.horizontal).offset(y: -220)
-            
-            Text(currentWord).offset(y: 150)
-            LazyVGrid (columns: gridItemLayout, spacing: 10) {
-                ForEach(0..<26) { index in
-                    Button ("\(keys[index])") {
-                        currentLetter = keys[index]
-                        checkWrongInput(inputItem: currentLetter)
-                        checkAvailable(inputItem: currentLetter)
-                    } .frame(width: 40, height: 40).background(.gray).opacity(0.5)
-                }
-            }.offset(y: 200)
-        }.onAppear {
+                    HStack {
+                        Text("HP: ")
+                        HealthBarView(currentHealth: $currentHealth)
+                    }
+                    Spacer()
+                    HStack {
+                        Text("Score: ")
+                        Text("\(score)")
+                    }
+                }.padding(.horizontal).offset(y: -250)
+                
+                Text(currentWord).offset(y: 150)
+                LazyVGrid (columns: gridItemLayout, spacing: 10) {
+                    ForEach(0..<26) { index in
+                        Button ("\(keys[index])") {
+                            currentLetter = keys[index]
+                            checkWrongInput(inputItem: currentLetter)
+                            checkAvailable(inputItem: currentLetter)
+                        } .frame(width: 40, height: 40).background(.gray).opacity(0.5)
+                    }
+                }.offset(y: 200)
+            }
+        }.toolbar(.hidden)
+            .onAppear {
             self.startGame()
-        }
+        }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height).background(.white)
     }
 }
 
