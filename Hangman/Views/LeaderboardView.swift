@@ -10,16 +10,22 @@ import SwiftUI
 struct LeaderboardView: View {
     
     @State var userRecord: Array<UserRecord>
-//    @State var currentUserName: String
-//    @State var userRecord: [UserRecord] = []
     
     var body: some View {
         VStack {
             List(userRecord) { record in
                 HStack {
-                    Text("\(record.userName)")
-                    Spacer()
-                    Text("\(record.score)")
+                    HStack {
+                        Text("Player:")
+                        Spacer()
+                        Text("\(record.userName)")
+                    }.frame(width: UIScreen.main.bounds.width/2 - 40)
+                    Divider()
+                    HStack {
+                        Text("Score:")
+                        Spacer()
+                        Text("\(record.score)")
+                    }.frame(width: UIScreen.main.bounds.width/2 - 40)
                 }
             }
         }

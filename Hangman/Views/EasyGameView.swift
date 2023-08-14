@@ -8,17 +8,20 @@
 import SwiftUI
 
 struct EasyGameView: View {
-//    let words = ["APPLE", "CHERRY", "BANANA"]
+    
     @Binding var score: Int
+    @Binding var played: Bool
+    
     @State var words: Array<Word>
     @State private var hiddenWord = ""
-//    @State private var score = 0
     @State private var wordCount = 0
     @State private var currentWord = "?"
     @State private var currentLetter = ""
     @State private var currentHealth = 5
     @State private var word: Word?
+    
     @Environment(\.dismiss) var dismiss
+    
     let gridItemLayout = Array(repeating: GridItem(.fixed(30), spacing: 20), count: Int(UIScreen.main.bounds.width)/50)
     
     let keys = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
@@ -69,6 +72,7 @@ struct EasyGameView: View {
     
     func playerLose(healthStatus: Int) {
         if healthStatus == 0 {
+            played.toggle()
             dismiss()
         }
     }
@@ -94,9 +98,13 @@ struct EasyGameView: View {
                         Text("Score: ")
                         Text("\(score)")
                     }
-                }.padding(.horizontal).offset(y: -250)
+                }.padding(.horizontal).offset(y: -170)
                 
-                Text(currentWord).offset(y: 150)
+                word?.image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 100, height: 100).offset(y: -40)
+                Text(currentWord).offset(y: 90)
                 LazyVGrid (columns: gridItemLayout, spacing: 10) {
                     ForEach(0..<26) { index in
                         Button ("\(keys[index])") {
@@ -105,17 +113,18 @@ struct EasyGameView: View {
                             checkAvailable(inputItem: currentLetter)
                         } .frame(width: 40, height: 40).background(.gray).opacity(0.5)
                     }
-                }.offset(y: 200)
+                }.offset(y: 140)
             }
         }.toolbar(.hidden)
-            .onAppear {
+        .onAppear {
             self.startGame()
-        }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height).background(.white)
+        }
+        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height).background(.white)
     }
 }
 
 struct EasyGameView_Previews: PreviewProvider {
     static var previews: some View {
-        EasyGameView(score: .constant(0), words: words)
+        EasyGameView(score: .constant(0), played: .constant(false), words: words)
     }
 }
