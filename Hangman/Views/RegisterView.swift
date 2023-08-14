@@ -12,56 +12,71 @@ struct RegisterView: View {
     @Binding var userRecord: [UserRecord]
     
     @State private var userInput = ""
+    @State private var lastScore = 0
     @State private var userScore = 0
     @State private var played = false
     @State private var isHighScore = false
+    @State private var isAvailable = false
     @State private var index = 0
     @State private var scoreStatus = ""
     
     @Environment(\.dismiss) var dismiss
     
     func addUserRecord() {
-        if !userInput.isEmpty {
-            if !userRecord.isEmpty {
-                for record in userRecord {
-                    if record.userName == userInput {
-                        if record.score < userScore {
-                            userRecord.append(UserRecord(id: UUID(), userName: userInput, score: userScore))
-                            userRecord.remove(at: index)
-                            dismiss()
-                        } else {
-                            dismiss()
-                        }
-                    } else {
-                        userRecord.append(UserRecord(id: UUID(), userName: userInput, score: userScore))
-                        dismiss()
-                    }
-                    index += 1
+        if !userRecord.isEmpty {
+            for record in userRecord {
+                if isHighScore == true && record.userName == userInput {
+                    userRecord.append(UserRecord(id: UUID(), userName: userInput, score: userScore))
+                    userRecord.remove(at: index)
+                    dismiss()
+                } else if isHighScore == true && record.userName != userInput {
+                    userRecord.append(UserRecord(id: UUID(), userName: userInput, score: userScore))
+                    dismiss()
                 }
-            } else {
-                userRecord.append(UserRecord(id: UUID(), userName: userInput, score: userScore))
-                dismiss()
+                index += 1
+            }
+        } else {
+            userRecord.append(UserRecord(id: UUID(), userName: userInput, score: userScore))
+            dismiss()
+        }
+    }
+    
+    func checkAvailable() {
+        if !userRecord.isEmpty {
+            for record in userRecord {
+                if record.userName == userInput {
+                    lastScore = record.score
+                    isAvailable = true
+                } else {
+                    isAvailable = false
                 }
-        print(userRecord)
+            }
+        } else {
+            isAvailable = false
         }
     }
     
     func checkHighScore() {
-        if !userRecord.isEmpty {
-            for record in userRecord {
-                if record.userName == userInput {
-                    if record.score < userScore && userScore != 0 {
-                        scoreStatus = "New High Score!"
-                        isHighScore.toggle()
-                    }
+        if !userInput.isEmpty {
+            if !userRecord.isEmpty {
+                if isAvailable == true && lastScore < userScore {
+                    scoreStatus = "New High Score!"
+                    isHighScore = true
+                } else if isAvailable == false && lastScore < userScore {
+                    scoreStatus = "New High Score!"
+                    isHighScore = true
+                } else {
+                    scoreStatus = ""
+                    isHighScore = false
                 }
-            }
-        } else {
-            if userScore > 0 {
-                scoreStatus = "New High Score!"
-                isHighScore.toggle()
             } else {
-                scoreStatus = ""
+                if userScore > 0 {
+                    scoreStatus = "New High Score!"
+                    isHighScore = true
+                } else {
+                    scoreStatus = ""
+                    isHighScore = false
+                }
             }
         }
     }
@@ -92,7 +107,7 @@ struct RegisterView: View {
                     Image(systemName: "square.and.arrow.down").foregroundColor(.white).multilineTextAlignment(.center)
                         .font(.system(size: 25))
                 }
-                .disabled(played == false)
+                .disabled(isHighScore == false)
                     .frame(width: 100, height: 60).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(.gray).opacity(0.5))
                 NavigationLink(destination: EasyGameView(score: $userScore, played: $played, words: words)) {
                     Image(systemName: "play").foregroundColor(.white).multilineTextAlignment(.center)
@@ -102,7 +117,12 @@ struct RegisterView: View {
             }.offset(y: 150)
         }.toolbar(.hidden)
             .onAppear {
+                checkAvailable()
                 checkHighScore()
+                print(isAvailable)
+                print(isHighScore)
+            }.onDisappear {
+                isHighScore = false
             }
     }
 }
