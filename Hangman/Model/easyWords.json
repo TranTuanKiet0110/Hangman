@@ -2,19 +2,71 @@
     {
         "id": 1,
         "word": "APPLE",
-        "imageName": "apple",
-        "type": "easy"
+        "imageName": "apple"
     },
     {
         "id": 2,
         "word": "BANANA",
-        "imageName": "banana",
-        "type": "easy"
+        "imageName": "banana"
     },
     {
         "id": 3,
         "word": "CHERRY",
-        "imageName": "cherry",
-        "type": "easy"
+        "imageName": "cherry"
+    },
+    {
+        "id": 4,
+        "word": "THIEF",
+        "imageName": "thief"
+    },
+    {
+        "id": 5,
+        "word": "CAR",
+        "imageName": "car"
+    },
+    {
+        "id": 6,
+        "word": "LAPTOP",
+        "imageName": "laptop"
+    },
+    {
+        "id": 7,
+        "word": "COMPUTER",
+        "imageName": "computer"
+    },
+    {
+        "id": 8,
+        "word": "PRINTER",
+        "imageName": "printer"
+    },
+    {
+        "id": 9,
+        "word": "KEYBOARD",
+        "imageName": "keyboard"
+    },
+    {
+        "id": 10,
+        "word": "BOY",
+        "imageName": "boy"
+    },
+    {
+        "id": 11,
+        "word": "GIRL",
+        "imageName": "girl"
+    },
+    {
+        "id": 12,
+        "word": "MOUSE",
+        "imageName": "mouse"
+    },
+    {
+        "id": 13,
+        "word": "CAKE",
+        "imageName": "cake"
+    },
+    {
+        "id": 14,
+        "word": "BIKE",
+        "imageName": "bike"
     }
 ]

@@ -114,10 +114,9 @@ struct EasyGameView: View {
                 
                 word?.image
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
                     .opacity(animatingIcon ? 1 : 0)
                     .offset(y: animatingIcon ? 0 : 50)
-                    .frame(width: 100, height: 100).offset(y: -40)
+                    .modifier(GameItemImageModifier())
                 
                 Text(currentWord).offset(y: 90)
                 LazyVGrid (columns: gridItemLayout, spacing: 10) {
@@ -126,7 +125,8 @@ struct EasyGameView: View {
                             currentLetter = keys[index]
                             checkWrongInput(inputItem: currentLetter)
                             checkAvailable(inputItem: currentLetter)
-                        } .frame(width: 40, height: 40).background(.gray).opacity(0.5)
+                        }
+                        .modifier(KeyboardButtonModifier())
                     }
                 }.offset(y: 140)
             }

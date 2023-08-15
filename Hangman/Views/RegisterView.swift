@@ -11,6 +11,7 @@ struct RegisterView: View {
     
     @Binding var userRecord: [UserRecord]
     
+    @State var gameMode: String
     @State private var userInput = ""
     @State private var lastScore = 0
     @State private var userScore = 0
@@ -109,7 +110,13 @@ struct RegisterView: View {
                 }
                 .disabled(isHighScore == false)
                     .frame(width: 100, height: 60).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(.gray).opacity(0.5))
-                NavigationLink(destination: EasyGameView(score: $userScore, played: $played, words: words)) {
+                NavigationLink(destination: {
+                    if gameMode == "easy" {
+                        EasyGameView(score: $userScore, played: $played, words: words)
+                    } else {
+                        Text("None")
+                    }
+                }) {
                     Image(systemName: "play").foregroundColor(.blue).multilineTextAlignment(.center)
                         .font(.system(size: 25))
                     .frame(width: 100, height: 60).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(.gray).opacity(0.5))
@@ -129,6 +136,6 @@ struct RegisterView: View {
 
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
-        RegisterView(userRecord: .constant([UserRecord(id: UUID(), userName: "Kiet", score: 0)]))
+        RegisterView(userRecord: .constant([UserRecord(id: UUID(), userName: "Kiet", score: 0)]), gameMode: "easy")
     }
 }

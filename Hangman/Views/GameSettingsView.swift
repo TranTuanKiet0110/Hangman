@@ -10,7 +10,9 @@ import SwiftUI
 struct GameSettingsView: View {
     
     @Binding var gameMode: String
-    @State private var easyIsClicked = false
+    @State private var easyIsClicked = true
+    @State private var mediumIsClicked = false
+    @State private var hardIsClicked = false
     
     var body: some View {
         GeometryReader { geometry in
@@ -27,29 +29,35 @@ struct GameSettingsView: View {
                     
                     Button("Easy") {
                         gameMode = "easy"
-                        easyIsClicked.toggle()
+                        easyIsClicked = true
+                        mediumIsClicked = false
+                        hardIsClicked = false
                     }
                     .frame(width: geometry.size.width*0.3, height: geometry.size.height * 0.08)
-                    .background(easyIsClicked ? .black : .gray)
+                    .background(RoundedRectangle(cornerRadius: 16).foregroundColor(easyIsClicked ? .black : .gray).opacity(0.5))
                     
                     Button("Medium") {
                         gameMode = "medium"
+                        mediumIsClicked = true
+                        easyIsClicked = false
+                        hardIsClicked = false
                     }
                     .frame(width: geometry.size.width*0.3, height: geometry.size.height * 0.08)
-                    .border(.black)
+                    .background(RoundedRectangle(cornerRadius: 16).foregroundColor(mediumIsClicked ? .black : .gray).opacity(0.5))
                     
                     Button("Hard") {
                         gameMode = "hard"
+                        hardIsClicked = true
+                        easyIsClicked = false
+                        mediumIsClicked = false
                     }
                     .frame(width: geometry.size.width*0.3, height: geometry.size.height * 0.08)
+                    .background(RoundedRectangle(cornerRadius: 16).foregroundColor(hardIsClicked ? .black : .gray).opacity(0.5))
                     Spacer()
                 }
                 .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.08)
             
                 .background(RoundedRectangle(cornerRadius: 16).foregroundColor(.gray))
-//                        .overlay(
-//                        RoundedRectangle(cornerRadius: 16).stroke(.blue, lineWidth: 2).frame(width: UIScreen.main.bounds.width - 40, height: 50)
-//                    )
             }
         }
     }
