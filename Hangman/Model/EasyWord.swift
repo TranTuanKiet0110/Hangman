@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct Word: Identifiable, Codable {
+struct EasyWord: Identifiable, Codable {
     var id: Int
     var word: String
     var imageName: String

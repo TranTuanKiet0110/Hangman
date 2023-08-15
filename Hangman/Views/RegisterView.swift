@@ -95,7 +95,7 @@ struct RegisterView: View {
                 Button() {
                     dismiss()
                 } label: {
-                    Image(systemName: "door.right.hand.open").foregroundColor(.white).multilineTextAlignment(.center)
+                    Image(systemName: "door.right.hand.open").foregroundColor(.blue).multilineTextAlignment(.center)
                         .font(.system(size: 25))
                 }
                 .frame(width: 100, height: 60).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(.gray).opacity(0.5))
@@ -104,13 +104,13 @@ struct RegisterView: View {
                         addUserRecord()
                     }
                 } label: {
-                    Image(systemName: "square.and.arrow.down").foregroundColor(.white).multilineTextAlignment(.center)
+                    Image(systemName: "square.and.arrow.down").foregroundColor(.blue).multilineTextAlignment(.center)
                         .font(.system(size: 25))
                 }
                 .disabled(isHighScore == false)
                     .frame(width: 100, height: 60).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(.gray).opacity(0.5))
                 NavigationLink(destination: EasyGameView(score: $userScore, played: $played, words: words)) {
-                    Image(systemName: "play").foregroundColor(.white).multilineTextAlignment(.center)
+                    Image(systemName: "play").foregroundColor(.blue).multilineTextAlignment(.center)
                         .font(.system(size: 25))
                     .frame(width: 100, height: 60).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(.gray).opacity(0.5))
                 }.disabled(played == true || userInput.isEmpty)

@@ -12,13 +12,14 @@ struct EasyGameView: View {
     @Binding var score: Int
     @Binding var played: Bool
     
-    @State var words: Array<Word>
+    @State var words: Array<EasyWord>
     @State private var hiddenWord = ""
     @State private var wordCount = 0
     @State private var currentWord = "?"
     @State private var currentLetter = ""
     @State private var currentHealth = 5
-    @State private var word: Word?
+    @State private var word: EasyWord?
+    @State private var animatingIcon = false
     
     @Environment(\.dismiss) var dismiss
     
@@ -27,8 +28,16 @@ struct EasyGameView: View {
     let keys = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     
     func startGame() {
+        animatingIcon = false
         word = nil
         word = words.randomElement()!
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            withAnimation(.easeInOut(duration: 0.3)){
+                animatingIcon = true
+            }
+        }
+        
         if word != nil {
             hiddenWord = word!.word
             print(hiddenWord)
@@ -47,7 +56,6 @@ struct EasyGameView: View {
                 checkWinning()
             }
             index += 2
-//            print(currentWord)
         }
     }
     
@@ -59,7 +67,6 @@ struct EasyGameView: View {
     }
     
     func checkWrongInput(inputItem: String) {
-//        print(inputItem)
         if !hiddenWord.contains(inputItem) {
             currentHealth -= 1
             playerLose(healthStatus: currentHealth)
@@ -103,7 +110,10 @@ struct EasyGameView: View {
                 word?.image
                     .resizable()
                     .aspectRatio(contentMode: .fit)
+                    .opacity(animatingIcon ? 1 : 0)
+                    .offset(y: animatingIcon ? 0 : 50)
                     .frame(width: 100, height: 100).offset(y: -40)
+                
                 Text(currentWord).offset(y: 90)
                 LazyVGrid (columns: gridItemLayout, spacing: 10) {
                     ForEach(0..<26) { index in

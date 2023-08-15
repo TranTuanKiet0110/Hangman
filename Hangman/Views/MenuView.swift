@@ -11,11 +11,15 @@ struct MenuView: View {
     
     @State private var userRecord: [UserRecord] = []
     @State private var isStart = false
+    @State private var gameMode = "easy"
 
     
     var body: some View {
         NavigationView {
             VStack {
+                NavigationLink(destination: GameSettingsView(gameMode: $gameMode)) {
+                    Image(systemName: "gearshape.fill").foregroundColor(.gray).font(.system(size: 25))
+                }.offset(x: 130, y: -300)
                 NavigationLink(destination: RegisterView(userRecord: $userRecord)) {
                     Text("Start")
                         .frame(width: 200, height: 60).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(.gray))

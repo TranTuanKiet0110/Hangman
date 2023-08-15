@@ -7,14 +7,14 @@
 
 import Foundation
 
-var words = decodeJsonFile(jsonFileName: "words.json")
+var words = decodeJsonFile(jsonFileName: "easyWords.json")
 
-func decodeJsonFile(jsonFileName: String) -> [Word] {
+func decodeJsonFile(jsonFileName: String) -> [EasyWord] {
     if let file = Bundle.main.url(forResource: jsonFileName, withExtension: nil) {
         if let data = try? Data(contentsOf: file) {
             do {
                 let decoder = JSONDecoder()
-                let decoded = try decoder.decode([Word].self, from: data)
+                let decoded = try decoder.decode([EasyWord].self, from: data)
                 return decoded
             } catch let error {
                 fatalError("Failed to decode JSON: \(error)")
@@ -23,5 +23,5 @@ func decodeJsonFile(jsonFileName: String) -> [Word] {
     } else {
         fatalError("Couldn't load \(jsonFileName) file")
     }
-    return [] as [Word]
+    return [] as [EasyWord]
 }
