@@ -20,6 +20,7 @@ struct EasyGameView: View {
     @State private var currentHealth = 5
     @State private var word: EasyWord?
     @State private var animatingIcon = false
+    @State private var healthReduce = false
     
     @Environment(\.dismiss) var dismiss
     
@@ -61,6 +62,9 @@ struct EasyGameView: View {
     
     func checkWinning() {
         if currentWord.replacingOccurrences(of: " ", with: "") == hiddenWord {
+            if currentHealth < 5 {
+                currentHealth += 1
+            }
             score += 1
             startGame()
         }
@@ -69,11 +73,11 @@ struct EasyGameView: View {
     func checkWrongInput(inputItem: String) {
         if !hiddenWord.contains(inputItem) {
             currentHealth -= 1
-            playerLose(healthStatus: currentHealth)
-        } else {
-            if currentHealth < 5 {
-                currentHealth += 1
+            healthReduce = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                healthReduce = false
             }
+            playerLose(healthStatus: currentHealth)
         }
     }
     
@@ -92,13 +96,14 @@ struct EasyGameView: View {
     
     
     var body: some View {
-        return ZStack {
-            Color(.white).ignoresSafeArea(.all, edges: .all)
-            VStack {
+        return VStack {
                 HStack {
                     HStack {
                         Text("HP: ")
                         HealthBarView(currentHealth: $currentHealth)
+                            .opacity(healthReduce ? 0.7 : 1)
+                            .offset(x: healthReduce ? 10 : 0)
+                            .animation(Animation.spring(response: 0.2, dampingFraction: 0.2, blendDuration: 0.2), value: healthReduce)
                     }
                     Spacer()
                     HStack {
@@ -125,11 +130,10 @@ struct EasyGameView: View {
                     }
                 }.offset(y: 140)
             }
-        }.toolbar(.hidden)
+        .toolbar(.hidden)
         .onAppear {
             self.startGame()
         }
-        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height).background(.white)
     }
 }
 

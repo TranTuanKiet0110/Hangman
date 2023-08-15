@@ -19,7 +19,7 @@ struct MenuView: View {
             VStack {
                 NavigationLink(destination: GameSettingsView(gameMode: $gameMode)) {
                     Image(systemName: "gearshape.fill").foregroundColor(.gray).font(.system(size: 25))
-                }.offset(x: 130, y: -300)
+                }.offset(x: 130, y: -290)
                 NavigationLink(destination: RegisterView(userRecord: $userRecord)) {
                     Text("Start")
                         .frame(width: 200, height: 60).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(.gray))
