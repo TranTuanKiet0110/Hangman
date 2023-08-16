@@ -13,4 +13,3 @@ struct UserRecord: Identifiable, Codable {
     var userName: String
     var score: Int
 }
-

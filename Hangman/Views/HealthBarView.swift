@@ -10,6 +10,7 @@ import SwiftUI
 struct HealthBarView: View {
     
     @Binding var currentHealth: Int
+    
     var maximumHealth = 5
     var offImage: Image?
     var onImage = Image(systemName: "heart.fill")

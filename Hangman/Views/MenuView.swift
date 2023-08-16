@@ -12,7 +12,6 @@ struct MenuView: View {
     @State private var userRecord: [UserRecord] = []
     @State private var isStart = false
     @AppStorage("gameMode") var gameMode: String = "easy"
-
     
     var body: some View {
         NavigationView {
@@ -30,7 +29,6 @@ struct MenuView: View {
                         .font(.system(size: 25)).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(.gray).opacity(0.5))
                 }
             }
-            
         }
     }
 }

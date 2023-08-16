@@ -123,8 +123,8 @@ struct RegisterView: View {
             .onAppear {
                 checkAvailable()
                 checkHighScore()
-                print(isAvailable)
-                print(isHighScore)
+//                print(isAvailable)
+//                print(isHighScore)
             }.onDisappear {
                 isHighScore = false
             }

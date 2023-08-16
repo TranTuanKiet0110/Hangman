@@ -10,6 +10,7 @@ import SwiftUI
 struct GameSettingsView: View {
     
     @Binding var gameMode: String
+    
     @AppStorage("easyIsClicked") var easyIsClicked: Bool = true
     @AppStorage("mediumIsClicked") var mediumIsClicked: Bool = false
     @AppStorage("hardIsClicked") var hardIsClicked: Bool = false
