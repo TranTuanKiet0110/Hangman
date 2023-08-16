@@ -25,21 +25,20 @@ struct RegisterView: View {
     
     func addUserRecord() {
         if !userRecord.isEmpty {
-            for record in userRecord {
-                if isHighScore == true && record.userName == userInput {
-                    userRecord.append(UserRecord(id: UUID(), userName: userInput, score: userScore))
-                    userRecord.remove(at: index)
-                    dismiss()
-                } else if isHighScore == true && record.userName != userInput {
-                    userRecord.append(UserRecord(id: UUID(), userName: userInput, score: userScore))
-                    dismiss()
-                }
-                index += 1
+            if isHighScore == true && isAvailable == true {
+                userRecord.append(UserRecord(id: UUID(), userName: userInput, score: userScore))
+                userRecord.remove(at: index)
+                dismiss()
+            } else if isHighScore == true && isAvailable == false {
+                userRecord.append(UserRecord(id: UUID(), userName: userInput, score: userScore))
+                dismiss()
             }
+            index += 1
         } else {
             userRecord.append(UserRecord(id: UUID(), userName: userInput, score: userScore))
             dismiss()
         }
+        print(userRecord)
     }
     
     func checkAvailable() {
@@ -101,9 +100,7 @@ struct RegisterView: View {
                 }
                 .frame(width: 100, height: 60).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(.gray).opacity(0.5))
                 Button() {
-                    if !userInput.isEmpty {
-                        addUserRecord()
-                    }
+                    addUserRecord()
                 } label: {
                     Image(systemName: "square.and.arrow.down").foregroundColor(.blue).multilineTextAlignment(.center)
                         .font(.system(size: 25))

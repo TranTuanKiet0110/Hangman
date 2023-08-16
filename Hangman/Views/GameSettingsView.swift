@@ -10,9 +10,9 @@ import SwiftUI
 struct GameSettingsView: View {
     
     @Binding var gameMode: String
-    @State private var easyIsClicked = true
-    @State private var mediumIsClicked = false
-    @State private var hardIsClicked = false
+    @AppStorage("easyIsClicked") var easyIsClicked: Bool = true
+    @AppStorage("mediumIsClicked") var mediumIsClicked = false
+    @AppStorage("hardIsClicked") var hardIsClicked = false
     
     var body: some View {
         GeometryReader { geometry in

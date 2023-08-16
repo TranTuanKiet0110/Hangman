@@ -10,6 +10,7 @@ import SwiftUI
 struct LeaderboardView: View {
     
     @State var userRecord: Array<UserRecord>
+    @State private var animatingListRow = false
     
     var body: some View {
         VStack {
@@ -19,14 +20,23 @@ struct LeaderboardView: View {
                         Text("Player:")
                         Spacer()
                         Text("\(record.userName)")
+                            .opacity(animatingListRow ? 1 : 0)
+                                .offset(y: animatingListRow ? 0 : 50)
+                                .animation(.easeOut(duration: 1), value: animatingListRow)
                     }.frame(width: UIScreen.main.bounds.width/2 - 40)
                     Divider()
                     HStack {
                         Text("Score:")
                         Spacer()
                         Text("\(record.score)")
+                            .opacity(animatingListRow ? 1 : 0)
+                                .offset(y: animatingListRow ? 0 : 50)
+                                .animation(.easeOut(duration: 1), value: animatingListRow)
                     }.frame(width: UIScreen.main.bounds.width/2 - 40)
                 }
+                .onAppear(perform: {
+                    self.animatingListRow = true
+                })
             }
         }
     }

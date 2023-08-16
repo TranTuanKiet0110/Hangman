@@ -11,7 +11,7 @@ struct MenuView: View {
     
     @State private var userRecord: [UserRecord] = []
     @State private var isStart = false
-    @State private var gameMode = "easy"
+    @AppStorage("gameMode") var gameMode: String = "easy"
 
     
     var body: some View {
