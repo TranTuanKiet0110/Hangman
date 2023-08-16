@@ -11,8 +11,8 @@ struct GameSettingsView: View {
     
     @Binding var gameMode: String
     @AppStorage("easyIsClicked") var easyIsClicked: Bool = true
-    @AppStorage("mediumIsClicked") var mediumIsClicked = false
-    @AppStorage("hardIsClicked") var hardIsClicked = false
+    @AppStorage("mediumIsClicked") var mediumIsClicked: Bool = false
+    @AppStorage("hardIsClicked") var hardIsClicked: Bool = false
     
     var body: some View {
         GeometryReader { geometry in
