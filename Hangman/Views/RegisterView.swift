@@ -9,8 +9,8 @@ import SwiftUI
 
 struct RegisterView: View {
     
-    @Binding var userRecord: [UserRecord]
-    
+//    @Binding var userRecord: [UserRecord]
+    @State private var userRecord: [UserRecord] = []
     @State var gameMode: String
     @State private var userInput = ""
     @State private var lastScore = 0
@@ -23,24 +23,52 @@ struct RegisterView: View {
     
     @Environment(\.dismiss) var dismiss
     
+//    func load() {
+//        let url = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("test1.json")
+//        if let url = url, let data = try? Data(contentsOf: url) {
+//            let decoder = JSONDecoder()
+//            if let loadedRecord = try? decoder.decode([UserRecord].self, from: data) {
+//                userRecord = loadedRecord
+//            }
+//        }
+//    }
+    func save(userRecord: UserRecord, jsonFileName: String) {
+        if let file = Bundle.main.url(forResource: jsonFileName, withExtension: nil) {
+            do {
+                let encoder = JSONEncoder()
+                let encoded = try encoder.encode(userRecord)
+                try encoded.write(to: file)
+            } catch let error {
+                fatalError("Failed to encode data: \(error)")
+            }
+        } else {
+            fatalError("Couldn't find \(jsonFileName) file")
+        }
+    }
+    
     func addUserRecord() {
         if !userRecord.isEmpty {
             if isHighScore == true && isAvailable == true {
-                userRecord.append(UserRecord(id: UUID(), userName: userInput, score: userScore))
+                userRecord.append(UserRecord(id: index, userName: userInput, score: userScore))
                 userRecord.remove(at: index)
+                save(userRecord: UserRecord(id: index, userName: userInput, score: userScore), jsonFileName: "userRecord.json")
+                print(userRecord)
                 dismiss()
             } else if isHighScore == true && isAvailable == false {
-                userRecord.append(UserRecord(id: UUID(), userName: userInput, score: userScore))
+                userRecord.append(UserRecord(id: index, userName: userInput, score: userScore))
+                save(userRecord: UserRecord(id: index, userName: userInput, score: userScore), jsonFileName: "userRecord.json")
+                print(userRecord)
                 dismiss()
             }
             index += 1
         } else {
-            userRecord.append(UserRecord(id: UUID(), userName: userInput, score: userScore))
+            userRecord.append(UserRecord(id: 0, userName: userInput, score: userScore))
+            save(userRecord: UserRecord(id: index, userName: userInput, score: userScore), jsonFileName: "userRecord.json")
+            print(userRecord)
             dismiss()
         }
-        print(userRecord)
     }
-    
+
     func checkAvailable() {
         if !userRecord.isEmpty {
             for record in userRecord {
@@ -78,6 +106,22 @@ struct RegisterView: View {
                     isHighScore = false
                 }
             }
+        }
+    }
+    
+    func resetArray() {
+        userRecord.removeAll()
+    }
+    
+    func save(userRecord: [UserRecord]) {
+        let encoder = JSONEncoder()
+
+        do {
+            let data = try encoder.encode(userRecord)
+            let url = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("test1.json")
+            try data.write(to: url)
+        } catch {
+            print(error)
         }
     }
     
@@ -121,11 +165,15 @@ struct RegisterView: View {
             }.offset(y: 150)
         }.toolbar(.hidden)
             .onAppear {
+                
+//                load()
+                print(userRecord)
                 checkAvailable()
                 checkHighScore()
-//                print(isAvailable)
-//                print(isHighScore)
+                print(isAvailable)
+                print(isHighScore)
             }.onDisappear {
+                resetArray()
                 isHighScore = false
             }
     }
@@ -133,6 +181,6 @@ struct RegisterView: View {
 
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
-        RegisterView(userRecord: .constant([UserRecord(id: UUID(), userName: "Kiet", score: 0)]), gameMode: "easy")
+        RegisterView( gameMode: "easy")
     }
 }

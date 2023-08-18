@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct UserRecord: Identifiable, Codable {
-    var id: UUID
+    var id: Int
     var userName: String
     var score: Int
 }

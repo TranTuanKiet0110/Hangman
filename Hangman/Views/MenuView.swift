@@ -9,21 +9,10 @@ import SwiftUI
 
 struct MenuView: View {
     
-    @State private var userRecord: [UserRecord] = []
+//    @State private var userRecord: [UserRecord] = []
     @State private var isStart = false
     @AppStorage("gameMode") var gameMode: String = "easy"
-    let encoder = JSONEncoder()
-    @State private var string: String?
-    
-    func convertToJsonString() {
-        do {
-            let data = try encoder.encode(userRecord)
-            string = String(data: data, encoding: .utf8)
-            print(string!)
-        } catch {
-            print(error)
-        }
-    }
+    let userDefaults = UserDefaults.standard
     
     var body: some View {
         NavigationView {
@@ -31,17 +20,15 @@ struct MenuView: View {
                 NavigationLink(destination: GameSettingsView(gameMode: $gameMode)) {
                     Image(systemName: "gearshape.fill").foregroundColor(.gray).font(.system(size: 25))
                 }.offset(x: 130, y: -290)
-                NavigationLink(destination: RegisterView(userRecord: $userRecord, gameMode: gameMode)) {
+                NavigationLink(destination: RegisterView( gameMode: gameMode)) {
                     Text("Start!")
                         .frame(width: 200, height: 60).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(.gray).opacity(0.5))
                 }
-                NavigationLink(destination: LeaderboardView(userRecord: userRecord)) {
+                NavigationLink(destination: LeaderboardView()) {
                     Image(systemName: "trophy.fill")
                         .frame(width: 200, height: 60)
                         .font(.system(size: 25)).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(.gray).opacity(0.5))
                 }
-            }.onAppear {
-                convertToJsonString()
             }
         }
     }
