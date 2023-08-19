@@ -12,6 +12,8 @@ struct LeaderboardView: View {
     @State private var userRecord: [UserRecord] = []
     @State private var animatingListRow = false
     
+    @Environment(\.dismiss) var dismiss
+    
     func load() -> [UserRecord]{
         do {
             let url = try FileManager.default.url(for: .desktopDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("test2.json")
@@ -28,7 +30,6 @@ struct LeaderboardView: View {
     func resetArray() {
         userRecord.removeAll()
     }
-    
     
     var body: some View {
         VStack {
@@ -51,12 +52,26 @@ struct LeaderboardView: View {
                                 .offset(y: animatingListRow ? 0 : 50)
                                 .animation(.easeOut(duration: 1), value: animatingListRow)
                     }.frame(width: UIScreen.main.bounds.width/2 - 40)
-                }
+                }.navigationBarBackButtonHidden(true)
                 .onAppear {
                     self.animatingListRow = true
                 }
+                .navigationTitle("Leaderboard")
+            }.toolbar {
+                ToolbarItem(placement: ToolbarItemPlacement.navigationBarLeading) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        HStack {
+                            Image(systemName: "arrow.uturn.left").font(.system(size: 15)).fontWeight(.bold)
+                            Text("Return")
+                                .fontWeight(.bold)
+                        }
+                    }
+                }
             }
-        }.onAppear {
+        }
+        .onAppear {
             self.userRecord = load().sorted {
                 $0.score > $1.score
             }

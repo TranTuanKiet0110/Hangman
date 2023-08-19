@@ -14,14 +14,15 @@ struct GameSettingsView: View {
     @AppStorage("easyIsClicked") var easyIsClicked: Bool = true
     @AppStorage("mediumIsClicked") var mediumIsClicked: Bool = false
     @AppStorage("hardIsClicked") var hardIsClicked: Bool = false
+    @Binding var isDark: Bool
     
     var body: some View {
-        GeometryReader { geometry in
+        VStack {
             VStack {
                 HStack {
                     Spacer()
                     
-                    Text("Game Difficulty: ")
+                    Text("Game Difficulties")
                     Spacer()
                 }
                 
@@ -34,7 +35,8 @@ struct GameSettingsView: View {
                         mediumIsClicked = false
                         hardIsClicked = false
                     }
-                    .frame(width: geometry.size.width*0.3, height: geometry.size.height * 0.08)
+                    .foregroundColor(.white)
+                    .frame(width: (UIScreen.main.bounds.width - 50) / 3, height: 70)
                     .background(RoundedRectangle(cornerRadius: 16).foregroundColor(easyIsClicked ? .black : .gray).opacity(0.5))
                     
                     Button("Medium") {
@@ -43,7 +45,8 @@ struct GameSettingsView: View {
                         easyIsClicked = false
                         hardIsClicked = false
                     }
-                    .frame(width: geometry.size.width*0.3, height: geometry.size.height * 0.08)
+                    .foregroundColor(.white)
+                    .frame(width: (UIScreen.main.bounds.width - 50) / 3, height: 70)
                     .background(RoundedRectangle(cornerRadius: 16).foregroundColor(mediumIsClicked ? .black : .gray).opacity(0.5))
                     
                     Button("Hard") {
@@ -52,20 +55,38 @@ struct GameSettingsView: View {
                         easyIsClicked = false
                         mediumIsClicked = false
                     }
-                    .frame(width: geometry.size.width*0.3, height: geometry.size.height * 0.08)
+                    .foregroundColor(.white)
+                    .frame(width: (UIScreen.main.bounds.width - 50) / 3, height: 70)
                     .background(RoundedRectangle(cornerRadius: 16).foregroundColor(hardIsClicked ? .black : .gray).opacity(0.5))
                     Spacer()
                 }
-                .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.08)
-            
+                .frame(width: UIScreen.main.bounds.width - 50, height: 70)
+                
                 .background(RoundedRectangle(cornerRadius: 16).foregroundColor(.gray))
             }
+            
+            Divider()
+                .padding(.vertical)
+            
+            VStack {
+                Toggle("Dark mode", isOn: $isDark).toggleStyle(SwitchToggleStyle(tint: .green))
+            }
+            
+            Divider()
+                .padding(.vertical)
+            
+            VStack {
+                Text("Languages")
+            }
         }
+        .preferredColorScheme(isDark ? .dark : .light)
+            .frame(width: UIScreen.main.bounds.width - 50)
+        .navigationTitle("Settings")
     }
 }
 
 struct GameSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        GameSettingsView(gameMode: .constant("easy"))
+        GameSettingsView(gameMode: .constant("easy"), isDark: .constant(false))
     }
 }

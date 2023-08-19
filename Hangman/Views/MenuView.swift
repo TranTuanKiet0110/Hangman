@@ -9,17 +9,18 @@ import SwiftUI
 
 struct MenuView: View {
     
-//    @State private var userRecord: [UserRecord] = []
     @State private var isStart = false
     @AppStorage("gameMode") var gameMode: String = "easy"
+    @AppStorage("isDark") private var isDark = false
+    
     let userDefaults = UserDefaults.standard
     
     var body: some View {
         NavigationView {
             VStack {
-                NavigationLink(destination: GameSettingsView(gameMode: $gameMode)) {
+                NavigationLink(destination: GameSettingsView(gameMode: $gameMode, isDark: $isDark)) {
                     Image(systemName: "gearshape.fill").foregroundColor(.gray).font(.system(size: 25))
-                }.offset(x: 130, y: -290)
+                }.offset(x: 130, y: -270)
                 NavigationLink(destination: RegisterView( gameMode: gameMode)) {
                     Text("Start!")
                         .frame(width: 200, height: 60).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(.gray).opacity(0.5))
@@ -30,7 +31,7 @@ struct MenuView: View {
                         .font(.system(size: 25)).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(.gray).opacity(0.5))
                 }
             }
-        }
+        }.preferredColorScheme(isDark ? .dark : .light)
     }
 }
 

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct RegisterView: View {
     
-//    @Binding var userRecord: [UserRecord]
     @State private var userRecord: [UserRecord] = []
     @State var gameMode: String
     @State private var userInput = ""
