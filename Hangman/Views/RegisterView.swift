@@ -23,47 +23,47 @@ struct RegisterView: View {
     
     @Environment(\.dismiss) var dismiss
     
-//    func load() {
-//        let url = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("test1.json")
-//        if let url = url, let data = try? Data(contentsOf: url) {
-//            let decoder = JSONDecoder()
-//            if let loadedRecord = try? decoder.decode([UserRecord].self, from: data) {
-//                userRecord = loadedRecord
-//            }
-//        }
-//    }
-    func save(userRecord: UserRecord, jsonFileName: String) {
-        if let file = Bundle.main.url(forResource: jsonFileName, withExtension: nil) {
-            do {
-                let encoder = JSONEncoder()
-                let encoded = try encoder.encode(userRecord)
-                try encoded.write(to: file)
-            } catch let error {
-                fatalError("Failed to encode data: \(error)")
-            }
-        } else {
-            fatalError("Couldn't find \(jsonFileName) file")
+    func save(userRecord: [UserRecord]) {
+        do {
+            let url = try FileManager.default.url(for: .desktopDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("test2.json")
+            let encoder = JSONEncoder()
+            try encoder.encode(userRecord).write(to: url)
+        } catch {
+            print(error)
+        }
+    }
+    
+    func load() -> [UserRecord]{
+        do {
+            let url = try FileManager.default.url(for: .desktopDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("test2.json")
+            let data = try Data(contentsOf: url)
+            let decoder = JSONDecoder()
+            let records = try decoder.decode([UserRecord].self, from: data)
+            return records
+        } catch {
+            print(error)
+            return []
         }
     }
     
     func addUserRecord() {
         if !userRecord.isEmpty {
             if isHighScore == true && isAvailable == true {
-                userRecord.append(UserRecord(id: index, userName: userInput, score: userScore))
+                userRecord.append(UserRecord(id: UUID(), userName: userInput, score: userScore))
                 userRecord.remove(at: index)
-                save(userRecord: UserRecord(id: index, userName: userInput, score: userScore), jsonFileName: "userRecord.json")
+                save(userRecord: userRecord)
                 print(userRecord)
                 dismiss()
             } else if isHighScore == true && isAvailable == false {
-                userRecord.append(UserRecord(id: index, userName: userInput, score: userScore))
-                save(userRecord: UserRecord(id: index, userName: userInput, score: userScore), jsonFileName: "userRecord.json")
+                userRecord.append(UserRecord(id: UUID(), userName: userInput, score: userScore))
+                save(userRecord: userRecord)
                 print(userRecord)
                 dismiss()
             }
             index += 1
         } else {
-            userRecord.append(UserRecord(id: 0, userName: userInput, score: userScore))
-            save(userRecord: UserRecord(id: index, userName: userInput, score: userScore), jsonFileName: "userRecord.json")
+            userRecord.append(UserRecord(id: UUID(), userName: userInput, score: userScore))
+            save(userRecord: userRecord)
             print(userRecord)
             dismiss()
         }
@@ -113,18 +113,6 @@ struct RegisterView: View {
         userRecord.removeAll()
     }
     
-    func save(userRecord: [UserRecord]) {
-        let encoder = JSONEncoder()
-
-        do {
-            let data = try encoder.encode(userRecord)
-            let url = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("test1.json")
-            try data.write(to: url)
-        } catch {
-            print(error)
-        }
-    }
-    
     var body: some View {
         VStack {
             TextField("Enter player's name!", text: $userInput).disabled(played == true).offset(y: -50).frame(width: 200).multilineTextAlignment(.center).textFieldStyle(.roundedBorder)
@@ -165,8 +153,7 @@ struct RegisterView: View {
             }.offset(y: 150)
         }.toolbar(.hidden)
             .onAppear {
-                
-//                load()
+                self.userRecord = load()
                 print(userRecord)
                 checkAvailable()
                 checkHighScore()

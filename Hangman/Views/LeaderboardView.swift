@@ -12,36 +12,27 @@ struct LeaderboardView: View {
     @State private var userRecord: [UserRecord] = []
     @State private var animatingListRow = false
     
-//    func load() -> [UserRecord]{
-//        let url = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("test1.json")
-//        if let url = url, let data = try? Data(contentsOf: url) {
-//            let decoder = JSONDecoder()
-//            if let loadedRecord = try? decoder.decode([UserRecord].self, from: data) {
-//                return loadedRecord
-//            }
-//        }
-//        return []
-//    }
-    
-    func load(jsonFileName: String) {
-        if let file = Bundle.main.url(forResource: jsonFileName, withExtension: nil) {
-            if let data = try? Data(contentsOf: file) {
-                do {
-                    let decoder = JSONDecoder()
-                    let decoded = try decoder.decode([UserRecord].self, from: data)
-                    userRecord = decoded
-                } catch let error {
-                    fatalError("Failed to decode JSON: \(error)")
-                }
-            }
-        } else {
-            fatalError("Couldn't load \(jsonFileName) file")
+    func load() -> [UserRecord]{
+        do {
+            let url = try FileManager.default.url(for: .desktopDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("test2.json")
+            let data = try Data(contentsOf: url)
+            let decoder = JSONDecoder()
+            let records = try decoder.decode([UserRecord].self, from: data)
+            return records
+        } catch {
+            print(error)
+            return []
         }
     }
     
+    func resetArray() {
+        userRecord.removeAll()
+    }
+    
+    
     var body: some View {
         VStack {
-            List(userRecords) { record in
+            List(userRecord) { record in
                 HStack {
                     HStack {
                         Text("Player:")
@@ -61,11 +52,18 @@ struct LeaderboardView: View {
                                 .animation(.easeOut(duration: 1), value: animatingListRow)
                     }.frame(width: UIScreen.main.bounds.width/2 - 40)
                 }
-                .onAppear{
-                    load(jsonFileName: "userRecord.json")             
+                .onAppear {
                     self.animatingListRow = true
                 }
             }
+        }.onAppear {
+            self.userRecord = load().sorted {
+                $0.score > $1.score
+            }
+            print(userRecord)
+        }
+        .onDisappear {
+            resetArray()
         }
     }
 }
