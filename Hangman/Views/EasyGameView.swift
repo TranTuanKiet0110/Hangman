@@ -97,39 +97,61 @@ struct EasyGameView: View {
     
     var body: some View {
         return VStack {
+            VStack {
                 HStack {
-                    HStack {
-                        Text("HP: ")
-                        HealthBarView(currentHealth: $currentHealth)
-                            .opacity(healthReduce ? 0.7 : 1)
-                            .offset(x: healthReduce ? 10 : 0)
-                            .animation(Animation.spring(response: 0.2, dampingFraction: 0.2, blendDuration: 0.2), value: healthReduce)
-                    }
-                    Spacer()
-                    HStack {
-                        Text("Score: ")
-                        Text("\(score)")
-                    }
-                }.padding(.horizontal).offset(y: -170)
-                
-                word?.image
-                    .resizable()
-                    .opacity(animatingIcon ? 1 : 0)
-                    .offset(y: animatingIcon ? 0 : 50)
-                    .modifier(GameItemImageModifier())
-                
-                Text(currentWord).offset(y: 90)
-                LazyVGrid (columns: gridItemLayout, spacing: 10) {
-                    ForEach(0..<26) { index in
-                        Button ("\(keys[index])") {
-                            currentLetter = keys[index]
-                            checkWrongInput(inputItem: currentLetter)
-                            checkAvailable(inputItem: currentLetter)
+                    VStack {
+                        HStack {
+                            Text("HP: ")
+                            HealthBarView(currentHealth: $currentHealth)
+                                .opacity(healthReduce ? 0.7 : 1)
+                                .offset(x: healthReduce ? 10 : 0)
+                                .animation(Animation.spring(response: 0.2, dampingFraction: 0.2, blendDuration: 0.2), value: healthReduce)
                         }
-                        .modifier(KeyboardButtonModifier())
+                        .padding(.bottom, 3.0)
+                        .offset(x: 12)
+                        
+                        HStack {
+                            Text("Score: ")
+                            Text("\(score)")
+                        }
+                        .offset(x: -40)
                     }
-                }.offset(y: 140)
+                    
+                    Spacer()
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "pause.fill")
+                            .font(.system(size: 30))
+                            .foregroundColor(.gray)
+                    }
+                    .padding(.trailing)
+                }
+                Divider()
             }
+            .padding(.horizontal, 30.0)
+            .offset(y: -140)
+            
+            word?.image
+                .resizable()
+                .opacity(animatingIcon ? 1 : 0)
+                .offset(y: animatingIcon ? 0 : 50)
+                .modifier(GameItemImageModifier())
+            
+            Text(currentWord).offset(y: 90)
+            LazyVGrid (columns: gridItemLayout, spacing: 10) {
+                ForEach(0..<26) { index in
+                    Button ("\(keys[index])") {
+                        currentLetter = keys[index]
+                        checkWrongInput(inputItem: currentLetter)
+                        checkAvailable(inputItem: currentLetter)
+                    }
+                    .modifier(KeyboardButtonModifier())
+                }
+            }
+            .padding(.horizontal)
+            .offset(y: 140)
+        }
         .toolbar(.hidden)
         .onAppear {
             self.startGame()
