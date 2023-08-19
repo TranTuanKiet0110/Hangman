@@ -40,8 +40,8 @@ struct LeaderboardView: View {
                         Spacer()
                         Text("\(record.userName)")
                             .opacity(animatingListRow ? 1 : 0)
-                                .offset(y: animatingListRow ? 0 : 50)
-                                .animation(.easeOut(duration: 1), value: animatingListRow)
+                            .offset(y: animatingListRow ? 0 : 50)
+                            .animation(.easeOut(duration: 1), value: animatingListRow)
                     }.frame(width: UIScreen.main.bounds.width/2 - 40)
                     Divider()
                     HStack {
@@ -49,14 +49,14 @@ struct LeaderboardView: View {
                         Spacer()
                         Text("\(record.score)")
                             .opacity(animatingListRow ? 1 : 0)
-                                .offset(y: animatingListRow ? 0 : 50)
-                                .animation(.easeOut(duration: 1), value: animatingListRow)
+                            .offset(y: animatingListRow ? 0 : 50)
+                            .animation(.easeOut(duration: 1), value: animatingListRow)
                     }.frame(width: UIScreen.main.bounds.width/2 - 40)
                 }.navigationBarBackButtonHidden(true)
-                .onAppear {
-                    self.animatingListRow = true
-                }
-                .navigationTitle("Leaderboard")
+                    .onAppear {
+                        self.animatingListRow = true
+                    }
+                    .navigationTitle("Leaderboard")
             }.toolbar {
                 ToolbarItem(placement: ToolbarItemPlacement.navigationBarLeading) {
                     Button {

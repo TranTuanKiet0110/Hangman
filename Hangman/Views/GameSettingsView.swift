@@ -80,7 +80,7 @@ struct GameSettingsView: View {
             }
         }
         .preferredColorScheme(isDark ? .dark : .light)
-            .frame(width: UIScreen.main.bounds.width - 50)
+        .frame(width: UIScreen.main.bounds.width - 50)
         .navigationTitle("Settings")
     }
 }

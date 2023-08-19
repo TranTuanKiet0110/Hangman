@@ -67,7 +67,7 @@ struct RegisterView: View {
             dismiss()
         }
     }
-
+    
     func checkAvailable() {
         if !userRecord.isEmpty {
             for record in userRecord {
@@ -137,7 +137,7 @@ struct RegisterView: View {
                         .font(.system(size: 25))
                 }
                 .disabled(isHighScore == false)
-                    .frame(width: 100, height: 60).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(.gray).opacity(0.5))
+                .frame(width: 100, height: 60).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(.gray).opacity(0.5))
                 NavigationLink(destination: {
                     if gameMode == "easy" {
                         EasyGameView(score: $userScore, played: $played, words: words)
@@ -147,7 +147,7 @@ struct RegisterView: View {
                 }) {
                     Image(systemName: "play").foregroundColor(.blue).multilineTextAlignment(.center)
                         .font(.system(size: 25))
-                    .frame(width: 100, height: 60).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(.gray).opacity(0.5))
+                        .frame(width: 100, height: 60).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(.gray).opacity(0.5))
                 }.disabled(played == true || userInput.isEmpty)
             }.offset(y: 150)
         }.toolbar(.hidden)
