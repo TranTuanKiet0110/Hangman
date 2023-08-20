@@ -11,13 +11,17 @@ struct EasyGameView: View {
     
     @Binding var score: Int
     @Binding var played: Bool
+    @Binding var isPause: Bool
+    @Binding var currentHealth: Int
+    
+    @AppStorage("pauseIsClicked") private var pauseIsClicked = false
     
     @State var words: Array<EasyWord>
     @State private var hiddenWord = ""
     @State private var wordCount = 0
     @State private var currentWord = "?"
     @State private var currentLetter = ""
-    @State private var currentHealth = 5
+    @State private var healthBar = 0
     @State private var word: EasyWord?
     @State private var animatingIcon = false
     @State private var healthReduce = false
@@ -83,15 +87,24 @@ struct EasyGameView: View {
     
     func playerLose(healthStatus: Int) {
         if healthStatus == 0 {
-            played.toggle()
+            played = true
             dismiss()
         }
     }
+    
     func replace(myString: String, index: Int, newChar: Character){
         var chars = Array(myString)
         chars[index] = newChar
         let modifiedString = String(chars)
         currentWord = modifiedString
+    }
+    
+    func checkIsPause() {
+        if pauseIsClicked == true {
+            isPause = true
+        } else {
+            isPause = false
+        }
     }
     
     
@@ -119,6 +132,9 @@ struct EasyGameView: View {
                     
                     Spacer()
                     Button {
+                        pauseIsClicked = true
+                        checkIsPause()
+                        print(pauseIsClicked)
                         dismiss()
                     } label: {
                         Image(systemName: "pause.fill")
@@ -145,6 +161,7 @@ struct EasyGameView: View {
                         currentLetter = keys[index]
                         checkWrongInput(inputItem: currentLetter)
                         checkAvailable(inputItem: currentLetter)
+                        pauseIsClicked = false
                     }
                     .modifier(KeyboardButtonModifier())
                 }
@@ -155,12 +172,13 @@ struct EasyGameView: View {
         .toolbar(.hidden)
         .onAppear {
             self.startGame()
+            healthBar = currentHealth
         }
     }
 }
 
 struct EasyGameView_Previews: PreviewProvider {
     static var previews: some View {
-        EasyGameView(score: .constant(0), played: .constant(false), words: words)
+        EasyGameView(score: .constant(0), played: .constant(false), isPause: .constant(false), currentHealth: .constant(5), words: words)
     }
 }
