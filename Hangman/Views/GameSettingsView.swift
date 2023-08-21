@@ -23,11 +23,23 @@ struct GameSettingsView: View {
         var description = ""
         
         if easyIsClicked == true {
-            description = "Player's HP = 5, -1 HP for each wrong letter, +1 HP for each finished and hint is given for each word."
+            if englishIsClicked == true {
+                description = "Player's HP = 5, -1 HP for each wrong letter, +1 HP for each finished and hint is given for each word."
+            } else {
+                description = "Người chơi có 5 mạng (HP), -1 HP cho mỗi đoán sai ký tự, +1 HP khi đoán đúng 1 từ và sẽ có gợi ý cho mỗi từ."
+            }
         } else if mediumIsClicked == true {
-            description = "Quite the same as easy mode. Instead, there is no hint given and the hidden word will be hard to guess."
+            if englishIsClicked == true {
+                description = "Quite the same as easy mode. Instead, there is no hint given and the hidden word will be hard to guess."
+            } else {
+                description = "Khá giống với chế độ dễ. Thay vào đó, người chơi sẽ không được gợi ý và từ bị ẩn sẽ khó đoán hơn."
+            }
         } else {
-            description = "Hell mode!!!😈 No HP recovery.❤️‍🔥 Player's HP = 3 and ofcourse no hint is given. Besides knowledge, you might need some luck to guess the word.🍀"
+            if englishIsClicked == true {
+                description = "Hell mode!!!😈 No HP recovery.❤️‍🔥 Player's HP = 3 and ofcourse no hint is given. Besides knowledge, you might need some luck to guess the word.🍀"
+            } else {
+                description = "Chế độ khó!!!😈 Người chơi sẽ không được hồi HP sau mỗi màn.❤️‍🔥 HP người chơi = 3 và đương nhiên sẽ không có gợi ý nào. Ngoài kiến thức, bạn sẽ phải cần sự may mắn để đoán chữ.🍀"
+            }
         }
         
         return description
@@ -38,13 +50,13 @@ struct GameSettingsView: View {
             VStack {
                 
                 VStack {
-                    Text("Game Difficulties")
+                    Text(englishIsClicked ? "Difficulty" : "Độ khó")
                         .fontWeight(.bold)
                         .multilineTextAlignment(.center)
                     HStack (spacing: 0) {
                         Spacer()
                         
-                        Button("Easy") {
+                        Button(englishIsClicked ? "Easy" : "Dễ") {
                             gameMode = "easy"
                             easyIsClicked = true
                             mediumIsClicked = false
@@ -54,7 +66,7 @@ struct GameSettingsView: View {
                         .frame(width: (UIScreen.main.bounds.width - 50) / 3, height: 70)
                         .background(RoundedRectangle(cornerRadius: 16).foregroundColor(easyIsClicked ? .black : .gray).opacity(0.5))
                         
-                        Button("Medium") {
+                        Button(englishIsClicked ? "Medium" : "Trung bình") {
                             gameMode = "medium"
                             mediumIsClicked = true
                             easyIsClicked = false
@@ -64,7 +76,7 @@ struct GameSettingsView: View {
                         .frame(width: (UIScreen.main.bounds.width - 50) / 3, height: 70)
                         .background(RoundedRectangle(cornerRadius: 16).foregroundColor(mediumIsClicked ? .black : .gray).opacity(0.5))
                         
-                        Button("Hard") {
+                        Button(englishIsClicked ? "Hard" : "Khó") {
                             gameMode = "hard"
                             hardIsClicked = true
                             easyIsClicked = false
@@ -79,16 +91,15 @@ struct GameSettingsView: View {
                     
                     .background(RoundedRectangle(cornerRadius: 16).foregroundColor(.gray))
                 }
-                .offset(y: -110)
+                .offset(y: -70)
                 
                 VStack {
-                    Text("Description")
+                    Text(englishIsClicked ? "Description" : "Mô tả")
                         .fontWeight(.bold)
                         .multilineTextAlignment(.center)
-                        .padding(.bottom, 5.0)
                     Text("\(loadDescription())")
                         .multilineTextAlignment(.center)
-                }.offset(y: -70)
+                }.offset(y: -20)
             }
             
             VStack {
@@ -96,7 +107,7 @@ struct GameSettingsView: View {
                     .padding(.vertical)
                 
                 VStack {
-                    Toggle("Dark mode", isOn: $isDark).toggleStyle(SwitchToggleStyle(tint: .green))
+                    Toggle(englishIsClicked ? "Dark mode" : "Chế độ tối", isOn: $isDark).toggleStyle(SwitchToggleStyle(tint: .green))
                         .fontWeight(.bold)
                 }
                 
@@ -104,29 +115,29 @@ struct GameSettingsView: View {
                     .padding(.vertical)
                 
                 VStack {
-                    Text("Languages")
+                    Text(englishIsClicked ? "Languages" : "Ngôn ngữ")
                         .fontWeight(.bold)
                         .multilineTextAlignment(.center)
                     HStack (spacing: 0) {
                         Spacer()
                         
-                        Button("English") {
+                        Button(englishIsClicked ? "English" : "Tiếng Anh") {
                             gameLanguage = "english"
                             englishIsClicked = true
                             vietnameseIsClicked = false
                         }
                         .foregroundColor(.white)
                         .frame(width: (UIScreen.main.bounds.width - 50) / 2, height: 70)
-                        .background(RoundedRectangle(cornerRadius: 16).foregroundColor(easyIsClicked ? .black : .gray).opacity(0.5))
+                        .background(RoundedRectangle(cornerRadius: 16).foregroundColor(englishIsClicked ? .black : .gray).opacity(0.5))
                         
-                        Button("Vietnamese") {
+                        Button(englishIsClicked ? "Vietnamese" : "Tiếng Việt") {
                             gameLanguage = "vietnamese"
                             vietnameseIsClicked = true
                             englishIsClicked = false
                         }
                         .foregroundColor(.white)
                         .frame(width: (UIScreen.main.bounds.width - 50) / 2, height: 70)
-                        .background(RoundedRectangle(cornerRadius: 16).foregroundColor(mediumIsClicked ? .black : .gray).opacity(0.5))
+                        .background(RoundedRectangle(cornerRadius: 16).foregroundColor(vietnameseIsClicked ? .black : .gray).opacity(0.5))
                         Spacer()
                     }
                     .frame(width: UIScreen.main.bounds.width - 50, height: 70)
@@ -134,11 +145,11 @@ struct GameSettingsView: View {
                     .background(RoundedRectangle(cornerRadius: 16).foregroundColor(.gray))
                 }
             }
-            .offset(y: -45)
+            .offset(y: 20)
         }
         .preferredColorScheme(isDark ? .dark : .light)
         .frame(width: UIScreen.main.bounds.width - 50)
-        .navigationTitle("Settings")
+        .navigationTitle(englishIsClicked ? "Settings" : "Cài Đặt")
     }
 }
 

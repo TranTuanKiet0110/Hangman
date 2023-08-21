@@ -16,6 +16,7 @@ struct RegisterView: View {
     
     @State private var userRecord: [UserRecord] = []
     @State var gameMode: String
+    @State var gameLanguage: String
     @State private var userInput = ""
     @State private var lastScore = 0
     @State private var userScore = 0
@@ -95,26 +96,55 @@ struct RegisterView: View {
             if played == true {
                 if !userRecord.isEmpty {
                     if isAvailable == true && lastScore < userScore {
-                        scoreStatus = "New High Score!"
-                        isHighScore = true
+                        if gameLanguage == "english" {
+                            scoreStatus = "New High Score!"
+                            isHighScore = true
+                        } else {
+                            scoreStatus = "Kỷ lục mới!"
+                            isHighScore = true
+                        }
                     } else if isAvailable == false && lastScore < userScore {
-                        scoreStatus = "New High Score!"
-                        isHighScore = true
+                        if gameLanguage == "english" {
+                            scoreStatus = "New High Score!"
+                            isHighScore = true
+                        } else {
+                            scoreStatus = "Kỷ lục mới!"
+                            isHighScore = true
+                        }
                     } else {
-                        scoreStatus = "Better luck next time!"
-                        isHighScore = false
+                        if gameLanguage == "english" {
+                            scoreStatus = "Better luck next time!"
+                            isHighScore = false
+                        } else {
+                            scoreStatus = "Chúc bạn may mắn lần sau!"
+                            isHighScore = false
+                        }
                     }
                 } else {
                     if userScore > 0 {
-                        scoreStatus = "New High Score!"
-                        isHighScore = true
+                        if gameLanguage == "english" {
+                            scoreStatus = "New High Score!"
+                            isHighScore = true
+                        } else {
+                            scoreStatus = "Kỷ lục mới!"
+                            isHighScore = true
+                        }
                     } else {
-                        scoreStatus = "Better luck next time"
-                        isHighScore = false
+                        if gameLanguage == "english" {
+                            scoreStatus = "Better luck next time"
+                            isHighScore = false
+                        } else {
+                            scoreStatus = "Chúc bạn may mắn lần sau!"
+                            isHighScore = false
+                        }
                     }
                 }
             } else {
-                scoreStatus = "The game is paused!\nPress play to resume."
+                if gameLanguage == "english" {
+                    scoreStatus = "The game is paused!\nPress play to resume."
+                } else {
+                    scoreStatus = "Game đang tạm dừng! Nhấn nút chơi để tiếp tục."
+                }
             }
         }
     }
@@ -157,16 +187,19 @@ struct RegisterView: View {
                 }
                 .offset(x: -130, y: -250)
                 
-                TextField("Enter player's name!", text: $userInput).disabled(played == true || isPause == true || pauseIsClicked == true)
+                TextField(gameLanguage == "english" ? "Enter player's name!" : "Hãy điền tên của bạn!", text: $userInput).disabled(played == true || isPause == true || pauseIsClicked == true)
                     .offset(y: -50)
                     .frame(width: 200)
                     .multilineTextAlignment(.center).textFieldStyle(.roundedBorder)
-                
-                Text("\(scoreStatus)")
-                
-                HStack {
-                    Text("Your score: ")
-                    Text("\(userScore)")
+                VStack {
+                    Text("\(scoreStatus)")
+                        .multilineTextAlignment(.center)
+                        .padding(.bottom)
+                    
+                    HStack {
+                        Text(gameLanguage == "english" ? "Your score: " : "Điểm của bạn: ")
+                        Text("\(userScore)")
+                    }
                 }
             }
             HStack {
@@ -199,7 +232,7 @@ struct RegisterView: View {
                 NavigationLink(destination: {
             
                         if gameMode == "easy" {
-                            EasyGameView(score: $userScore, played: $played, isPause: $pauseIsClicked, currentHealth: $easyCurrentHealth, words: words)
+                            EasyGameView(score: $userScore, played: $played, isPause: $pauseIsClicked, currentHealth: $easyCurrentHealth, words: words, gameLanguage: gameLanguage)
                         } else {
                             Text("None")
                         }
@@ -238,6 +271,6 @@ struct RegisterView: View {
 
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
-        RegisterView( gameMode: "easy")
+        RegisterView( gameMode: "easy", gameLanguage: "english")
     }
 }

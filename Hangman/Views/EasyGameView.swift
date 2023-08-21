@@ -25,6 +25,7 @@ struct EasyGameView: View {
     @State private var word: EasyWord?
     @State private var animatingIcon = false
     @State private var healthReduce = false
+    @State var gameLanguage: String
     
     @Environment(\.dismiss) var dismiss
     
@@ -121,13 +122,13 @@ struct EasyGameView: View {
                                 .animation(Animation.spring(response: 0.2, dampingFraction: 0.2, blendDuration: 0.2), value: healthReduce)
                         }
                         .padding(.bottom, 3.0)
-                        .offset(x: 12)
+                        .offset(x: 10)
                         
                         HStack {
-                            Text("Score: ")
+                            Text(gameLanguage == "english" ? "Score: " : "Điểm: ")
                             Text("\(score)")
                         }
-                        .offset(x: -40)
+                        .offset(x: -45)
                     }
                     
                     Spacer()
@@ -179,6 +180,6 @@ struct EasyGameView: View {
 
 struct EasyGameView_Previews: PreviewProvider {
     static var previews: some View {
-        EasyGameView(score: .constant(0), played: .constant(false), isPause: .constant(false), currentHealth: .constant(5), words: words)
+        EasyGameView(score: .constant(0), played: .constant(false), isPause: .constant(false), currentHealth: .constant(5), words: words, gameLanguage: "english")
     }
 }

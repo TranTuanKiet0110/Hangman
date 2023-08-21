@@ -22,8 +22,8 @@ struct MenuView: View {
                 NavigationLink(destination: GameSettingsView(gameMode: $gameMode, isDark: $isDark, gameLanguage: $gameLanguage)) {
                     Image(systemName: "gearshape.fill").foregroundColor(.gray).font(.system(size: 25))
                 }.offset(x: 130, y: -270)
-                NavigationLink(destination: RegisterView( gameMode: gameMode)) {
-                    Text("Start!")
+                NavigationLink(destination: RegisterView( gameMode: gameMode, gameLanguage: gameLanguage)) {
+                    Text(gameLanguage == "english" ? "Start!" : "Bắt đầu!")
                         .frame(width: 200, height: 60).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(.gray).opacity(0.5))
                 }
                 NavigationLink(destination: LeaderboardView()) {
