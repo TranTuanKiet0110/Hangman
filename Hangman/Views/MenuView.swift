@@ -12,13 +12,14 @@ struct MenuView: View {
     @State private var isStart = false
     @AppStorage("gameMode") var gameMode: String = "easy"
     @AppStorage("isDark") private var isDark = false
+    @AppStorage("gameLanguage") var gameLanguage: String = "english"
     
     let userDefaults = UserDefaults.standard
     
     var body: some View {
         NavigationView {
             VStack {
-                NavigationLink(destination: GameSettingsView(gameMode: $gameMode, isDark: $isDark)) {
+                NavigationLink(destination: GameSettingsView(gameMode: $gameMode, isDark: $isDark, gameLanguage: $gameLanguage)) {
                     Image(systemName: "gearshape.fill").foregroundColor(.gray).font(.system(size: 25))
                 }.offset(x: 130, y: -270)
                 NavigationLink(destination: RegisterView( gameMode: gameMode)) {
