@@ -205,10 +205,10 @@ struct EasyGameView: View {
                 .modifier(GameItemImageModifier())
             Text("Hint: \(hint)")
                 .multilineTextAlignment(.center)
-                .frame(width: UIScreen.main.bounds.width - 70)
+                .frame(width: UIScreen.main.bounds.width - 100)
                 .offset(y: -40)
             Text(currentWord)
-                .offset(y: 70)
+                .offset(y: 40)
             LazyVGrid (columns: gridItemLayout, spacing: 10) {
                 ForEach(keys) { key in
                     Button {
@@ -227,7 +227,7 @@ struct EasyGameView: View {
                 }
             }
             .padding(.horizontal)
-            .offset(y: 120)
+            .offset(y: 90)
         }
         .toolbar(.hidden)
         .onAppear {

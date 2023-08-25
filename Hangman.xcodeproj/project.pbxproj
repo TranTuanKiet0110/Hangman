@@ -22,6 +22,7 @@
 		46A24B452A988D34005AD9F3 /* MediumWordModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A24B442A988D34005AD9F3 /* MediumWordModelData.swift */; };
 		46A24B472A988DD9005AD9F3 /* HardWordModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A24B462A988DD9005AD9F3 /* HardWordModelData.swift */; };
 		46A24B492A988F70005AD9F3 /* MediumGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A24B482A988F70005AD9F3 /* MediumGameView.swift */; };
+		46A24B4C2A989CCA005AD9F3 /* BloodyTerror-GOW9Z.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46A24B4B2A989CBC005AD9F3 /* BloodyTerror-GOW9Z.ttf */; };
 		46AA93022A8B0CCA00993447 /* GameSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AA93012A8B0CCA00993447 /* GameSettingsView.swift */; };
 		46C9D2E12A871948005FC4CF /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C9D2E02A871948005FC4CF /* Modifiers.swift */; };
 		46C9D2E32A871ED5005FC4CF /* EasyGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C9D2E22A871ED5005FC4CF /* EasyGameView.swift */; };
@@ -49,6 +50,8 @@
 		46A24B442A988D34005AD9F3 /* MediumWordModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumWordModelData.swift; sourceTree = "<group>"; };
 		46A24B462A988DD9005AD9F3 /* HardWordModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardWordModelData.swift; sourceTree = "<group>"; };
 		46A24B482A988F70005AD9F3 /* MediumGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumGameView.swift; sourceTree = "<group>"; };
+		46A24B4B2A989CBC005AD9F3 /* BloodyTerror-GOW9Z.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BloodyTerror-GOW9Z.ttf"; sourceTree = "<group>"; };
+		46A24B4D2A989D11005AD9F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		46AA93012A8B0CCA00993447 /* GameSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettingsView.swift; sourceTree = "<group>"; };
 		46C9D2E02A871948005FC4CF /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		46C9D2E22A871ED5005FC4CF /* EasyGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyGameView.swift; sourceTree = "<group>"; };
@@ -89,6 +92,8 @@
 		46400DAA2A85D89200E4D6AC /* Hangman */ = {
 			isa = PBXGroup;
 			children = (
+				46A24B4D2A989D11005AD9F3 /* Info.plist */,
+				46A24B4A2A989CA4005AD9F3 /* fonts */,
 				46C9D2E82A874310005FC4CF /* Model */,
 				46400DBB2A85F1CF00E4D6AC /* Helpers */,
 				46400DBA2A85F1C600E4D6AC /* Sounds */,
@@ -136,6 +141,14 @@
 				46C9D2E02A871948005FC4CF /* Modifiers.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		46A24B4A2A989CA4005AD9F3 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				46A24B4B2A989CBC005AD9F3 /* BloodyTerror-GOW9Z.ttf */,
+			);
+			path = fonts;
 			sourceTree = "<group>";
 		};
 		46C9D2E82A874310005FC4CF /* Model */ = {
@@ -216,6 +229,7 @@
 			files = (
 				46A24B432A988C21005AD9F3 /* hardWords.json in Resources */,
 				46400DB32A85D89300E4D6AC /* Preview Assets.xcassets in Resources */,
+				46A24B4C2A989CCA005AD9F3 /* BloodyTerror-GOW9Z.ttf in Resources */,
 				46400DB02A85D89300E4D6AC /* Assets.xcassets in Resources */,
 				46C9D2EA2A874446005FC4CF /* easyWords.json in Resources */,
 				46A24B412A988BDD005AD9F3 /* mediumWords.json in Resources */,
@@ -377,6 +391,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Hangman/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Hangman/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -405,6 +420,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Hangman/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Hangman/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

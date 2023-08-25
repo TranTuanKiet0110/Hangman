@@ -22,7 +22,17 @@ struct MenuView: View {
                 NavigationLink(destination: GameSettingsView(gameMode: $gameMode, isDark: $isDark, gameLanguage: $gameLanguage)) {
                     Image(systemName: "gearshape.fill")
                         .foregroundColor(.gray).font(.system(size: 25))
-                }.offset(x: 130, y: -270)
+                }
+                .offset(x: 130, y: -110)
+                Image("app-logo")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 150, height: 150)
+                    .offset(y: -30)
+                Text("Hangman").font(.custom("BloodyTerror", size: 35))
+                    .fontWeight(.bold)
+                    .multilineTextAlignment(.center)
+                    .offset(y: -30)
                 NavigationLink(destination: RegisterView( gameMode: gameMode, gameLanguage: gameLanguage)) {
                     Text(gameLanguage == "english" ? "Start!" : "Bắt đầu!")
                         .modifier(MenuButtonModifier())

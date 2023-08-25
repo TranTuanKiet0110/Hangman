@@ -180,18 +180,8 @@ struct RegisterView: View {
     var body: some View {
         VStack {
             VStack {
-                Button() {
-                    reset()
-                    dismiss()
-                } label: {
-                    Image(systemName: "arrow.counterclockwise")
-                        .foregroundColor(.blue)
-                        .font(.system(size: 30))
-                }
-                .offset(x: -130, y: -250)
-                
                 TextField(gameLanguage == "english" ? "Enter player's name!" : "Hãy điền tên của bạn!", text: $userInput).disabled(played == true || isPause == true || pauseIsClicked == true)
-                    .offset(y: -50)
+                    .offset(y: -80)
                     .frame(width: 200)
                     .multilineTextAlignment(.center).textFieldStyle(.roundedBorder)
                 VStack {
@@ -204,6 +194,23 @@ struct RegisterView: View {
                         Text("\(userScore)")
                     }
                 }
+                
+                Button() {
+                    reset()
+                    dismiss()
+                } label: {
+                    HStack {
+                        Image(systemName: "arrow.counterclockwise")
+                            .foregroundColor(.blue)
+                            .font(.system(size: 30))
+                        Text(gameLanguage == "english" ? "Reset save data" : "Xoá dữ liệu")
+                            .fontWeight(.bold)
+                            .font(.system(size: 17))
+                    }
+                    .frame(width: 160, height: 70)
+                    .background(RoundedRectangle(cornerRadius: 16, style: .continuous)
+                            .foregroundColor(.gray).opacity(0.5))
+                }.offset(y: 30)
             }
             HStack {
                 Button() {
