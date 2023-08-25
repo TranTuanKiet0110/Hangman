@@ -24,7 +24,7 @@ struct GameSettingsView: View {
         
         if easyIsClicked == true {
             if englishIsClicked == true {
-                description = "Player's HP = 5, -1 HP for each wrong letter, +1 HP for each finished and hint is given for each word."
+                description = "Player's HP = 5, -1 HP for each wrong letter, +1 HP for each finished word and hint is given for each word."
             } else {
                 description = "Người chơi có 5 mạng (HP), -1 HP cho mỗi đoán sai ký tự, +1 HP khi đoán đúng 1 từ và sẽ có gợi ý cho mỗi từ."
             }

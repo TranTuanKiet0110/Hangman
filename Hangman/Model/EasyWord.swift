@@ -15,4 +15,5 @@ struct EasyWord: Identifiable, Codable {
     var image: Image {
         Image(imageName)
     }
+    var hint: String
 }

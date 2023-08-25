@@ -22,6 +22,7 @@ struct EasyGameView: View {
     @State private var currentWord = "?"
     @State private var currentLetter = ""
     @State private var healthBar = 0
+    @State private var hint = ""
     @State private var word: EasyWord?
     @State private var animatingIcon = false
     @State private var healthReduce = false
@@ -46,6 +47,7 @@ struct EasyGameView: View {
         
         if word != nil {
             hiddenWord = word!.word
+            hint = word!.hint
             print(hiddenWord)
         } else {
             print("Cannot get data!")
@@ -152,10 +154,14 @@ struct EasyGameView: View {
             word?.image
                 .resizable()
                 .opacity(animatingIcon ? 1 : 0)
-                .offset(y: animatingIcon ? 0 : 50)
+                .offset(y: animatingIcon ? -50 : 0)
                 .modifier(GameItemImageModifier())
-            
-            Text(currentWord).offset(y: 90)
+            Text("Hint: \(hint)")
+                .multilineTextAlignment(.center)
+                .frame(width: UIScreen.main.bounds.width - 70)
+                .offset(y: -40)
+            Text(currentWord)
+                .offset(y: 70)
             LazyVGrid (columns: gridItemLayout, spacing: 10) {
                 ForEach(0..<26) { index in
                     Button ("\(keys[index])") {
@@ -168,7 +174,7 @@ struct EasyGameView: View {
                 }
             }
             .padding(.horizontal)
-            .offset(y: 140)
+            .offset(y: 120)
         }
         .toolbar(.hidden)
         .onAppear {

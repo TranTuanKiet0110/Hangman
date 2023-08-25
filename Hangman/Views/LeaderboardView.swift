@@ -11,6 +11,7 @@ struct LeaderboardView: View {
     
     @State private var userRecord: [UserRecord] = []
     @State private var animatingListRow = false
+    @State var gameLanguage: String
     
     @Environment(\.dismiss) var dismiss
     
@@ -36,7 +37,7 @@ struct LeaderboardView: View {
             List(userRecord) { record in
                 HStack {
                     HStack {
-                        Text("Player:")
+                        Text(gameLanguage == "english" ? "Player:" : "Tên:")
                         Spacer()
                         Text("\(record.userName)")
                             .opacity(animatingListRow ? 1 : 0)
@@ -45,7 +46,7 @@ struct LeaderboardView: View {
                     }.frame(width: UIScreen.main.bounds.width/2 - 40)
                     Divider()
                     HStack {
-                        Text("Score:")
+                        Text(gameLanguage == "english" ? "Score:" : "Điểm:")
                         Spacer()
                         Text("\(record.score)")
                             .opacity(animatingListRow ? 1 : 0)
@@ -56,7 +57,7 @@ struct LeaderboardView: View {
                     .onAppear {
                         self.animatingListRow = true
                     }
-                    .navigationTitle("Leaderboard")
+                    .navigationTitle(gameLanguage == "english" ? "Leaderboard" : "Bảng xếp hạng")
             }.toolbar {
                 ToolbarItem(placement: ToolbarItemPlacement.navigationBarLeading) {
                     Button {
@@ -85,6 +86,6 @@ struct LeaderboardView: View {
 
 struct LeaderboardView_Previews: PreviewProvider {
     static var previews: some View {
-        LeaderboardView()
+        LeaderboardView(gameLanguage: "english")
     }
 }

@@ -24,9 +24,10 @@ struct MenuView: View {
                 }.offset(x: 130, y: -270)
                 NavigationLink(destination: RegisterView( gameMode: gameMode, gameLanguage: gameLanguage)) {
                     Text(gameLanguage == "english" ? "Start!" : "Bắt đầu!")
+                        .fontWeight(.bold)
                         .frame(width: 200, height: 60).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(.gray).opacity(0.5))
                 }
-                NavigationLink(destination: LeaderboardView()) {
+                NavigationLink(destination: LeaderboardView(gameLanguage: gameLanguage)) {
                     Image(systemName: "trophy.fill")
                         .frame(width: 200, height: 60)
                         .font(.system(size: 25)).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(.gray).opacity(0.5))

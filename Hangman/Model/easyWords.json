@@ -2,71 +2,85 @@
     {
         "id": 1,
         "word": "APPLE",
-        "imageName": "apple"
+        "imageName": "apple",
+        "hint": "Fruit with red color."
     },
     {
         "id": 2,
         "word": "BANANA",
-        "imageName": "banana"
+        "imageName": "banana",
+        "hint": "Long and yellow."
     },
     {
         "id": 3,
         "word": "CHERRY",
-        "imageName": "cherry"
+        "imageName": "cherry",
+        "hint": "Small and dark red."
     },
     {
         "id": 4,
         "word": "THIEF",
-        "imageName": "thief"
+        "imageName": "thief",
+        "hint": "Bad people."
     },
     {
         "id": 5,
         "word": "CAR",
-        "imageName": "car"
+        "imageName": "car",
+        "hint": "4 wheels."
     },
     {
         "id": 6,
         "word": "LAPTOP",
-        "imageName": "laptop"
+        "imageName": "laptop",
+        "hint": "Small and portable."
     },
     {
         "id": 7,
         "word": "COMPUTER",
-        "imageName": "computer"
+        "imageName": "computer",
+        "hint": "Electronic device."
     },
     {
         "id": 8,
         "word": "PRINTER",
-        "imageName": "printer"
+        "imageName": "printer",
+        "hint": "Transfer document from a computer to paper."
     },
     {
         "id": 9,
         "word": "KEYBOARD",
-        "imageName": "keyboard"
+        "imageName": "keyboard",
+        "hint": "Input device."
     },
     {
         "id": 10,
         "word": "BOY",
-        "imageName": "boy"
+        "imageName": "boy",
+        "hint": "A male child."
     },
     {
         "id": 11,
         "word": "GIRL",
-        "imageName": "girl"
+        "imageName": "girl",
+        "hint": "A female child."
     },
     {
         "id": 12,
         "word": "MOUSE",
-        "imageName": "mouse"
+        "imageName": "mouse",
+        "hint": "Small, nasty creature."
     },
     {
         "id": 13,
         "word": "CAKE",
-        "imageName": "cake"
+        "imageName": "cake",
+        "hint": "Sweet food."
     },
     {
         "id": 14,
         "word": "BIKE",
-        "imageName": "bike"
+        "imageName": "bike",
+        "hint": "Human-powered, 2 wheels vehicle."
     }
 ]
