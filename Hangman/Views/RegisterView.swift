@@ -232,7 +232,7 @@ struct RegisterView: View {
                 NavigationLink(destination: {
             
                         if gameMode == "easy" {
-                            EasyGameView(score: $userScore, played: $played, isPause: $pauseIsClicked, currentHealth: $easyCurrentHealth, words: words, gameLanguage: gameLanguage)
+                            EasyGameView(score: $userScore, played: $played, isPause: $pauseIsClicked, currentHealth: $easyCurrentHealth, words: easyWords, gameLanguage: gameLanguage)
                         } else {
                             Text("None")
                         }

@@ -64,7 +64,7 @@ struct EasyGameView: View {
     func startGame() {
         animatingIcon = false
         word = nil
-        word = words.randomElement()!
+        word = easyWords.randomElement()!
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             withAnimation(.easeInOut(duration: 0.3)){
@@ -240,6 +240,6 @@ struct EasyGameView: View {
 
 struct EasyGameView_Previews: PreviewProvider {
     static var previews: some View {
-        EasyGameView(score: .constant(0), played: .constant(false), isPause: .constant(false), currentHealth: .constant(5), words: words, gameLanguage: "english")
+        EasyGameView(score: .constant(0), played: .constant(false), isPause: .constant(false), currentHealth: .constant(5), words: easyWords, gameLanguage: "english")
     }
 }

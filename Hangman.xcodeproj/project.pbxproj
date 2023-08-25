@@ -15,6 +15,10 @@
 		46400DAE2A85D89200E4D6AC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46400DAD2A85D89200E4D6AC /* ContentView.swift */; };
 		46400DB02A85D89300E4D6AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46400DAF2A85D89300E4D6AC /* Assets.xcassets */; };
 		46400DB32A85D89300E4D6AC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46400DB22A85D89300E4D6AC /* Preview Assets.xcassets */; };
+		46A24B3D2A988985005AD9F3 /* MediumWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A24B3C2A988985005AD9F3 /* MediumWord.swift */; };
+		46A24B3F2A988B87005AD9F3 /* HardWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A24B3E2A988B87005AD9F3 /* HardWord.swift */; };
+		46A24B412A988BDD005AD9F3 /* mediumWords.json in Resources */ = {isa = PBXBuildFile; fileRef = 46A24B402A988BDD005AD9F3 /* mediumWords.json */; };
+		46A24B432A988C21005AD9F3 /* hardWords.json in Resources */ = {isa = PBXBuildFile; fileRef = 46A24B422A988C21005AD9F3 /* hardWords.json */; };
 		46AA93022A8B0CCA00993447 /* GameSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AA93012A8B0CCA00993447 /* GameSettingsView.swift */; };
 		46C9D2E12A871948005FC4CF /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C9D2E02A871948005FC4CF /* Modifiers.swift */; };
 		46C9D2E32A871ED5005FC4CF /* EasyGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C9D2E22A871ED5005FC4CF /* EasyGameView.swift */; };
@@ -35,6 +39,10 @@
 		46400DAD2A85D89200E4D6AC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		46400DAF2A85D89300E4D6AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		46400DB22A85D89300E4D6AC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		46A24B3C2A988985005AD9F3 /* MediumWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumWord.swift; sourceTree = "<group>"; };
+		46A24B3E2A988B87005AD9F3 /* HardWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardWord.swift; sourceTree = "<group>"; };
+		46A24B402A988BDD005AD9F3 /* mediumWords.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mediumWords.json; sourceTree = "<group>"; };
+		46A24B422A988C21005AD9F3 /* hardWords.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hardWords.json; sourceTree = "<group>"; };
 		46AA93012A8B0CCA00993447 /* GameSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettingsView.swift; sourceTree = "<group>"; };
 		46C9D2E02A871948005FC4CF /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		46C9D2E22A871ED5005FC4CF /* EasyGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyGameView.swift; sourceTree = "<group>"; };
@@ -127,10 +135,14 @@
 			isa = PBXGroup;
 			children = (
 				46C9D2E92A874446005FC4CF /* easyWords.json */,
+				46A24B402A988BDD005AD9F3 /* mediumWords.json */,
+				46A24B422A988C21005AD9F3 /* hardWords.json */,
 				46C9D2EB2A874473005FC4CF /* EasyWordModelData.swift */,
 				46C9D2ED2A874590005FC4CF /* EasyWord.swift */,
 				463509A42A88B1FB00C31FD3 /* UserRecord.swift */,
 				462FC3512A9863C1004D7E52 /* Key.swift */,
+				46A24B3C2A988985005AD9F3 /* MediumWord.swift */,
+				46A24B3E2A988B87005AD9F3 /* HardWord.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -193,9 +205,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46A24B432A988C21005AD9F3 /* hardWords.json in Resources */,
 				46400DB32A85D89300E4D6AC /* Preview Assets.xcassets in Resources */,
 				46400DB02A85D89300E4D6AC /* Assets.xcassets in Resources */,
 				46C9D2EA2A874446005FC4CF /* easyWords.json in Resources */,
+				46A24B412A988BDD005AD9F3 /* mediumWords.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,6 +222,8 @@
 			files = (
 				463509A32A88AFA200C31FD3 /* LeaderboardView.swift in Sources */,
 				463509A12A889B5C00C31FD3 /* RegisterView.swift in Sources */,
+				46A24B3F2A988B87005AD9F3 /* HardWord.swift in Sources */,
+				46A24B3D2A988985005AD9F3 /* MediumWord.swift in Sources */,
 				46C9D2E72A872E0E005FC4CF /* HealthBarView.swift in Sources */,
 				462FC3522A9863C1004D7E52 /* Key.swift in Sources */,
 				46C9D2EE2A874590005FC4CF /* EasyWord.swift in Sources */,

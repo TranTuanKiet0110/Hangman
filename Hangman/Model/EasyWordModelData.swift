@@ -7,7 +7,7 @@
 
 import Foundation
 
-var words = decodeJsonFile(jsonFileName: "easyWords.json")
+var easyWords = decodeJsonFile(jsonFileName: "easyWords.json")
 
 func decodeJsonFile(jsonFileName: String) -> [EasyWord] {
     if let file = Bundle.main.url(forResource: jsonFileName, withExtension: nil) {
