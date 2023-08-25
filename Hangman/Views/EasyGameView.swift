@@ -164,13 +164,15 @@ struct EasyGameView: View {
                 .offset(y: 70)
             LazyVGrid (columns: gridItemLayout, spacing: 10) {
                 ForEach(0..<26) { index in
-                    Button ("\(keys[index])") {
+                    Button {
                         currentLetter = keys[index]
                         checkWrongInput(inputItem: currentLetter)
                         checkAvailable(inputItem: currentLetter)
                         pauseIsClicked = false
+                    } label: {
+                        Text("\(keys[index])")
+                            .modifier(KeyboardButtonModifier())
                     }
-                    .modifier(KeyboardButtonModifier())
                 }
             }
             .padding(.horizontal)

@@ -212,10 +212,10 @@ struct RegisterView: View {
                     Image(systemName: "door.right.hand.open")
                         .foregroundColor(.blue).multilineTextAlignment(.center)
                         .font(.system(size: 25))
+                        .frame(width: 100, height: 60)
+                        .background(RoundedRectangle(cornerRadius: 16, style: .continuous)
+                            .foregroundColor(.gray).opacity(0.5))
                 }
-                .frame(width: 100, height: 60)
-                .background(RoundedRectangle(cornerRadius: 16, style: .continuous)
-                    .foregroundColor(.gray).opacity(0.5))
                 
                 Button() {
                     addUserRecord()
@@ -223,11 +223,11 @@ struct RegisterView: View {
                     Image(systemName: "square.and.arrow.down")
                         .foregroundColor(.blue).multilineTextAlignment(.center)
                         .font(.system(size: 25))
+                        .frame(width: 100, height: 60)
+                        .background(RoundedRectangle(cornerRadius: 16, style: .continuous)
+                            .foregroundColor(.gray).opacity(0.5))
                 }
                 .disabled(isHighScore == false)
-                .frame(width: 100, height: 60)
-                .background(RoundedRectangle(cornerRadius: 16, style: .continuous)
-                    .foregroundColor(.gray).opacity(0.5))
                 
                 NavigationLink(destination: {
             
