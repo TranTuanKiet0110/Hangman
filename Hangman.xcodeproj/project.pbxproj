@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		462FC3522A9863C1004D7E52 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462FC3512A9863C1004D7E52 /* Key.swift */; };
 		463509A12A889B5C00C31FD3 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463509A02A889B5C00C31FD3 /* RegisterView.swift */; };
 		463509A32A88AFA200C31FD3 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463509A22A88AFA200C31FD3 /* LeaderboardView.swift */; };
 		463509A52A88B1FB00C31FD3 /* UserRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463509A42A88B1FB00C31FD3 /* UserRecord.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		462FC3512A9863C1004D7E52 /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 		463509A02A889B5C00C31FD3 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		463509A22A88AFA200C31FD3 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
 		463509A42A88B1FB00C31FD3 /* UserRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRecord.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				46C9D2EB2A874473005FC4CF /* EasyWordModelData.swift */,
 				46C9D2ED2A874590005FC4CF /* EasyWord.swift */,
 				463509A42A88B1FB00C31FD3 /* UserRecord.swift */,
+				462FC3512A9863C1004D7E52 /* Key.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 				463509A32A88AFA200C31FD3 /* LeaderboardView.swift in Sources */,
 				463509A12A889B5C00C31FD3 /* RegisterView.swift in Sources */,
 				46C9D2E72A872E0E005FC4CF /* HealthBarView.swift in Sources */,
+				462FC3522A9863C1004D7E52 /* Key.swift in Sources */,
 				46C9D2EE2A874590005FC4CF /* EasyWord.swift in Sources */,
 				463509A52A88B1FB00C31FD3 /* UserRecord.swift in Sources */,
 				46C9D2E52A87296D005FC4CF /* MenuView.swift in Sources */,

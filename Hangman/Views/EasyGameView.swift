@@ -32,7 +32,34 @@ struct EasyGameView: View {
     
     let gridItemLayout = Array(repeating: GridItem(.fixed(30), spacing: 20), count: Int(UIScreen.main.bounds.width)/50)
     
-    let keys = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+    @State var keys = [
+        Key(id: 0, name: "A", isClick: false),
+        Key(id: 1, name: "B", isClick: false),
+        Key(id: 2, name: "C", isClick: false),
+        Key(id: 3, name: "D", isClick: false),
+        Key(id: 4, name: "E", isClick: false),
+        Key(id: 5, name: "F", isClick: false),
+        Key(id: 6, name: "G", isClick: false),
+        Key(id: 7, name: "H", isClick: false),
+        Key(id: 8, name: "I", isClick: false),
+        Key(id: 9, name: "J", isClick: false),
+        Key(id: 10, name: "K", isClick: false),
+        Key(id: 11, name: "L", isClick: false),
+        Key(id: 12, name: "M", isClick: false),
+        Key(id: 13, name: "N", isClick: false),
+        Key(id: 14, name: "O", isClick: false),
+        Key(id: 15, name: "P", isClick: false),
+        Key(id: 16, name: "Q", isClick: false),
+        Key(id: 17, name: "R", isClick: false),
+        Key(id: 18, name: "S", isClick: false),
+        Key(id: 19, name: "T", isClick: false),
+        Key(id: 20, name: "U", isClick: false),
+        Key(id: 21, name: "V", isClick: false),
+        Key(id: 22, name: "U", isClick: false),
+        Key(id: 23, name: "X", isClick: false),
+        Key(id: 24, name: "Y", isClick: false),
+        Key(id: 25, name: "Z", isClick: false)
+    ]
     
     func startGame() {
         animatingIcon = false
@@ -43,6 +70,7 @@ struct EasyGameView: View {
             withAnimation(.easeInOut(duration: 0.3)){
                 animatingIcon = true
             }
+            resetKeys()
         }
         
         if word != nil {
@@ -110,6 +138,26 @@ struct EasyGameView: View {
         }
     }
     
+    func checkIsClick(id: Int) {
+        var index = 0
+        for key in keys {
+            if key.id == id {
+                keys[index].isClick = true
+            }
+            index += 1
+        }
+        
+    }
+    
+    func resetKeys() {
+        var index = 0
+        for key in keys {
+            if key.isClick == true {
+                keys[index].isClick = false
+            }
+            index += 1
+        }
+    }
     
     var body: some View {
         return VStack {
@@ -163,15 +211,19 @@ struct EasyGameView: View {
             Text(currentWord)
                 .offset(y: 70)
             LazyVGrid (columns: gridItemLayout, spacing: 10) {
-                ForEach(0..<26) { index in
+                ForEach(keys) { key in
                     Button {
-                        currentLetter = keys[index]
+                        currentLetter = key.name
                         checkWrongInput(inputItem: currentLetter)
                         checkAvailable(inputItem: currentLetter)
                         pauseIsClicked = false
+                        checkIsClick(id: key.id)
                     } label: {
-                        Text("\(keys[index])")
+                        Text("\(key.name)")
                             .modifier(KeyboardButtonModifier())
+                            .opacity(key.isClick ? 0 : 1)
+                            .offset(y: key.isClick ? 100 : 0)
+                            .animation(.easeOut(duration: 0.3), value: key.isClick)
                     }
                 }
             }

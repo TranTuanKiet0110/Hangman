@@ -23,3 +23,12 @@ struct KeyboardButtonModifier: ViewModifier {
             .opacity(0.5)
     }
 }
+
+struct MenuButtonModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .fontWeight(.bold)
+            .frame(width: 200, height: 60)
+            .font(.system(size: 20)).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(.gray).opacity(0.5))
+    }
+}
