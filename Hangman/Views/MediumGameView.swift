@@ -1,13 +1,13 @@
 //
-//  GameView.swift
+//  MediumGameView.swift
 //  Hangman
 //
-//  Created by Kiet Tran Tuan on 12/08/2023.
+//  Created by Kiet Tran Tuan on 25/08/2023.
 //
 
 import SwiftUI
 
-struct EasyGameView: View {
+struct MediumGameView: View {
     
     @Binding var score: Int
     @Binding var played: Bool
@@ -16,14 +16,13 @@ struct EasyGameView: View {
     
     @AppStorage("pauseIsClicked") private var pauseIsClicked = false
     
-    @State var words: Array<EasyWord>
+    @State var words: Array<MediumWord>
     @State private var hiddenWord = ""
     @State private var wordCount = 0
     @State private var currentWord = "?"
     @State private var currentLetter = ""
     @State private var healthBar = 0
-    @State private var hint = ""
-    @State private var word: EasyWord?
+    @State private var word: MediumWord?
     @State private var animatingIcon = false
     @State private var healthReduce = false
     @State var gameLanguage: String
@@ -63,7 +62,7 @@ struct EasyGameView: View {
     func startGame() {
         animatingIcon = false
         word = nil
-        word = easyWords.randomElement()!
+        word = mediumWords.randomElement()!
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             withAnimation(.easeInOut(duration: 0.3)){
@@ -74,7 +73,6 @@ struct EasyGameView: View {
         
         if word != nil {
             hiddenWord = word!.word
-            hint = word!.hint
             print(hiddenWord)
         } else {
             print("Cannot get data!")
@@ -203,12 +201,11 @@ struct EasyGameView: View {
                 .opacity(animatingIcon ? 1 : 0)
                 .offset(y: animatingIcon ? -50 : 0)
                 .modifier(GameItemImageModifier())
-            Text("Hint: \(hint)")
                 .multilineTextAlignment(.center)
                 .frame(width: UIScreen.main.bounds.width - 70)
-                .offset(y: -40)
+                .offset(y: 35)
             Text(currentWord)
-                .offset(y: 70)
+                .offset(y: 50)
             LazyVGrid (columns: gridItemLayout, spacing: 10) {
                 ForEach(keys) { key in
                     Button {
@@ -227,7 +224,7 @@ struct EasyGameView: View {
                 }
             }
             .padding(.horizontal)
-            .offset(y: 120)
+            .offset(y: 100)
         }
         .toolbar(.hidden)
         .onAppear {
@@ -237,8 +234,8 @@ struct EasyGameView: View {
     }
 }
 
-struct EasyGameView_Previews: PreviewProvider {
+struct MediumGameView_Previews: PreviewProvider {
     static var previews: some View {
-        EasyGameView(score: .constant(0), played: .constant(false), isPause: .constant(false), currentHealth: .constant(5), words: easyWords, gameLanguage: "english")
+        MediumGameView(score: .constant(0), played: .constant(false), isPause: .constant(false), currentHealth: .constant(5), words: mediumWords, gameLanguage: "english")
     }
 }

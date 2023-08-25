@@ -13,6 +13,8 @@ struct RegisterView: View {
     @AppStorage("saveScore") var saveScore = 0
     @AppStorage("isPause") var isPause = false
     @AppStorage("easyCurrentHealth") var easyCurrentHealth = 5
+    @AppStorage("mediumCurrentHealth") var mediumCurrentHealth = 5
+    @AppStorage("hardCurrentHealth") var hardCurrentHealth = 3
     
     @State private var userRecord: [UserRecord] = []
     @State var gameMode: String
@@ -172,6 +174,7 @@ struct RegisterView: View {
         saveName = ""
         saveScore = 0
         easyCurrentHealth = 5
+        mediumCurrentHealth = 5
     }
     
     var body: some View {
@@ -233,8 +236,10 @@ struct RegisterView: View {
             
                         if gameMode == "easy" {
                             EasyGameView(score: $userScore, played: $played, isPause: $pauseIsClicked, currentHealth: $easyCurrentHealth, words: easyWords, gameLanguage: gameLanguage)
+                        } else if gameMode == "medium" {
+                            MediumGameView(score: $userScore, played: $played, isPause: $pauseIsClicked, currentHealth: $mediumCurrentHealth, words: mediumWords, gameLanguage: gameLanguage)
                         } else {
-                            Text("None")
+                            Text("Still in development")
                         }
             
                 }) {
