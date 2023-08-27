@@ -28,6 +28,7 @@ struct MenuButtonModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .fontWeight(.bold)
+            .foregroundColor(.white)
             .multilineTextAlignment(.center)
             .frame(width: 200, height: 70)
             .font(.custom("BloodyTerror", size: 25))

@@ -51,13 +51,15 @@ struct GameSettingsView: View {
         VStack {
             VStack {
                 
+                Spacer()
+                    .frame(height: 100)
                 VStack {
                     Text(englishIsClicked ? "Difficulty" : "Độ khó")
                         .fontWeight(.bold)
                         .multilineTextAlignment(.center)
                     HStack (spacing: 0) {
-                        Spacer()
                         
+                        Spacer()
                         Button {
                             gameMode = "easy"
                             easyIsClicked = true
@@ -100,17 +102,20 @@ struct GameSettingsView: View {
                     
                     .background(RoundedRectangle(cornerRadius: 16).foregroundColor(.gray))
                 }
-                .offset(y: -100)
                 
+                Spacer()
+                    .frame(height: 60)
                 VStack {
                     Text(englishIsClicked ? "Description" : "Mô tả")
                         .fontWeight(.bold)
                         .multilineTextAlignment(.center)
                     Text("\(loadDescription())")
                         .multilineTextAlignment(.center).frame(width: UIScreen.main.bounds.width - 20, height: 100)
-                }.offset(y: -20)
+                }
             }
             
+            Spacer()
+                .frame(height: 30)
             VStack {
                 Divider()
                     .padding(.vertical)
@@ -123,6 +128,8 @@ struct GameSettingsView: View {
                 Divider()
                     .padding(.vertical)
                 
+                Spacer()
+                    .frame(height: 50)
                 VStack {
                     Text(englishIsClicked ? "Languages" : "Ngôn ngữ")
                         .fontWeight(.bold)
@@ -159,7 +166,8 @@ struct GameSettingsView: View {
                     .background(RoundedRectangle(cornerRadius: 16).foregroundColor(.gray))
                 }
             }
-            .offset(y: 20)
+            
+            Spacer()
         }
         .navigationBarBackButtonHidden(true)
         .toolbar {

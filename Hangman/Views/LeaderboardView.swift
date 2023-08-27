@@ -35,6 +35,7 @@ struct LeaderboardView: View {
     var body: some View {
         VStack {
             List(userRecord) { record in
+                
                 HStack {
                     HStack {
                         Text(gameLanguage == "english" ? "Player:" : "Tên:")
@@ -53,19 +54,22 @@ struct LeaderboardView: View {
                             .offset(y: animatingListRow ? 0 : 50)
                             .animation(.easeOut(duration: 1), value: animatingListRow)
                     }.frame(width: UIScreen.main.bounds.width/2 - 40)
-                }.navigationBarBackButtonHidden(true)
-                    .onAppear {
-                        self.animatingListRow = true
-                    }
-                    .navigationTitle(gameLanguage == "english" ? "Leaderboard" : "Bảng xếp hạng")
-            }.toolbar {
+                }
+                
+                .onAppear {
+                    self.animatingListRow = true
+                }
+            }
+            .navigationTitle(gameLanguage == "english" ? "Leaderboard" : "Bảng xếp hạng")
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
                 ToolbarItem(placement: ToolbarItemPlacement.navigationBarLeading) {
                     Button {
                         dismiss()
                     } label: {
                         HStack {
                             Image(systemName: "arrow.uturn.left").font(.system(size: 15)).fontWeight(.bold)
-                            Text("Return")
+                            Text(gameLanguage == "english" ? "Return" : "Quay lại")
                                 .fontWeight(.bold)
                         }
                     }

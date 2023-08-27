@@ -18,31 +18,58 @@ struct MenuView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                NavigationLink(destination: GameSettingsView(gameMode: $gameMode, isDark: $isDark, gameLanguage: $gameLanguage)) {
-                    Image(systemName: "gearshape.fill")
-                        .foregroundColor(.gray).font(.system(size: 25))
-                }
-                .offset(x: 130, y: -110)
-                Image("app-logo")
+            ZStack {
+                Image("background")
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 150, height: 150)
-                    .offset(y: -30)
-                Text("Hangman").font(.custom("BloodyTerror", size: 35))
-                    .fontWeight(.bold)
-                    .multilineTextAlignment(.center)
-                    .offset(y: -30)
-                NavigationLink(destination: RegisterView( gameMode: gameMode, gameLanguage: gameLanguage)) {
-                    Text(gameLanguage == "english" ? "Start!" : "Bắt đầu!")
-                        .modifier(MenuButtonModifier())
-                }
-                NavigationLink(destination: LeaderboardView(gameLanguage: gameLanguage)) {
-                    Image(systemName: "trophy.fill")
-                        .modifier(MenuButtonModifier())
+                    .aspectRatio(contentMode: .fill)
+                    .blur(radius: 7)
+                    .edgesIgnoringSafeArea(.vertical)
+                VStack {
+                    
+                    Spacer()
+                        .frame(height: 5)
+                    HStack {
+                        
+                        Spacer()
+                            .frame(width: 280)
+                        
+                        NavigationLink(destination: GameSettingsView(gameMode: $gameMode, isDark: $isDark, gameLanguage: $gameLanguage)) {
+                            Image(systemName: "gearshape.fill")
+                                .foregroundColor(.white)
+                                .font(.system(size: 25))
+                        }
+                    }
+                    
+                    Spacer()
+                        .frame(height: 110)
+                    Image("app-logo")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 150, height: 150)
+                    Text("Hangman").font(.custom("BloodyTerror", size: 35))
+                        .foregroundColor(.white)
+                        .fontWeight(.bold)
+                        .multilineTextAlignment(.center)
+                        .offset(y: -30)
+                    NavigationLink(destination: RegisterView( gameMode: gameMode, gameLanguage: gameLanguage)) {
+                        Text(gameLanguage == "english" ? "Start!" : "Bắt đầu!")
+                            .modifier(MenuButtonModifier())
+                    }
+                    NavigationLink(destination: LeaderboardView(gameLanguage: gameLanguage)) {
+                        Image(systemName: "trophy.fill")
+                            .modifier(MenuButtonModifier())
+                    }
+                    NavigationLink(destination: LeaderboardView(gameLanguage: gameLanguage)) {
+                        Text(gameLanguage == "english" ? "How to play?" : "Hướng dẫn")
+                            .modifier(MenuButtonModifier())
+                    }
+                    
+                    Spacer()
+                        .frame(height: 100)
                 }
             }
-        }.preferredColorScheme(isDark ? .dark : .light)
+        }.navigationViewStyle(.stack)
+        .preferredColorScheme(isDark ? .dark : .light)
     }
 }
 

@@ -98,9 +98,15 @@ struct EasyGameView: View {
         if currentWord.replacingOccurrences(of: " ", with: "") == hiddenWord {
             if currentHealth < 5 {
                 currentHealth += 1
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    playSound(sound: "health-increase", type: "mp3")
+                }
             }
             score += 1
-            startGame()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                playSound(sound: "new", type: "mp3")
+                startGame()
+            }
         }
     }
     
@@ -109,6 +115,7 @@ struct EasyGameView: View {
             currentHealth -= 1
             healthReduce = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                playSound(sound: "health-reduce", type: "mp3")
                 healthReduce = false
             }
             playerLose(healthStatus: currentHealth)
@@ -217,6 +224,7 @@ struct EasyGameView: View {
                         checkAvailable(inputItem: currentLetter)
                         pauseIsClicked = false
                         checkIsClick(id: key.id)
+                        playSound(sound: "key-press", type: "mp3")
                     } label: {
                         Text("\(key.name)")
                             .modifier(KeyboardButtonModifier())
