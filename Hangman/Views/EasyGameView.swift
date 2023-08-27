@@ -58,7 +58,7 @@ struct EasyGameView: View {
     
     @Environment(\.dismiss) var dismiss
     
-    let gridItemLayout = Array(repeating: GridItem(.fixed(30), spacing: 20), count: Int(UIScreen.main.bounds.width)/50)
+    let gridItemLayout = Array(repeating: GridItem(.fixed(30), spacing: 20), count: 8)
     
     func startGame() {
         animatingIcon = false
@@ -167,6 +167,9 @@ struct EasyGameView: View {
     
     var body: some View {
         return VStack {
+            
+            Spacer()
+                .frame(height: 30)
             VStack {
                 HStack {
                     VStack {
@@ -178,13 +181,12 @@ struct EasyGameView: View {
                                 .animation(Animation.spring(response: 0.2, dampingFraction: 0.2, blendDuration: 0.2), value: healthReduce)
                         }
                         .padding(.bottom, 3.0)
-                        .offset(x: 6)
                         
                         HStack {
                             Text(gameLanguage == "english" ? "Score: " : "Điểm: ")
                             Text("\(score)")
                         }
-                        .offset(x: -45)
+                        .offset(x: -53)
                     }
                     
                     Spacer()
@@ -203,8 +205,9 @@ struct EasyGameView: View {
                 Divider()
             }
             .padding(.horizontal, 30.0)
-            .offset(y: -140)
             
+            Spacer()
+                .frame(height: 200)
             word?.image
                 .resizable()
                 .opacity(animatingIcon ? 1 : 0)
@@ -213,9 +216,13 @@ struct EasyGameView: View {
             Text("Hint: \(hint)")
                 .multilineTextAlignment(.center)
                 .frame(width: UIScreen.main.bounds.width - 100)
-                .offset(y: -40)
+            
+            Spacer()
+                .frame(height: 50)
             Text(currentWord)
-                .offset(y: 40)
+            
+            Spacer()
+                .frame(height: 100)
             LazyVGrid (columns: gridItemLayout, spacing: 10) {
                 ForEach(keys) { key in
                     Button {
@@ -235,7 +242,8 @@ struct EasyGameView: View {
                 }
             }
             .padding(.horizontal)
-            .offset(y: 90)
+            
+            Spacer()
         }
         .toolbar(.hidden)
         .onAppear {
