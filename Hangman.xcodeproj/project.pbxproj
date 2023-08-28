@@ -28,6 +28,10 @@
 		46A24B472A988DD9005AD9F3 /* HardWordModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A24B462A988DD9005AD9F3 /* HardWordModelData.swift */; };
 		46A24B492A988F70005AD9F3 /* MediumGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A24B482A988F70005AD9F3 /* MediumGameView.swift */; };
 		46A24B4C2A989CCA005AD9F3 /* BloodyTerror-GOW9Z.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46A24B4B2A989CBC005AD9F3 /* BloodyTerror-GOW9Z.ttf */; };
+		46A6DBB82A9C350F00F6C22A /* background-music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 46A6DBB72A9C350F00F6C22A /* background-music.mp3 */; };
+		46A6DBBC2A9C517600F6C22A /* win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 46A6DBBB2A9C517600F6C22A /* win.mp3 */; };
+		46A6DBC32A9C58B700F6C22A /* start-button.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 46A6DBC12A9C58B700F6C22A /* start-button.mp3 */; };
+		46A6DBC42A9C58B700F6C22A /* quit-button.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 46A6DBC22A9C58B700F6C22A /* quit-button.mp3 */; };
 		46AA93022A8B0CCA00993447 /* GameSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AA93012A8B0CCA00993447 /* GameSettingsView.swift */; };
 		46C9D2E12A871948005FC4CF /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C9D2E02A871948005FC4CF /* Modifiers.swift */; };
 		46C9D2E32A871ED5005FC4CF /* EasyGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C9D2E22A871ED5005FC4CF /* EasyGameView.swift */; };
@@ -62,6 +66,10 @@
 		46A24B482A988F70005AD9F3 /* MediumGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumGameView.swift; sourceTree = "<group>"; };
 		46A24B4B2A989CBC005AD9F3 /* BloodyTerror-GOW9Z.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BloodyTerror-GOW9Z.ttf"; sourceTree = "<group>"; };
 		46A24B4D2A989D11005AD9F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		46A6DBB72A9C350F00F6C22A /* background-music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "background-music.mp3"; sourceTree = "<group>"; };
+		46A6DBBB2A9C517600F6C22A /* win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = win.mp3; sourceTree = "<group>"; };
+		46A6DBC12A9C58B700F6C22A /* start-button.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "start-button.mp3"; sourceTree = "<group>"; };
+		46A6DBC22A9C58B700F6C22A /* quit-button.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "quit-button.mp3"; sourceTree = "<group>"; };
 		46AA93012A8B0CCA00993447 /* GameSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettingsView.swift; sourceTree = "<group>"; };
 		46C9D2E02A871948005FC4CF /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		46C9D2E22A871ED5005FC4CF /* EasyGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyGameView.swift; sourceTree = "<group>"; };
@@ -141,8 +149,12 @@
 		46400DBA2A85F1C600E4D6AC /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				46A6DBB72A9C350F00F6C22A /* background-music.mp3 */,
 				464396242A9B2FB500EF7ADF /* health-reduce.mp3 */,
 				464396282A9B321B00EF7ADF /* health-increase.mp3 */,
+				46A6DBC22A9C58B700F6C22A /* quit-button.mp3 */,
+				46A6DBC12A9C58B700F6C22A /* start-button.mp3 */,
+				46A6DBBB2A9C517600F6C22A /* win.mp3 */,
 				4643962A2A9B348500EF7ADF /* new.mp3 */,
 				464396222A9B276B00EF7ADF /* key-press.mp3 */,
 			);
@@ -245,11 +257,15 @@
 				46A24B432A988C21005AD9F3 /* hardWords.json in Resources */,
 				464396232A9B276B00EF7ADF /* key-press.mp3 in Resources */,
 				464396252A9B2FB500EF7ADF /* health-reduce.mp3 in Resources */,
+				46A6DBBC2A9C517600F6C22A /* win.mp3 in Resources */,
+				46A6DBB82A9C350F00F6C22A /* background-music.mp3 in Resources */,
+				46A6DBC32A9C58B700F6C22A /* start-button.mp3 in Resources */,
 				46400DB32A85D89300E4D6AC /* Preview Assets.xcassets in Resources */,
 				46A24B4C2A989CCA005AD9F3 /* BloodyTerror-GOW9Z.ttf in Resources */,
 				4643962B2A9B348500EF7ADF /* new.mp3 in Resources */,
 				46400DB02A85D89300E4D6AC /* Assets.xcassets in Resources */,
 				46C9D2EA2A874446005FC4CF /* easyWords.json in Resources */,
+				46A6DBC42A9C58B700F6C22A /* quit-button.mp3 in Resources */,
 				46A24B412A988BDD005AD9F3 /* mediumWords.json in Resources */,
 				464396292A9B321B00EF7ADF /* health-increase.mp3 in Resources */,
 			);

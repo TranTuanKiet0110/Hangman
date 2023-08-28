@@ -110,7 +110,8 @@ struct GameSettingsView: View {
                         .fontWeight(.bold)
                         .multilineTextAlignment(.center)
                     Text("\(loadDescription())")
-                        .multilineTextAlignment(.center).frame(width: UIScreen.main.bounds.width - 20, height: 100)
+                        .multilineTextAlignment(.center)
+                        .frame(width: UIScreen.main.bounds.width - 20, height: 100)
                 }
             }
             
@@ -121,7 +122,8 @@ struct GameSettingsView: View {
                     .padding(.vertical)
                 
                 VStack {
-                    Toggle(englishIsClicked ? "Dark mode" : "Chế độ tối", isOn: $isDark).toggleStyle(SwitchToggleStyle(tint: .green))
+                    Toggle(englishIsClicked ? "Dark mode" : "Chế độ tối", isOn: $isDark)
+                        .toggleStyle(SwitchToggleStyle(tint: .green))
                         .fontWeight(.bold)
                 }
                 
@@ -162,7 +164,6 @@ struct GameSettingsView: View {
                         Spacer()
                     }
                     .frame(width: UIScreen.main.bounds.width - 50, height: 70)
-                    
                     .background(RoundedRectangle(cornerRadius: 16).foregroundColor(.gray))
                 }
             }
@@ -176,8 +177,10 @@ struct GameSettingsView: View {
                     dismiss()
                 } label: {
                     HStack {
-                        Image(systemName: "arrow.uturn.left").font(.system(size: 15)).fontWeight(.bold)
-                        Text("Return")
+                        Image(systemName: "arrow.uturn.left")
+                            .font(.system(size: 15))
+                            .fontWeight(.bold)
+                        Text(gameLanguage == "english" ? "Return" : "Quay lại")
                             .fontWeight(.bold)
                     }
                 }

@@ -72,6 +72,7 @@ struct LeaderboardView: View {
                             Text(gameLanguage == "english" ? "Return" : "Quay lại")
                                 .fontWeight(.bold)
                         }
+                        .foregroundColor(.white)
                     }
                 }
             }
@@ -85,6 +86,11 @@ struct LeaderboardView: View {
         .onDisappear {
             resetArray()
         }
+        .opacity(0.7)
+        .background(Image("background")
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+            .edgesIgnoringSafeArea(.vertical))
     }
 }
 

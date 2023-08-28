@@ -1,8 +1,8 @@
 //
-//  MediumGameView.swift
+//  GameView.swift
 //  Hangman
 //
-//  Created by Kiet Tran Tuan on 25/08/2023.
+//  Created by Kiet Tran Tuan on 12/08/2023.
 //
 
 import SwiftUI
@@ -54,10 +54,10 @@ struct MediumGameView: View {
         Key(id: 24, name: "Y", isClick: false),
         Key(id: 25, name: "Z", isClick: false)
     ]
-    
+
     @Environment(\.dismiss) var dismiss
     
-    let gridItemLayout = Array(repeating: GridItem(.fixed(30), spacing: 20), count: Int(UIScreen.main.bounds.width)/50)
+    let gridItemLayout = Array(repeating: GridItem(.fixed(30), spacing: 20), count: 8)
     
     func startGame() {
         animatingIcon = false
@@ -96,9 +96,15 @@ struct MediumGameView: View {
         if currentWord.replacingOccurrences(of: " ", with: "") == hiddenWord {
             if currentHealth < 5 {
                 currentHealth += 1
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    playSound(sound: "health-increase", type: "mp3", numOfLoop: 0)
+                }
             }
             score += 1
-            startGame()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                playSound(sound: "new", type: "mp3", numOfLoop: 0)
+                startGame()
+            }
         }
     }
     
@@ -107,6 +113,7 @@ struct MediumGameView: View {
             currentHealth -= 1
             healthReduce = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                playSound(sound: "health-reduce", type: "mp3", numOfLoop: 0)
                 healthReduce = false
             }
             playerLose(healthStatus: currentHealth)
@@ -158,6 +165,9 @@ struct MediumGameView: View {
     
     var body: some View {
         return VStack {
+            
+            Spacer()
+                .frame(height: 30)
             VStack {
                 HStack {
                     VStack {
@@ -169,13 +179,12 @@ struct MediumGameView: View {
                                 .animation(Animation.spring(response: 0.2, dampingFraction: 0.2, blendDuration: 0.2), value: healthReduce)
                         }
                         .padding(.bottom, 3.0)
-                        .offset(x: 6)
                         
                         HStack {
                             Text(gameLanguage == "english" ? "Score: " : "Điểm: ")
                             Text("\(score)")
                         }
-                        .offset(x: -45)
+                        .offset(x: -53)
                     }
                     
                     Spacer()
@@ -194,18 +203,21 @@ struct MediumGameView: View {
                 Divider()
             }
             .padding(.horizontal, 30.0)
-            .offset(y: -140)
             
+            Spacer()
+                .frame(height: 200)
             word?.image
                 .resizable()
                 .opacity(animatingIcon ? 1 : 0)
                 .offset(y: animatingIcon ? -50 : 0)
                 .modifier(GameItemImageModifier())
-                .multilineTextAlignment(.center)
-                .frame(width: UIScreen.main.bounds.width - 70)
-                .offset(y: 35)
+            
+            Spacer()
+                .frame(height: 50)
             Text(currentWord)
-                .offset(y: 50)
+            
+            Spacer()
+                .frame(height: 100)
             LazyVGrid (columns: gridItemLayout, spacing: 10) {
                 ForEach(keys) { key in
                     Button {
@@ -214,6 +226,7 @@ struct MediumGameView: View {
                         checkAvailable(inputItem: currentLetter)
                         pauseIsClicked = false
                         checkIsClick(id: key.id)
+                        playSound(sound: "key-press", type: "mp3", numOfLoop: 0)
                     } label: {
                         Text("\(key.name)")
                             .modifier(KeyboardButtonModifier())
@@ -224,7 +237,8 @@ struct MediumGameView: View {
                 }
             }
             .padding(.horizontal)
-            .offset(y: 100)
+            
+            Spacer()
         }
         .toolbar(.hidden)
         .onAppear {

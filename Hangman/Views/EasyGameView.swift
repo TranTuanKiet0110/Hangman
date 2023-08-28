@@ -55,7 +55,7 @@ struct EasyGameView: View {
         Key(id: 24, name: "Y", isClick: false),
         Key(id: 25, name: "Z", isClick: false)
     ]
-    
+
     @Environment(\.dismiss) var dismiss
     
     let gridItemLayout = Array(repeating: GridItem(.fixed(30), spacing: 20), count: 8)
@@ -99,12 +99,12 @@ struct EasyGameView: View {
             if currentHealth < 5 {
                 currentHealth += 1
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    playSound(sound: "health-increase", type: "mp3")
+                    playSound(sound: "health-increase", type: "mp3", numOfLoop: 0)
                 }
             }
             score += 1
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                playSound(sound: "new", type: "mp3")
+                playSound(sound: "new", type: "mp3", numOfLoop: 0)
                 startGame()
             }
         }
@@ -115,7 +115,7 @@ struct EasyGameView: View {
             currentHealth -= 1
             healthReduce = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                playSound(sound: "health-reduce", type: "mp3")
+                playSound(sound: "health-reduce", type: "mp3", numOfLoop: 0)
                 healthReduce = false
             }
             playerLose(healthStatus: currentHealth)
@@ -231,7 +231,7 @@ struct EasyGameView: View {
                         checkAvailable(inputItem: currentLetter)
                         pauseIsClicked = false
                         checkIsClick(id: key.id)
-                        playSound(sound: "key-press", type: "mp3")
+                        playSound(sound: "key-press", type: "mp3", numOfLoop: 0)
                     } label: {
                         Text("\(key.name)")
                             .modifier(KeyboardButtonModifier())

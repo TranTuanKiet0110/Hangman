@@ -9,10 +9,11 @@ import SwiftUI
 
 struct MenuView: View {
     
-    @State private var isStart = false
     @AppStorage("gameMode") var gameMode: String = "easy"
     @AppStorage("isDark") private var isDark = false
     @AppStorage("gameLanguage") var gameLanguage: String = "english"
+    
+    @State private var isStart = false
     
     let userDefaults = UserDefaults.standard
     
@@ -51,10 +52,11 @@ struct MenuView: View {
                         .fontWeight(.bold)
                         .multilineTextAlignment(.center)
                         .offset(y: -30)
-                    NavigationLink(destination: RegisterView( gameMode: gameMode, gameLanguage: gameLanguage)) {
+                    NavigationLink(destination: RegisterView( gameMode: gameMode, gameLanguage: gameLanguage)
+                        .onAppear {playSound(sound: "start-button", type: "mp3", numOfLoop: 0)}) {
                         Text(gameLanguage == "english" ? "Start!" : "Bắt đầu!")
                             .modifier(MenuButtonModifier())
-                    }
+                        }
                     NavigationLink(destination: LeaderboardView(gameLanguage: gameLanguage)) {
                         Image(systemName: "trophy.fill")
                             .modifier(MenuButtonModifier())
@@ -68,7 +70,13 @@ struct MenuView: View {
                         .frame(height: 100)
                 }
             }
-        }.navigationViewStyle(.stack)
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    playSound(sound: "background-music", type: "mp3", numOfLoop: -1)
+                }
+            }
+        }
+        .navigationViewStyle(.stack)
         .preferredColorScheme(isDark ? .dark : .light)
     }
 }
