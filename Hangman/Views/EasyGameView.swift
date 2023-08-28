@@ -247,6 +247,7 @@ struct EasyGameView: View {
         }
         .toolbar(.hidden)
         .onAppear {
+            isPause = false
             self.startGame()
             healthBar = currentHealth
         }

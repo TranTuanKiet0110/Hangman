@@ -71,7 +71,7 @@ struct MenuView: View {
                 }
             }
             .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                     playSound(sound: "background-music", type: "mp3", numOfLoop: -1)
                 }
             }

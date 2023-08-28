@@ -1,13 +1,13 @@
 //
-//  GameView.swift
+//  HardGameView.swift
 //  Hangman
 //
-//  Created by Kiet Tran Tuan on 12/08/2023.
+//  Created by Kiet Tran Tuan on 28/08/2023.
 //
 
 import SwiftUI
 
-struct MediumGameView: View {
+struct HardGameView: View {
     
     @Binding var score: Int
     @Binding var played: Bool
@@ -16,13 +16,13 @@ struct MediumGameView: View {
     
     @AppStorage("pauseIsClicked") private var pauseIsClicked = false
     
-    @State var words: Array<MediumWord>
+    @State var words: Array<HardWord>
     @State private var hiddenWord = ""
     @State private var wordCount = 0
     @State private var currentWord = "?"
     @State private var currentLetter = ""
     @State private var healthBar = 0
-    @State private var word: MediumWord?
+    @State private var word: HardWord?
     @State private var animatingIcon = false
     @State private var healthReduce = false
     @State var gameLanguage: String
@@ -62,7 +62,7 @@ struct MediumGameView: View {
     func startGame() {
         animatingIcon = false
         word = nil
-        word = mediumWords.randomElement()!
+        word = hardWords.randomElement()!
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             withAnimation(.easeInOut(duration: 0.3)){
@@ -94,12 +94,6 @@ struct MediumGameView: View {
     
     func checkWinning() {
         if currentWord.replacingOccurrences(of: " ", with: "") == hiddenWord {
-            if currentHealth < 5 {
-                currentHealth += 1
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    playSound(sound: "health-increase", type: "mp3", numOfLoop: 0)
-                }
-            }
             score += 1
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 playSound(sound: "new", type: "mp3", numOfLoop: 0)
@@ -249,7 +243,7 @@ struct MediumGameView: View {
     }
 }
 
-struct MediumGameView_Previews: PreviewProvider {
+struct HardGameView_Previews: PreviewProvider {
     static var previews: some View {
         MediumGameView(score: .constant(0), played: .constant(false), isPause: .constant(false), currentHealth: .constant(5), words: mediumWords, gameLanguage: "english")
     }

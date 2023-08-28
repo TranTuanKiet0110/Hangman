@@ -25,7 +25,7 @@ struct RegisterView: View {
     @State private var played = false
     @State private var isHighScore = false
     @State private var isAvailable = false
-    @State private var index = 0
+    @State private var index = 1
     @State private var scoreStatus = ""
     @State private var pauseIsClicked = false
     @State private var isFinished = false
@@ -34,7 +34,7 @@ struct RegisterView: View {
     
     func save(userRecord: [UserRecord]) {
         do {
-            let url = try FileManager.default.url(for: .desktopDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("test2.json")
+            let url = try FileManager.default.url(for: .desktopDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("test6.json")
             let encoder = JSONEncoder()
             try encoder.encode(userRecord).write(to: url)
         } catch {
@@ -44,7 +44,7 @@ struct RegisterView: View {
     
     func load() -> [UserRecord]{
         do {
-            let url = try FileManager.default.url(for: .desktopDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("test2.json")
+            let url = try FileManager.default.url(for: .desktopDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("test6.json")
             let data = try Data(contentsOf: url)
             let decoder = JSONDecoder()
             let records = try decoder.decode([UserRecord].self, from: data)
@@ -57,24 +57,34 @@ struct RegisterView: View {
     
     func addUserRecord() {
         if !userRecord.isEmpty {
+            print(isAvailable)
+            print(isHighScore)
             if isHighScore == true && isAvailable == true {
+                userRecord.removeAll(where: {$0.userName == "\(userInput)"})
                 userRecord.append(UserRecord(id: UUID(), userName: userInput, score: userScore))
-                userRecord.remove(at: index)
                 save(userRecord: userRecord)
                 print(userRecord)
-                dismiss()
+                playSound(sound: "quit-button", type: "mp3", numOfLoop: 0)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.1) {
+                    dismiss()
+                }
             } else if isHighScore == true && isAvailable == false {
                 userRecord.append(UserRecord(id: UUID(), userName: userInput, score: userScore))
                 save(userRecord: userRecord)
                 print(userRecord)
-                dismiss()
+                playSound(sound: "quit-button", type: "mp3", numOfLoop: 0)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.1) {
+                    dismiss()
+                }
             }
-            index += 1
         } else {
             userRecord.append(UserRecord(id: UUID(), userName: userInput, score: userScore))
             save(userRecord: userRecord)
             print(userRecord)
-            dismiss()
+            playSound(sound: "quit-button", type: "mp3", numOfLoop: 0)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.1) {
+                dismiss()
+            }
         }
     }
     
@@ -84,6 +94,7 @@ struct RegisterView: View {
                 if record.userName == userInput {
                     lastScore = record.score
                     isAvailable = true
+                    break
                 } else {
                     isAvailable = false
                 }
@@ -204,6 +215,7 @@ struct RegisterView: View {
         saveScore = 0
         easyCurrentHealth = 5
         mediumCurrentHealth = 5
+        hardCurrentHealth = 3
     }
     
     var body: some View {
@@ -295,7 +307,7 @@ struct RegisterView: View {
                             } else if gameMode == "medium" {
                                 MediumGameView(score: $userScore, played: $played, isPause: $pauseIsClicked, currentHealth: $mediumCurrentHealth, words: mediumWords, gameLanguage: gameLanguage)
                             } else {
-                                Text("Still in development")
+                                HardGameView(score: $userScore, played: $played, isPause: $pauseIsClicked, currentHealth: $hardCurrentHealth, words: hardWords, gameLanguage: gameLanguage)
                             }
                 
                     }) {
@@ -309,23 +321,18 @@ struct RegisterView: View {
             }
             .toolbar(.hidden)
                 .onAppear {
-                    print(isPause)
+                    isHighScore = false
                     self.userRecord = load()
                     checkIsPause()
                     checkPause()
-                    print(pauseIsClicked)
-                    //                print(userRecord)
                     checkAvailable()
                     checkHighScore()
-                    //                print(isAvailable)
-                    //                print(isHighScore)
                 }.onDisappear {
                     resetArray()
                     if played == true {
                         reset()
                     }
                     isPause = pauseIsClicked
-                    isHighScore = false
             }
         }
     }

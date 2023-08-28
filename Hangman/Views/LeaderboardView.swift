@@ -17,7 +17,7 @@ struct LeaderboardView: View {
     
     func load() -> [UserRecord]{
         do {
-            let url = try FileManager.default.url(for: .desktopDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("test2.json")
+            let url = try FileManager.default.url(for: .desktopDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("test6.json")
             let data = try Data(contentsOf: url)
             let decoder = JSONDecoder()
             let records = try decoder.decode([UserRecord].self, from: data)
