@@ -12,6 +12,7 @@ struct LeaderboardView: View {
     @State private var userRecord: [UserRecord] = []
     @State private var animatingListRow = false
     @State var gameLanguage: String
+    @State private var order = 1
     
     @Environment(\.dismiss) var dismiss
     
@@ -33,48 +34,25 @@ struct LeaderboardView: View {
     }
     
     var body: some View {
-        VStack {
-            List(userRecord) { record in
-                
-                HStack {
-                    HStack {
-                        Text(gameLanguage == "english" ? "Player:" : "Tên:")
-                        Spacer()
-                        Text("\(record.userName)")
-                            .opacity(animatingListRow ? 1 : 0)
-                            .offset(y: animatingListRow ? 0 : 50)
-                            .animation(.easeOut(duration: 1), value: animatingListRow)
-                    }.frame(width: UIScreen.main.bounds.width/2 - 40)
-                    Divider()
-                    HStack {
-                        Text(gameLanguage == "english" ? "Score:" : "Điểm:")
-                        Spacer()
-                        Text("\(record.score)")
-                            .opacity(animatingListRow ? 1 : 0)
-                            .offset(y: animatingListRow ? 0 : 50)
-                            .animation(.easeOut(duration: 1), value: animatingListRow)
-                    }.frame(width: UIScreen.main.bounds.width/2 - 40)
-                }
-                
-                .onAppear {
-                    self.animatingListRow = true
-                }
-            }
-            .navigationTitle(gameLanguage == "english" ? "Leaderboard" : "Bảng xếp hạng")
-            .navigationBarBackButtonHidden(true)
-            .toolbar {
-                ToolbarItem(placement: ToolbarItemPlacement.navigationBarLeading) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        HStack {
-                            Image(systemName: "arrow.uturn.left").font(.system(size: 15)).fontWeight(.bold)
-                            Text(gameLanguage == "english" ? "Return" : "Quay lại")
-                                .fontWeight(.bold)
-                        }
+        ZStack {
+            Image("background")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .blur(radius: 5)
+                .edgesIgnoringSafeArea(.vertical)
+            
+            ScrollView (showsIndicators: false) {
+                VStack {
+                    Text(gameLanguage == "english" ? "Leaderboard" : "Bảng xếp hạng")
+                        .font(.system(size: 40))
+                        .fontWeight(.heavy)
+                        .multilineTextAlignment(.leading)
                         .foregroundColor(.white)
+                    ForEach(Array(userRecord.enumerated()), id: \.offset) { record in
+                        LeaderboardRow(order: record.offset + 1, record: record.element)
                     }
                 }
+                .navigationBarBackButtonHidden(true)
             }
         }
         .onAppear {
@@ -86,11 +64,20 @@ struct LeaderboardView: View {
         .onDisappear {
             resetArray()
         }
-        .opacity(0.7)
-        .background(Image("background")
-            .resizable()
-            .aspectRatio(contentMode: .fill)
-            .edgesIgnoringSafeArea(.vertical))
+        .toolbar {
+            ToolbarItem(placement: ToolbarItemPlacement.navigationBarLeading) {
+                Button {
+                    dismiss()
+                } label: {
+                    HStack {
+                        Image(systemName: "arrow.uturn.left").font(.system(size: 15)).fontWeight(.bold)
+                        Text(gameLanguage == "english" ? "Return" : "Quay lại")
+                            .fontWeight(.bold)
+                    }
+                    .foregroundColor(.white)
+                }
+            }
+        }
     }
 }
 

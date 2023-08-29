@@ -237,6 +237,7 @@ struct RegisterView: View {
                             .multilineTextAlignment(.center)
                             .padding(.bottom)
                             .foregroundColor(.white)
+                            .font(.system(size: 20))
                         
                         HStack {
                             Text(gameLanguage == "english" ? "Your score: " : "Điểm của bạn: ")
@@ -244,6 +245,7 @@ struct RegisterView: View {
                         }
                         .foregroundColor(.white)
                         .fontWeight(.bold)
+                        .font(.system(size: 20))
                     }
                     
                     Button() {

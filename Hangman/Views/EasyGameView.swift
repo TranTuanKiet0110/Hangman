@@ -58,7 +58,7 @@ struct EasyGameView: View {
 
     @Environment(\.dismiss) var dismiss
     
-    let gridItemLayout = Array(repeating: GridItem(.fixed(30), spacing: 20), count: 8)
+    let gridItemLayout = Array(repeating: GridItem(.fixed(40), spacing: 20), count: 6)
     
     func startGame() {
         animatingIcon = false
@@ -222,7 +222,7 @@ struct EasyGameView: View {
             Text(currentWord)
             
             Spacer()
-                .frame(height: 100)
+                .frame(height: 50)
             LazyVGrid (columns: gridItemLayout, spacing: 10) {
                 ForEach(keys) { key in
                     Button {

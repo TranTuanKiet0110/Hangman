@@ -41,6 +41,7 @@
 		46C9D2EA2A874446005FC4CF /* easyWords.json in Resources */ = {isa = PBXBuildFile; fileRef = 46C9D2E92A874446005FC4CF /* easyWords.json */; };
 		46C9D2EC2A874473005FC4CF /* EasyWordModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C9D2EB2A874473005FC4CF /* EasyWordModelData.swift */; };
 		46C9D2EE2A874590005FC4CF /* EasyWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C9D2ED2A874590005FC4CF /* EasyWord.swift */; };
+		46F5C9FC2A9D839A009A9BBA /* LeaderboardRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F5C9FB2A9D839A009A9BBA /* LeaderboardRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +81,7 @@
 		46C9D2E92A874446005FC4CF /* easyWords.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = easyWords.json; sourceTree = "<group>"; };
 		46C9D2EB2A874473005FC4CF /* EasyWordModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyWordModelData.swift; sourceTree = "<group>"; };
 		46C9D2ED2A874590005FC4CF /* EasyWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyWord.swift; sourceTree = "<group>"; };
+		46F5C9FB2A9D839A009A9BBA /* LeaderboardRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 				46AA93012A8B0CCA00993447 /* GameSettingsView.swift */,
 				46A24B482A988F70005AD9F3 /* MediumGameView.swift */,
 				46A6DBC52A9C868E00F6C22A /* HardGameView.swift */,
+				46F5C9FB2A9D839A009A9BBA /* LeaderboardRow.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				46C9D2E52A87296D005FC4CF /* MenuView.swift in Sources */,
 				46C9D2E12A871948005FC4CF /* Modifiers.swift in Sources */,
 				46A24B472A988DD9005AD9F3 /* HardWordModelData.swift in Sources */,
+				46F5C9FC2A9D839A009A9BBA /* LeaderboardRow.swift in Sources */,
 				46400DAE2A85D89200E4D6AC /* ContentView.swift in Sources */,
 				46400DAC2A85D89200E4D6AC /* HangmanApp.swift in Sources */,
 				46A24B452A988D34005AD9F3 /* MediumWordModelData.swift in Sources */,

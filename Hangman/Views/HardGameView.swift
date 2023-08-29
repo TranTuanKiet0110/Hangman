@@ -57,7 +57,7 @@ struct HardGameView: View {
 
     @Environment(\.dismiss) var dismiss
     
-    let gridItemLayout = Array(repeating: GridItem(.fixed(30), spacing: 20), count: 8)
+    let gridItemLayout = Array(repeating: GridItem(.fixed(40), spacing: 20), count: 6)
     
     func startGame() {
         animatingIcon = false
@@ -94,7 +94,11 @@ struct HardGameView: View {
     
     func checkWinning() {
         if currentWord.replacingOccurrences(of: " ", with: "") == hiddenWord {
-            score += 1
+            if score < 10 {
+                score += 1
+            } else {
+                score += 1 * score/10
+            }
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 playSound(sound: "new", type: "mp3", numOfLoop: 0)
                 startGame()
@@ -211,7 +215,7 @@ struct HardGameView: View {
             Text(currentWord)
             
             Spacer()
-                .frame(height: 100)
+                .frame(height: 50)
             LazyVGrid (columns: gridItemLayout, spacing: 10) {
                 ForEach(keys) { key in
                     Button {

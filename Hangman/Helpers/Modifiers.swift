@@ -18,7 +18,7 @@ struct GameItemImageModifier: ViewModifier {
 struct KeyboardButtonModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .frame(width: 40, height: 40)
+            .frame(width: 50, height: 50)
             .background(.gray)
             .opacity(0.5)
     }
