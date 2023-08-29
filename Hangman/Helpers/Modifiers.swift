@@ -20,7 +20,8 @@ struct KeyboardButtonModifier: ViewModifier {
         content
             .frame(width: 50, height: 50)
             .background(.gray)
-            .opacity(0.5)
+            .opacity(0.7)
+            .foregroundColor(.white).brightness(0.2)
     }
 }
 

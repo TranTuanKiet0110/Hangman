@@ -142,7 +142,7 @@ struct RegisterView: View {
                         }
                     } else {
                         if gameLanguage == "english" {
-                            scoreStatus = "Better luck next time!"
+                            scoreStatus = "Failed!\nBetter luck next time!"
                             isHighScore = false
                             reset()
                         } else {
@@ -170,7 +170,7 @@ struct RegisterView: View {
                         }
                     } else {
                         if gameLanguage == "english" {
-                            scoreStatus = "Better luck next time"
+                            scoreStatus = "Failed!\nBetter luck next time"
                             isHighScore = false
                             reset()
                         } else {

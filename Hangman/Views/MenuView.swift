@@ -61,7 +61,7 @@ struct MenuView: View {
                         Image(systemName: "trophy.fill")
                             .modifier(MenuButtonModifier())
                     }
-                    NavigationLink(destination: LeaderboardView(gameLanguage: gameLanguage)) {
+                    NavigationLink(destination: GuideView(gameLanguage: gameLanguage)) {
                         Text(gameLanguage == "english" ? "How to play?" : "Hướng dẫn")
                             .modifier(MenuButtonModifier())
                     }
