@@ -13,6 +13,7 @@ struct LeaderboardView: View {
     @State private var animatingListRow = false
     @State var gameLanguage: String
     @State private var order = 1
+    @State private var openAchievement = false
     
     @Environment(\.dismiss) var dismiss
     
@@ -49,7 +50,7 @@ struct LeaderboardView: View {
                         .multilineTextAlignment(.leading)
                         .foregroundColor(.white)
                     ForEach(Array(userRecord.enumerated()), id: \.offset) { record in
-                        LeaderboardRow(order: record.offset + 1, record: record.element)
+                        LeaderboardRow(openAchievement: $openAchievement, order: record.offset + 1, record: record.element)
                     }
                 }
                 .navigationBarBackButtonHidden(true)
@@ -70,8 +71,27 @@ struct LeaderboardView: View {
                     dismiss()
                 } label: {
                     HStack {
-                        Image(systemName: "arrow.uturn.left").font(.system(size: 15)).fontWeight(.bold)
+                        Image(systemName: "arrow.uturn.left")
+                            .font(.system(size: 15))
+                            .fontWeight(.bold)
                         Text(gameLanguage == "english" ? "Return" : "Quay lại")
+                            .font(.system(size: 15))
+                            .fontWeight(.bold)
+                    }
+                    .foregroundColor(.white)
+                }
+            }
+            
+            ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
+                Button {
+                    openAchievement.toggle()
+                } label: {
+                    HStack {
+                        Text(gameLanguage == "english" ? "Achievement" : "Thành tích")
+                            .font(.system(size: 15))
+                            .fontWeight(.bold)
+                        Image(systemName: "medal.fill")
+                            .font(.system(size: 15))
                             .fontWeight(.bold)
                     }
                     .foregroundColor(.white)
