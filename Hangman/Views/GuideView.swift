@@ -10,7 +10,7 @@ import SwiftUI
 struct GuideView: View {
     
     @State var gameLanguage: String
-    
+    @State private var lockScroll = true
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -22,7 +22,7 @@ struct GuideView: View {
                 .edgesIgnoringSafeArea(.vertical)
             ScrollViewReader { value in
                 ScrollView(.horizontal, showsIndicators: false){
-                    HStack (spacing: 0){
+                    HStack {
                         
                         Spacer()
                             .frame(width: 10)
@@ -34,13 +34,35 @@ struct GuideView: View {
                             Image("menu")
                                 .resizable()
                                 .frame(width: 200,height: 400)
-                            Text("- Start game: Tap \"Start!\" button.\n- Open leaderboard: Tap \"🏆\" button.\n- Open game's settings: Tap gear button in the upper-right corner.")
+                            Text(gameLanguage == "english" ? "- Start game: Tap \"Start!\" button.\n- Open leaderboard: Tap \"🏆\" button.\n- Open game's settings: Tap gear button in the upper-right corner." : "- Nhấn nút \"Bắt đầu\" để vào trò chơi.\n- Nhấn nút \"🏆\" để mở bảng xếp hạng.\n- Nhấn nút \"Răng cưa\" để mở cài đặt game.")
                                 .foregroundColor(.white)
                                 .font(.system(size: 20))
                                 .padding(.horizontal)
-                                .frame(width: UIScreen.main.bounds.width, height: 200, alignment: .leading)
+                                .frame(width: UIScreen.main.bounds.width - 20, height: 200, alignment: .leading)
                                 .background(RoundedRectangle(cornerRadius: 16).foregroundColor(.gray).opacity(0.5))
+                            HStack {
+                                
+                                Spacer()
+                                Button {
+                                    value.scrollTo(2)
+                                } label: {
+                                    HStack {
+                                        Text("Next")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 15))
+                                            .fontWeight(.bold)
+                                        Image(systemName: "arrow.right")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 15))
+                                            .fontWeight(.bold)
+                                    }
+                                }
+                                
+                                Spacer()
+                                    .frame(width: 40)
+                            }
                         }
+                        .id(1)
                         .frame(width: UIScreen.main.bounds.width)
                         
                         VStack {
@@ -51,14 +73,54 @@ struct GuideView: View {
                             Image("setting")
                                 .resizable()
                                 .frame(width: 200,height: 400)
-                            Text("- Change game's difficulty: Tap on the difficulty indicator.\n- Change light/dark mode: Toggle the dark mode button.\n- Change language: Tap on the languages indicator.")
+                            Text(gameLanguage == "english" ? "- Change game's difficulty: Tap on the difficulty indicator.\n- Change light/dark mode: Toggle the dark mode button.\n- Change language: Tap on the languages indicator." : "- Chọn độ khó trên thanh độ khó của game.\n- Bật chế độ tối bằng cách nhấn vào nút chế độ tối.\n- Thay đổi ngôn ngữ bằng cách chọn trên thanh ngôn ngữ")
                                 .foregroundColor(.white)
                                 .font(.system(size: 20))
                                 .padding(.horizontal)
-                                .frame(width: UIScreen.main.bounds.width, height: 200, alignment: .leading)
+                                .frame(width: UIScreen.main.bounds.width - 20, height: 200, alignment: .leading)
                                 .background(RoundedRectangle(cornerRadius: 16).foregroundColor(.gray).opacity(0.5))
+                            
+                            HStack {
+                                
+                                Spacer()
+                                    .frame(width: 40)
+                                Button {
+                                    value.scrollTo(1)
+                                } label: {
+                                    HStack {
+                                        Image(systemName: "arrow.left")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 15))
+                                            .fontWeight(.bold)
+                                        Text("Previous")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 15))
+                                            .fontWeight(.bold)
+                                    }
+                                }
+                                
+                                Spacer()
+                                Button {
+                                    value.scrollTo(3)
+                                } label: {
+                                    HStack {
+                                        Text("Next")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 15))
+                                            .fontWeight(.bold)
+                                        Image(systemName: "arrow.right")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 15))
+                                            .fontWeight(.bold)
+                                    }
+                                }
+                                
+                                Spacer()
+                                    .frame(width: 40)
+                            }
                         }
-                        .frame(width: UIScreen.main.bounds.width)
+                        .id(2)
+                        .frame(width: UIScreen.main.bounds.width + 17)
                         
                         VStack {
                             Text(gameLanguage == "english" ? "Register page" : "Điền thông tin")
@@ -68,65 +130,209 @@ struct GuideView: View {
                             Image("register")
                                 .resizable()
                                 .frame(width: 200,height: 400)
-                            Text("- Enter your name in the text field.\n- Press play button to play.")
+                            Text(gameLanguage == "english" ? "- Enter your name in the text field.\n- Press play button to play." : "- Điền tên của bạn.\n- Nhấn nút chơi để bắt đầu.")
                                 .foregroundColor(.white)
                                 .font(.system(size: 20))
                                 .padding(.horizontal)
-                                .frame(width: UIScreen.main.bounds.width, height: 200, alignment: .leading)
+                                .frame(width: UIScreen.main.bounds.width - 20, height: 200, alignment: .leading)
                                 .background(RoundedRectangle(cornerRadius: 16).foregroundColor(.gray).opacity(0.5))
+                            
+                            HStack {
+                                
+                                Spacer()
+                                    .frame(width: 40)
+                                Button {
+                                    value.scrollTo(2)
+                                } label: {
+                                    HStack {
+                                        Image(systemName: "arrow.left")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 15))
+                                            .fontWeight(.bold)
+                                        Text("Previous")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 15))
+                                            .fontWeight(.bold)
+                                    }
+                                }
+                                
+                                Spacer()
+                                Button {
+                                    value.scrollTo(4)
+                                } label: {
+                                    HStack {
+                                        Text("Next")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 15))
+                                            .fontWeight(.bold)
+                                        Image(systemName: "arrow.right")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 15))
+                                            .fontWeight(.bold)
+                                    }
+                                }
+                                
+                                Spacer()
+                                    .frame(width: 40)
+                            }
                         }
-                        .frame(width: UIScreen.main.bounds.width)
+                        .id(3)
+                        .frame(width: UIScreen.main.bounds.width + 17)
                         
                         VStack {
-                            Text("Gameplay")
+                            Text(gameLanguage == "english" ? "Gameplay" : "Lối chơi")
                                 .foregroundColor(.white)
                                 .font(.system(size: 20))
                                 .fontWeight(.bold)
                             Image("game")
                                 .resizable()
                                 .frame(width: 200,height: 400)
-                            Text("- Guess the word base on the picture given.\n- If succeed: score + 1.\n- Choose a wrong letter: HP - 1.\n- No ending, Win if get highscore.")
+                            Text(gameLanguage == "english" ? "- Guess the word base on the picture given.\n- If succeed: score + 1.\n- Choose a wrong letter: HP - 1.\n- No ending until HP = 0, Win if get \"Highscore\"." : "- Đoán chữ dựa trên hình được cho.\n- Hoàn thành: +1 điểm.\n- Đoán sai chữ cái: -1 HP.\n- Không có kết thúc cho đến khi HP = 0, bạn sẽ thắng nếu như bạn được \"Kỷ lục mới\"")
                                 .foregroundColor(.white)
                                 .font(.system(size: 20))
                                 .padding(.horizontal)
-                                .frame(width: UIScreen.main.bounds.width, height: 200, alignment: .leading)
+                                .frame(width: UIScreen.main.bounds.width - 20, height: 200, alignment: .leading)
                                 .background(RoundedRectangle(cornerRadius: 16).foregroundColor(.gray).opacity(0.5))
+                            
+                            HStack {
+                                
+                                Spacer()
+                                    .frame(width: 40)
+                                Button {
+                                    value.scrollTo(3)
+                                } label: {
+                                    HStack {
+                                        Image(systemName: "arrow.left")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 15))
+                                            .fontWeight(.bold)
+                                        Text("Previous")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 15))
+                                            .fontWeight(.bold)
+                                    }
+                                }
+                                
+                                Spacer()
+                                Button {
+                                    value.scrollTo(5)
+                                } label: {
+                                    HStack {
+                                        Text("Next")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 15))
+                                            .fontWeight(.bold)
+                                        Image(systemName: "arrow.right")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 15))
+                                            .fontWeight(.bold)
+                                    }
+                                }
+                                
+                                Spacer()
+                                    .frame(width: 40)
+                            }
                         }
-                        .frame(width: UIScreen.main.bounds.width)
+                        .id(4)
+                        .frame(width: UIScreen.main.bounds.width + 17)
                         
                         VStack {
-                            Text("Pause")
+                            Text(gameLanguage == "english" ? "Pause" : "Tạm dừng trò chơi")
                                 .foregroundColor(.white)
                                 .font(.system(size: 20))
                                 .fontWeight(.bold)
                             Image("pause")
                                 .resizable()
                                 .frame(width: 200,height: 400)
-                            Text("- Continue: Tap \"Play\" button.\n- Quit: Tap \"Door\" button.\n- Reset character: Tap \"Reset\" button.")
+                            Text(gameLanguage == "english" ? "- Continue: Tap \"Play\" button.\n- Quit: Tap \"Door\" button.\n- Reset character: Tap \"Reset\" button." : "- Để tiếp tục: Nhấn nút chơi.\n- Nhấn nút thoát để trở về màn hình chính.\n- Nhấn nút đặt lại để xoá dữ liệu.")
                                 .foregroundColor(.white)
                                 .font(.system(size: 20))
                                 .padding(.horizontal)
-                                .frame(width: UIScreen.main.bounds.width, height: 200, alignment: .leading)
+                                .frame(width: UIScreen.main.bounds.width - 20, height: 200, alignment: .leading)
                                 .background(RoundedRectangle(cornerRadius: 16).foregroundColor(.gray).opacity(0.5))
+                            
+                            HStack {
+                                
+                                Spacer()
+                                    .frame(width: 40)
+                                Button {
+                                    value.scrollTo(4)
+                                } label: {
+                                    HStack {
+                                        Image(systemName: "arrow.left")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 15))
+                                            .fontWeight(.bold)
+                                        Text("Previous")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 15))
+                                            .fontWeight(.bold)
+                                    }
+                                }
+                                
+                                Spacer()
+                                Button {
+                                    value.scrollTo(6)
+                                } label: {
+                                    HStack {
+                                        Text("Next")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 15))
+                                            .fontWeight(.bold)
+                                        Image(systemName: "arrow.right")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 15))
+                                            .fontWeight(.bold)
+                                    }
+                                }
+                                
+                                Spacer()
+                                    .frame(width: 40)
+                            }
                         }
-                        .frame(width: UIScreen.main.bounds.width)
+                        .id(5)
+                        .frame(width: UIScreen.main.bounds.width + 17)
                         
                         VStack {
-                            Text("Game's Result")
+                            Text(gameLanguage == "english" ? "Game's Result" : "Màn hình kết thúc")
                                 .foregroundColor(.white)
                                 .font(.system(size: 20))
                                 .fontWeight(.bold)
                             Image("result")
                                 .resizable()
                                 .frame(width: 200,height: 400)
-                            Text("- Save result: Tap \"Save\" button.\n- Quit: Tap \"Reset\" or \"Door\" button.\n- Saved result will be recorded into leaderboard.")
+                            Text(gameLanguage == "english" ? "- Save result: Tap \"Save\" button.\n- Quit: Tap \"Reset\" or \"Door\" button.\n- Saved result will be recorded into leaderboard." : "- Nhấn nút \"lưu\" để lưu kết quả vào bảng xếp hạng.\n- Nhấn nút \"Đặt lại\" hoặc \"Thoát\" để trở lại màn hình chính.")
                                 .foregroundColor(.white)
                                 .font(.system(size: 20))
                                 .padding(.horizontal)
-                                .frame(width: UIScreen.main.bounds.width, height: 200, alignment: .leading)
+                                .frame(width: UIScreen.main.bounds.width - 20, height: 200, alignment: .leading)
                                 .background(RoundedRectangle(cornerRadius: 16).foregroundColor(.gray).opacity(0.5))
+                            
+                            HStack {
+                                
+                                Spacer()
+                                    .frame(width: 40)
+                                Button {
+                                    value.scrollTo(5)
+                                } label: {
+                                    HStack {
+                                        Image(systemName: "arrow.left")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 15))
+                                            .fontWeight(.bold)
+                                        Text("Previous")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 15))
+                                            .fontWeight(.bold)
+                                    }
+                                }
+                                
+                                Spacer()
+                                
+                            }
                         }
-                        .frame(width: UIScreen.main.bounds.width)
+                        .id(6)
+                        .frame(width: UIScreen.main.bounds.width + 17)
                         
                         Spacer()
                             .frame(width: 10)
@@ -134,6 +340,9 @@ struct GuideView: View {
                     .navigationTitle(gameLanguage == "english" ? "Game's guide" : "Hướng dẫn")
                     .navigationBarBackButtonHidden(true)
                 }
+//                .onTapGesture {
+//                    value.scrollTo(6)
+//                }
             }
             .toolbar {
                 ToolbarItem(placement: ToolbarItemPlacement.navigationBarLeading) {

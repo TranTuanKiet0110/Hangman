@@ -227,7 +227,9 @@ struct RegisterView: View {
                 .edgesIgnoringSafeArea(.vertical)
             VStack {
                 VStack {
-                    TextField(gameLanguage == "english" ? "Enter player's name!" : "Hãy điền tên của bạn!", text: $userInput).disabled(played == true || isPause == true || pauseIsClicked == true)
+                    TextField(gameLanguage == "english" ? "Enter player's name!" : "Hãy điền tên của bạn!", text: $userInput)
+                        .disabled(played == true || isPause == true || pauseIsClicked == true)
+                        .disableAutocorrection(true)
                         .offset(y: -80)
                         .frame(width: 200)
                         .multilineTextAlignment(.center).textFieldStyle(.roundedBorder)
