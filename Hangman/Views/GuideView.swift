@@ -338,6 +338,7 @@ struct GuideView: View {
                             .frame(width: 10)
                     }
                     .navigationTitle(gameLanguage == "english" ? "Game's guide" : "Hướng dẫn")
+                    
                     .navigationBarBackButtonHidden(true)
                 }
 //                .onTapGesture {

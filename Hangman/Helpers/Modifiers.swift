@@ -36,3 +36,45 @@ struct MenuButtonModifier: ViewModifier {
             .background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(.gray).opacity(0.5))
     }
 }
+
+struct AchievementName: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.system(size: 15))
+            .fontWeight(.bold)
+            .foregroundColor(.white)
+    }
+}
+
+struct AchievementDescription: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.system(size: 15))
+            .foregroundColor(.white)
+    }
+}
+
+struct AchievementImage: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .frame(width: 50, height: 50)
+    }
+}
+
+struct RecordOrder: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.system(size: 25))
+            .fontWeight(.bold)
+            .foregroundColor(.white)
+    }
+}
+
+struct RecordDetail: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.system(size: 25))
+            .fontWeight(.bold)
+            .foregroundColor(.white)
+    }
+}

@@ -51,19 +51,13 @@ struct LeaderboardRow: View {
                         Spacer()
                             .frame(width: 20)
                         Text("\(order).")
-                            .font(.system(size: 25))
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
+                            .modifier(RecordOrder())
                         Text(record.userName)
-                            .font(.system(size: 25))
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
+                            .modifier(RecordDetail())
                         
                         Spacer()
                         Text("\(record.score)")
-                            .font(.system(size: 25))
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
+                            .modifier(RecordDetail())
                         Spacer()
                             .frame(width: 20)
                     }
@@ -88,18 +82,15 @@ struct LeaderboardRow: View {
                                 .frame(width: 20)
                             Image("gold-medal")
                                 .resizable()
-                                .frame(width: 50, height: 50)
+                                .modifier(AchievementImage())
                             
                             Spacer()
                                 .frame(width: 10)
                             VStack {
                                 Text("Gold medal")
-                                    .font(.system(size: 15))
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.white)
+                                    .modifier(AchievementName())
                                 Text("Obtain by getting Top 1.")
-                                    .font(.system(size: 15))
-                                    .foregroundColor(.white)
+                                    .modifier(AchievementDescription())
                             }
                             
                             Spacer()
@@ -115,18 +106,15 @@ struct LeaderboardRow: View {
                                 .frame(width: 20)
                             Image("trophy")
                                 .resizable()
-                                .frame(width: 50, height: 50)
+                                .modifier(AchievementImage())
                             
                             Spacer()
                                 .frame(width: 10)
                             VStack {
                                 Text("Top of the world!")
-                                    .font(.system(size: 15))
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.white)
+                                    .modifier(AchievementName())
                                 Text("Obtain by standing at the Top of the leaderboard.")
-                                    .font(.system(size: 15))
-                                    .foregroundColor(.white)
+                                    .modifier(AchievementDescription())
                             }
                             
                             Spacer()
@@ -142,18 +130,15 @@ struct LeaderboardRow: View {
                                 .frame(width: 20)
                             Image(record.score >= 50 ? "veteran" : "newbie")
                                 .resizable()
-                                .frame(width: 50, height: 50)
+                                .modifier(AchievementImage())
                             
                             Spacer()
                                 .frame(width: 10)
                             VStack {
                                 Text(record.score >= 50 ? "Veteran!" : "Newbie!")
-                                    .font(.system(size: 15))
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.white)
+                                    .modifier(AchievementName())
                                 Text(record.score >= 50 ? "Obtain by getting score above or equal to 50." : "Obtain by getting score below 50.")
-                                    .font(.system(size: 15))
-                                    .foregroundColor(.white)
+                                    .modifier(AchievementDescription())
                             }
                             
                             Spacer()
@@ -173,19 +158,13 @@ struct LeaderboardRow: View {
                         Spacer()
                             .frame(width: 20)
                         Text("\(order).")
-                            .font(.system(size: 25))
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
+                            .modifier(RecordOrder())
                         Text(record.userName)
-                            .font(.system(size: 25))
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
+                            .modifier(RecordDetail())
                         
                         Spacer()
                         Text("\(record.score)")
-                            .font(.system(size: 25))
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
+                            .modifier(RecordDetail())
                         Spacer()
                             .frame(width: 20)
                     }
@@ -209,18 +188,15 @@ struct LeaderboardRow: View {
                                 .frame(width: 20)
                             Image("silver-medal")
                                 .resizable()
-                                .frame(width: 50, height: 50)
+                                .modifier(AchievementImage())
                             
                             Spacer()
                                 .frame(width: 10)
                             VStack {
                                 Text("Silver medal")
-                                    .font(.system(size: 15))
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.white)
+                                    .modifier(AchievementName())
                                 Text("Obtain by getting Top 2.")
-                                    .font(.system(size: 15))
-                                    .foregroundColor(.white)
+                                    .modifier(AchievementDescription())
                             }
                             
                             Spacer()
@@ -236,18 +212,15 @@ struct LeaderboardRow: View {
                                 .frame(width: 20)
                             Image("blessing")
                                 .resizable()
-                                .frame(width: 50, height: 50)
+                                .modifier(AchievementImage())
                             
                             Spacer()
                                 .frame(width: 10)
                             VStack {
                                 Text("Blessing from the Dev!")
-                                    .font(.system(size: 15))
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.white)
+                                    .modifier(AchievementName())
                                 Text("The dev feels sorry for you. Obtain by getting Top 2.")
-                                    .font(.system(size: 15))
-                                    .foregroundColor(.white)
+                                    .modifier(AchievementDescription())
                             }
                             
                             Spacer()
@@ -263,18 +236,15 @@ struct LeaderboardRow: View {
                                 .frame(width: 20)
                             Image(record.score >= 50 ? "veteran" : "newbie")
                                 .resizable()
-                                .frame(width: 50, height: 50)
+                                .modifier(AchievementImage())
                             
                             Spacer()
                                 .frame(width: 10)
                             VStack {
                                 Text(record.score >= 50 ? "Veteran!" : "Newbie!")
-                                    .font(.system(size: 15))
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.white)
+                                    .modifier(AchievementName())
                                 Text(record.score >= 50 ? "Obtain by getting score above or equal to 50." : "Obtain by getting score below 50.")
-                                    .font(.system(size: 15))
-                                    .foregroundColor(.white)
+                                    .modifier(AchievementDescription())
                             }
                             
                             Spacer()
@@ -293,19 +263,13 @@ struct LeaderboardRow: View {
                         Spacer()
                             .frame(width: 20)
                         Text("\(order).")
-                            .font(.system(size: 25))
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
+                            .modifier(RecordOrder())
                         Text(record.userName)
-                            .font(.system(size: 25))
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
+                            .modifier(RecordDetail())
                         
                         Spacer()
                         Text("\(record.score)")
-                            .font(.system(size: 25))
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
+                            .modifier(RecordDetail())
                         Spacer()
                             .frame(width: 20)
                     }
@@ -329,18 +293,15 @@ struct LeaderboardRow: View {
                                 .frame(width: 20)
                             Image("bronze-medal")
                                 .resizable()
-                                .frame(width: 50, height: 50)
+                                .modifier(AchievementImage())
                             
                             Spacer()
                                 .frame(width: 10)
                             VStack {
                                 Text("Bronze medal")
-                                    .font(.system(size: 15))
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.white)
+                                    .modifier(AchievementName())
                                 Text("Obtain by getting Top 3.")
-                                    .font(.system(size: 15))
-                                    .foregroundColor(.white)
+                                    .modifier(AchievementDescription())
                             }
                             
                             Spacer()
@@ -356,18 +317,15 @@ struct LeaderboardRow: View {
                                 .frame(width: 20)
                             Image("gift")
                                 .resizable()
-                                .frame(width: 50, height: 50)
+                                .modifier(AchievementImage())
                             
                             Spacer()
                                 .frame(width: 10)
                             VStack {
                                 Text("Surprise gift!")
-                                    .font(.system(size: 15))
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.white)
+                                    .modifier(AchievementName())
                                 Text("Gift from the dev. Obtain by getting Top 3.")
-                                    .font(.system(size: 15))
-                                    .foregroundColor(.white)
+                                    .modifier(AchievementDescription())
                             }
                             
                             Spacer()
@@ -383,18 +341,15 @@ struct LeaderboardRow: View {
                                 .frame(width: 20)
                             Image(record.score >= 50 ? "veteran" : "newbie")
                                 .resizable()
-                                .frame(width: 50, height: 50)
+                                .modifier(AchievementImage())
                             
                             Spacer()
                                 .frame(width: 10)
                             VStack {
                                 Text(record.score >= 50 ? "Veteran!" : "Newbie!")
-                                    .font(.system(size: 15))
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.white)
+                                    .modifier(AchievementName())
                                 Text(record.score >= 50 ? "Obtain by getting score above or equal to 50." : "Obtain by getting score below 50.")
-                                    .font(.system(size: 15))
-                                    .foregroundColor(.white)
+                                    .modifier(AchievementDescription())
                             }
                             
                             Spacer()
@@ -413,19 +368,13 @@ struct LeaderboardRow: View {
                         Spacer()
                             .frame(width: 20)
                         Text("\(order).")
-                            .font(.system(size: 25))
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
+                            .modifier(RecordOrder())
                         Text(record.userName)
-                            .font(.system(size: 25))
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
+                            .modifier(RecordDetail())
                         
                         Spacer()
                         Text("\(record.score)")
-                            .font(.system(size: 25))
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
+                            .modifier(RecordDetail())
                         Spacer()
                             .frame(width: 20)
                     }
@@ -449,18 +398,15 @@ struct LeaderboardRow: View {
                                 .frame(width: 20)
                             Image(record.score >= 50 ? "veteran" : "newbie")
                                 .resizable()
-                                .frame(width: 50, height: 50)
+                                .modifier(AchievementImage())
                             
                             Spacer()
                                 .frame(width: 10)
                             VStack {
                                 Text(record.score >= 50 ? "Veteran!" : "Newbie!")
-                                    .font(.system(size: 15))
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.white)
+                                    .modifier(AchievementName())
                                 Text(record.score >= 50 ? "Obtain by getting score above or equal to 50." : "Obtain by getting score below 50.")
-                                    .font(.system(size: 15))
-                                    .foregroundColor(.white)
+                                    .modifier(AchievementDescription())
                             }
                             
                             Spacer()
