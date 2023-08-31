@@ -14,6 +14,7 @@ struct LeaderboardRow: View {
     @State private var isTop1 = false
     @State private var isTop2 = false
     @State private var isTop3 = false
+    @State private var isNormal = false
     
     var order: Int
     var record: UserRecord
@@ -23,15 +24,19 @@ struct LeaderboardRow: View {
             isTop1 = true
             isTop2 = false
             isTop3 = false
+            isNormal = false
         } else if order == 2 {
             isTop1 = false
             isTop2 = true
             isTop3 = false
+            isNormal = false
         } else if order == 3 {
             isTop1 = false
             isTop2 = false
             isTop3 = true
+            isNormal = false
         } else {
+            isNormal = true
             isTop1 = false
             isTop2 = false
             isTop3 = false
@@ -360,7 +365,7 @@ struct LeaderboardRow: View {
                                     .font(.system(size: 15))
                                     .fontWeight(.bold)
                                     .foregroundColor(.white)
-                                Text("Gift from the dev!. Obtain by getting Top 3.")
+                                Text("Gift from the dev. Obtain by getting Top 3.")
                                     .font(.system(size: 15))
                                     .foregroundColor(.white)
                             }
@@ -401,7 +406,7 @@ struct LeaderboardRow: View {
                     .background(RoundedRectangle(cornerRadius: 15).foregroundColor(.gray).opacity(0.5))
                     .clipped()
                 }
-            } else {
+            } else if isNormal {
                 VStack {
                     HStack {
                         
@@ -463,7 +468,7 @@ struct LeaderboardRow: View {
                         }
                         .frame(width: UIScreen.main.bounds.width - 30, height: 100)
                     }
-                    .frame(width: UIScreen.main.bounds.width - 30, height: openAchievement ? 500 : 0, alignment: .top)
+                    .frame(width: UIScreen.main.bounds.width - 30, height: openAchievement ? 250 : 0, alignment: .top)
                     .background(RoundedRectangle(cornerRadius: 15).foregroundColor(.gray).opacity(0.5))
                     .clipped()
                 }

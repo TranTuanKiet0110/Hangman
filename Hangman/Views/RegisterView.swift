@@ -110,14 +110,14 @@ struct RegisterView: View {
                 if !userRecord.isEmpty {
                     if isAvailable == true && lastScore < userScore {
                         if gameLanguage == "english" {
-                            scoreStatus = "New High Score!"
+                            scoreStatus = "Victory!\nNew High Score!"
                             isHighScore = true
                             reset()
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                 playSound(sound: "win", type: "mp3", numOfLoop: 0)
                             }
                         } else {
-                            scoreStatus = "Kỷ lục mới!"
+                            scoreStatus = "Chiến Thắng!\nKỷ lục mới!"
                             isHighScore = true
                             reset()
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -126,14 +126,14 @@ struct RegisterView: View {
                         }
                     } else if isAvailable == false && lastScore < userScore {
                         if gameLanguage == "english" {
-                            scoreStatus = "New High Score!"
+                            scoreStatus = "Victory!\nNew High Score!"
                             isHighScore = true
                             reset()
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                 playSound(sound: "win", type: "mp3", numOfLoop: 0)
                             }
                         } else {
-                            scoreStatus = "Kỷ lục mới!"
+                            scoreStatus = "Chiến Thắng!\nKỷ lục mới!"
                             isHighScore = true
                             reset()
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -146,7 +146,7 @@ struct RegisterView: View {
                             isHighScore = false
                             reset()
                         } else {
-                            scoreStatus = "Chúc bạn may mắn lần sau!"
+                            scoreStatus = "Thua!\nChúc bạn may mắn lần sau!"
                             isHighScore = false
                             reset()
                         }
@@ -154,14 +154,14 @@ struct RegisterView: View {
                 } else {
                     if userScore > 0 {
                         if gameLanguage == "english" {
-                            scoreStatus = "New High Score!"
+                            scoreStatus = "Victory!\nNew High Score!"
                             isHighScore = true
                             reset()
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                 playSound(sound: "win", type: "mp3", numOfLoop: 0)
                             }
                         } else {
-                            scoreStatus = "Kỷ lục mới!"
+                            scoreStatus = "Chiến Thắng!\nKỷ lục mới!"
                             isHighScore = true
                             reset()
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -174,7 +174,7 @@ struct RegisterView: View {
                             isHighScore = false
                             reset()
                         } else {
-                            scoreStatus = "Chúc bạn may mắn lần sau!"
+                            scoreStatus = "Thua!\nChúc bạn may mắn lần sau!"
                             isHighScore = false
                             reset()
                         }

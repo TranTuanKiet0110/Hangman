@@ -41,7 +41,6 @@
 		46C9D2EA2A874446005FC4CF /* easyWords.json in Resources */ = {isa = PBXBuildFile; fileRef = 46C9D2E92A874446005FC4CF /* easyWords.json */; };
 		46C9D2EC2A874473005FC4CF /* EasyWordModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C9D2EB2A874473005FC4CF /* EasyWordModelData.swift */; };
 		46C9D2EE2A874590005FC4CF /* EasyWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C9D2ED2A874590005FC4CF /* EasyWord.swift */; };
-		46F43C812AA03AD600DAF11F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46F43C802AA03A2A00DAF11F /* Info.plist */; };
 		46F5C9FC2A9D839A009A9BBA /* LeaderboardRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F5C9FB2A9D839A009A9BBA /* LeaderboardRow.swift */; };
 		46F5C9FE2A9DCDD0009A9BBA /* GuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F5C9FD2A9DCDD0009A9BBA /* GuideView.swift */; };
 /* End PBXBuildFile section */
@@ -264,7 +263,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46F43C812AA03AD600DAF11F /* Info.plist in Resources */,
 				46A24B432A988C21005AD9F3 /* hardWords.json in Resources */,
 				464396232A9B276B00EF7ADF /* key-press.mp3 in Resources */,
 				464396252A9B2FB500EF7ADF /* health-reduce.mp3 in Resources */,
