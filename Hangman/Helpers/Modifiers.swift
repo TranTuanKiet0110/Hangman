@@ -78,3 +78,32 @@ struct RecordDetail: ViewModifier {
             .foregroundColor(.white)
     }
 }
+
+struct GuideButton: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .foregroundColor(.white)
+            .font(.system(size: 15))
+            .fontWeight(.bold)
+    }
+}
+
+struct GuideDescription: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .foregroundColor(.white)
+            .font(.system(size: 20))
+            .padding(.horizontal)
+            .frame(width: UIScreen.main.bounds.width - 20, height: 200, alignment: .leading)
+            .background(RoundedRectangle(cornerRadius: 16).foregroundColor(.gray).opacity(0.5))
+    }
+}
+
+struct GuideTitle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .foregroundColor(.white)
+            .font(.system(size: 20))
+            .fontWeight(.bold)
+    }
+}
