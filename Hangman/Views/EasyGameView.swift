@@ -207,7 +207,7 @@ struct EasyGameView: View {
             .padding(.horizontal, 30.0)
             
             Spacer()
-                .frame(height: 200)
+                .frame(height: 150)
             word?.image
                 .resizable()
                 .opacity(animatingIcon ? 1 : 0)

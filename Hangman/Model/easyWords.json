@@ -82,5 +82,101 @@
         "word": "BIKE",
         "imageName": "bike",
         "hint": "Human-powered, 2 wheels vehicle."
+    },
+    {
+        "id": 15,
+        "word": "CAT",
+        "imageName": "cat",
+        "hint": "Meow meow."
+    },
+    {
+        "id": 16,
+        "word": "ELEPHANT",
+        "imageName": "elephant",
+        "hint": "Big, have 4 legs."
+    },
+    {
+        "id": 17,
+        "word": "DOG",
+        "imageName": "dog",
+        "hint": "Woof Woof."
+    },
+    {
+        "id": 18,
+        "word": "SMARTPHONE",
+        "imageName": "smartphone",
+        "hint": "Portable device."
+    },
+    {
+        "id": 19,
+        "word": "SHOE",
+        "imageName": "shoe",
+        "hint": "Foot wear."
+    },
+    {
+        "id": 20,
+        "word": "BOTTLE",
+        "imageName": "bottle",
+        "hint": "Store water."
+    },
+    {
+        "id": 21,
+        "word": "CHAIR",
+        "imageName": "chair",
+        "hint": "Furniture."
+    },
+    {
+        "id": 22,
+        "word": "BABY",
+        "imageName": "baby",
+        "hint": "Very young child."
+    },
+    {
+        "id": 23,
+        "word": "BALL",
+        "imageName": "ball",
+        "hint": "Spherical object."
+    },
+    {
+        "id": 24,
+        "word": "PIANO",
+        "imageName": "piano",
+        "hint": "Keyboard instrument."
+    },
+    {
+        "id": 25,
+        "word": "GUITAR",
+        "imageName": "guitar",
+        "hint": "Strings instrument."
+    },
+    {
+        "id": 26,
+        "word": "DRUM",
+        "imageName": "drum",
+        "hint": "Percussion instrument."
+    },
+    {
+        "id": 27,
+        "word": "MOON",
+        "imageName": "moon",
+        "hint": "Natural satellite of the earth."
+    },
+    {
+        "id": 28,
+        "word": "SUN",
+        "imageName": "sun",
+        "hint": "A star."
+    },
+    {
+        "id": 29,
+        "word": "EARTH",
+        "imageName": "earth",
+        "hint": "Planet on which we live."
+    },
+    {
+        "id": 30,
+        "word": "FLUTE",
+        "imageName": "flute",
+        "hint": "Wind instrument."
     }
 ]
