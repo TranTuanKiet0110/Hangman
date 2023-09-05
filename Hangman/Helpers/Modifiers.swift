@@ -11,7 +11,9 @@ struct GameItemImageModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .scaledToFit()
-            .frame(width: 100, height: 100).offset(y: -40)
+            .frame(width: 100, height: 100)
+            .offset(y: 50)
+            .background(.white)
     }
 }
 

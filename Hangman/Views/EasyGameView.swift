@@ -50,7 +50,7 @@ struct EasyGameView: View {
         Key(id: 19, name: "T", isClick: false),
         Key(id: 20, name: "U", isClick: false),
         Key(id: 21, name: "V", isClick: false),
-        Key(id: 22, name: "U", isClick: false),
+        Key(id: 22, name: "W", isClick: false),
         Key(id: 23, name: "X", isClick: false),
         Key(id: 24, name: "Y", isClick: false),
         Key(id: 25, name: "Z", isClick: false)
