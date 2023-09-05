@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GameSettingsView: View {
     
+    //binding to menu view
     @Binding var gameMode: String
     @Binding var isDark: Bool
     @Binding var gameLanguage: String
@@ -19,7 +20,7 @@ struct GameSettingsView: View {
     @AppStorage("englishIsClicked") var englishIsClicked: Bool = true
     @AppStorage("vietnameseIsClicked") var vietnameseIsClicked: Bool = false
     
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) var dismiss //to go back to previous view
     
     func loadDescription() -> String {
         var description = ""
@@ -53,7 +54,7 @@ struct GameSettingsView: View {
                 
                 Spacer()
                     .frame(height: 100)
-                VStack {
+                VStack { //custom difficulty picker
                     Text(englishIsClicked ? "Difficulty" : "Độ khó")
                         .fontWeight(.bold)
                         .multilineTextAlignment(.center)
@@ -105,7 +106,7 @@ struct GameSettingsView: View {
                 
                 Spacer()
                     .frame(height: 60)
-                VStack {
+                VStack { //difficulty's description
                     Text(englishIsClicked ? "Description" : "Mô tả")
                         .fontWeight(.bold)
                         .multilineTextAlignment(.center)
@@ -125,14 +126,14 @@ struct GameSettingsView: View {
                     Toggle(englishIsClicked ? "Dark mode" : "Chế độ tối", isOn: $isDark)
                         .toggleStyle(SwitchToggleStyle(tint: .green))
                         .fontWeight(.bold)
-                }
+                } //light /dark toggle button
                 
                 Divider()
                     .padding(.vertical)
                 
                 Spacer()
                     .frame(height: 50)
-                VStack {
+                VStack { //custom language picker
                     Text(englishIsClicked ? "Languages" : "Ngôn ngữ")
                         .fontWeight(.bold)
                         .multilineTextAlignment(.center)
@@ -170,8 +171,8 @@ struct GameSettingsView: View {
             
             Spacer()
         }
-        .navigationBarBackButtonHidden(true)
-        .toolbar {
+        .navigationBarBackButtonHidden(true) //hide back button
+        .toolbar { //customize toolbar
             ToolbarItem(placement: ToolbarItemPlacement.navigationBarLeading) {
                 Button {
                     dismiss()

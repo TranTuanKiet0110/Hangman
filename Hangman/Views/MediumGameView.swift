@@ -53,21 +53,21 @@ struct MediumGameView: View {
         Key(id: 23, name: "X", isClick: false),
         Key(id: 24, name: "Y", isClick: false),
         Key(id: 25, name: "Z", isClick: false)
-    ]
+    ] //array for custom keyboard
 
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) var dismiss //to go back to the previous view
     
-    let gridItemLayout = Array(repeating: GridItem(.fixed(40), spacing: 20), count: 6)
+    let gridItemLayout = Array(repeating: GridItem(.fixed(40), spacing: 20), count: 6) //drawing grid for custom keyboard
     
-    func startGame() {
+    func startGame() { //start game function
         animatingIcon = false
         word = nil
-        word = mediumWords.randomElement()!
+        word = mediumWords.randomElement()! //get random word in json file
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             withAnimation(.easeInOut(duration: 0.3)){
                 animatingIcon = true
-            }
+            } //animation for image hint
             resetKeys()
         }
         
@@ -78,10 +78,10 @@ struct MediumGameView: View {
             print("Cannot get data!")
         }
         wordCount = hiddenWord.count
-        currentWord = hiddenWord.replacingOccurrences(of: "[^\\s]", with: "_ ", options: .regularExpression, range: hiddenWord.startIndex..<hiddenWord.endIndex)
+        currentWord = hiddenWord.replacingOccurrences(of: "[^\\s]", with: "_ ", options: .regularExpression, range: hiddenWord.startIndex..<hiddenWord.endIndex) //replay letter with _
     }
     
-    func checkAvailable(inputItem: String) {
+    func checkAvailable(inputItem: String) { //check if player input available in the hidden word
         var index = 0
         for char in hiddenWord {
             if String(char) == inputItem {
@@ -92,7 +92,7 @@ struct MediumGameView: View {
         }
     }
     
-    func checkWinning() {
+    func checkWinning() { //check if players have finished the word
         if currentWord.replacingOccurrences(of: " ", with: "") == hiddenWord {
             if currentHealth < 5 {
                 currentHealth += 1
@@ -108,7 +108,7 @@ struct MediumGameView: View {
         }
     }
     
-    func checkWrongInput(inputItem: String) {
+    func checkWrongInput(inputItem: String) { //check for wrong letter input
         if !hiddenWord.contains(inputItem) {
             currentHealth -= 1
             healthReduce = true
@@ -120,7 +120,7 @@ struct MediumGameView: View {
         }
     }
     
-    func playerLose(healthStatus: Int) {
+    func playerLose(healthStatus: Int) { //lose condition
         if healthStatus == 0 {
             played = true
             dismiss()
@@ -240,7 +240,7 @@ struct MediumGameView: View {
             
             Spacer()
         }
-        .toolbar(.hidden)
+        .toolbar(.hidden) //hide toolbar
         .onAppear {
             isPause = false
             self.startGame()

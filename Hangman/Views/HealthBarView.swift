@@ -13,7 +13,7 @@ struct HealthBarView: View {
     
     var maximumHealth = 5
     var offImage: Image?
-    var onImage = Image(systemName: "heart.fill")
+    var onImage = Image(systemName: "heart.fill") //image for health bar
     var offColor = Color.gray
     var onColor = Color.red
     
@@ -24,6 +24,7 @@ struct HealthBarView: View {
             return onImage
         }
     }
+    
     var body: some View {
         ForEach(1..<maximumHealth + 1, id: \.self) {
             number in image(for: number).foregroundColor(number > currentHealth ? offColor : onColor)

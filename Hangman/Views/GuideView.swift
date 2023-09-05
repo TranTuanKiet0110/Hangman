@@ -11,7 +11,8 @@ struct GuideView: View {
     
     @State var gameLanguage: String
     @State private var lockScroll = true
-    @Environment(\.dismiss) var dismiss
+    
+    @Environment(\.dismiss) var dismiss //get back to previous view
     
     var body: some View {
         ZStack {
@@ -22,6 +23,7 @@ struct GuideView: View {
                 .edgesIgnoringSafeArea(.vertical)
             ScrollViewReader { value in
                 ScrollView(.horizontal, showsIndicators: false){
+                    //horizontal scroll view
                     HStack {
                         
                         Spacer()
@@ -266,7 +268,7 @@ struct GuideView: View {
                     .navigationBarBackButtonHidden(true)
                 }
             }
-            .toolbar {
+            .toolbar { //customize toolbar
                 ToolbarItem(placement: ToolbarItemPlacement.navigationBarLeading) {
                     Button {
                         dismiss()

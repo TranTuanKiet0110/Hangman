@@ -54,21 +54,21 @@ struct EasyGameView: View {
         Key(id: 23, name: "X", isClick: false),
         Key(id: 24, name: "Y", isClick: false),
         Key(id: 25, name: "Z", isClick: false)
-    ]
+    ] //array for custom keyboard
 
     @Environment(\.dismiss) var dismiss
     
-    let gridItemLayout = Array(repeating: GridItem(.fixed(40), spacing: 20), count: 6)
+    let gridItemLayout = Array(repeating: GridItem(.fixed(40), spacing: 20), count: 6) //drawing grid item for custom keyboard
     
     func startGame() {
         animatingIcon = false
         word = nil
-        word = easyWords.randomElement()!
+        word = easyWords.randomElement()! //get random word in json file
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             withAnimation(.easeInOut(duration: 0.3)){
                 animatingIcon = true
-            }
+            } //set delay for animation
             resetKeys()
         }
         
@@ -80,7 +80,7 @@ struct EasyGameView: View {
             print("Cannot get data!")
         }
         wordCount = hiddenWord.count
-        currentWord = hiddenWord.replacingOccurrences(of: "[^\\s]", with: "_ ", options: .regularExpression, range: hiddenWord.startIndex..<hiddenWord.endIndex)
+        currentWord = hiddenWord.replacingOccurrences(of: "[^\\s]", with: "_ ", options: .regularExpression, range: hiddenWord.startIndex..<hiddenWord.endIndex) //convert hidden word into _
     }
     
     func checkAvailable(inputItem: String) {
@@ -92,7 +92,7 @@ struct EasyGameView: View {
             }
             index += 2
         }
-    }
+    } //check if the letter available in the hidden word
     
     func checkWinning() {
         if currentWord.replacingOccurrences(of: " ", with: "") == hiddenWord {
@@ -108,7 +108,7 @@ struct EasyGameView: View {
                 startGame()
             }
         }
-    }
+    } //check if players have finish guessing the word
     
     func checkWrongInput(inputItem: String) {
         if !hiddenWord.contains(inputItem) {
@@ -120,14 +120,14 @@ struct EasyGameView: View {
             }
             playerLose(healthStatus: currentHealth)
         }
-    }
+    } //check if the player's input is wrong
     
     func playerLose(healthStatus: Int) {
         if healthStatus == 0 {
             played = true
             dismiss()
         }
-    }
+    } //lose condition
     
     func replace(myString: String, index: Int, newChar: Character){
         var chars = Array(myString)
@@ -142,7 +142,7 @@ struct EasyGameView: View {
         } else {
             isPause = false
         }
-    }
+    } //check for puase status
     
     func checkIsClick(id: Int) {
         var index = 0
@@ -152,8 +152,7 @@ struct EasyGameView: View {
             }
             index += 1
         }
-        
-    }
+    } //check if the key in custom keyboard is cliked
     
     func resetKeys() {
         var index = 0
@@ -163,7 +162,7 @@ struct EasyGameView: View {
             }
             index += 1
         }
-    }
+    } //reset the key's status
     
     var body: some View {
         return VStack {
@@ -245,7 +244,7 @@ struct EasyGameView: View {
             
             Spacer()
         }
-        .toolbar(.hidden)
+        .toolbar(.hidden) //hide toolbar
         .onAppear {
             isPause = false
             self.startGame()

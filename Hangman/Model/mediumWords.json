@@ -1,17 +1,107 @@
 [
     {
         "id": 1,
-        "word": "APPLE",
-        "imageName": "apple"
+        "word": "ERUPTION",
+        "imageName": "eruption"
     },
     {
         "id": 2,
-        "word": "BANANA",
-        "imageName": "banana"
+        "word": "PIXEL",
+        "imageName": "pixel"
     },
     {
         "id": 3,
-        "word": "CHERRY",
-        "imageName": "cherry"
+        "word": "STATUE",
+        "imageName": "statue"
+    },
+    {
+        "id": 4,
+        "word": "VAPORIZE",
+        "imageName": "vaporize"
+    },
+    {
+        "id": 5,
+        "word": "JOKE",
+        "imageName": "joke"
+    },
+    {
+        "id": 6,
+        "word": "BLIZZARD",
+        "imageName": "blizzard"
+    },
+    {
+        "id": 7,
+        "word": "ORCHESTRA",
+        "imageName": "orchestra"
+    },
+    {
+        "id": 8,
+        "word": "BEEKEEPER",
+        "imageName": "beekeeper"
+    },
+    {
+        "id": 9,
+        "word": "KIWIFRUIT",
+        "imageName": "kiwifruit"
+    },
+    {
+        "id": 10,
+        "word": "LUCKY",
+        "imageName": "lucky"
+    },
+    {
+        "id": 11,
+        "word": "FUNNY",
+        "imageName": "funny"
+    },
+    {
+        "id": 12,
+        "word": "LUXURY",
+        "imageName": "luxury"
+    },
+    {
+        "id": 13,
+        "word": "ZIGZAG",
+        "imageName": "zigzag"
+    },
+    {
+        "id": 14,
+        "word": "MYSTIC",
+        "imageName": "mystic"
+    },
+    {
+        "id": 15,
+        "word": "SUBWAY",
+        "imageName": "subway"
+    },
+    {
+        "id": 16,
+        "word": "UNITE",
+        "imageName": "unite"
+    },
+    {
+        "id": 17,
+        "word": "OXIDIZE",
+        "imageName": "oxidize"
+    },
+    {
+        "id": 18,
+        "word": "XYLOPHONE",
+        "imageName": "xylophone"
+    },
+    {
+        "id": 19,
+        "word": "ASTROLOGY",
+        "imageName": "astrology"
+    },
+    {
+        "id": 20,
+        "word": "WITCHCRAFT",
+        "imageName": "witchcraft"
+    },
+    {
+        "id": 21,
+        "word": "COTTON",
+        "imageName": "cotton"
     }
 ]

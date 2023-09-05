@@ -53,21 +53,21 @@ struct HardGameView: View {
         Key(id: 23, name: "X", isClick: false),
         Key(id: 24, name: "Y", isClick: false),
         Key(id: 25, name: "Z", isClick: false)
-    ]
+    ] //array for custom keyboard
 
     @Environment(\.dismiss) var dismiss
     
-    let gridItemLayout = Array(repeating: GridItem(.fixed(40), spacing: 20), count: 6)
+    let gridItemLayout = Array(repeating: GridItem(.fixed(40), spacing: 20), count: 6) //draw grid for custom keyboard
     
-    func startGame() {
+    func startGame() { //start game function
         animatingIcon = false
         word = nil
-        word = hardWords.randomElement()!
+        word = hardWords.randomElement()! //get random word in json file
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             withAnimation(.easeInOut(duration: 0.3)){
                 animatingIcon = true
-            }
+            } //animation for hint image
             resetKeys()
         }
         
@@ -81,7 +81,7 @@ struct HardGameView: View {
         currentWord = hiddenWord.replacingOccurrences(of: "[^\\s]", with: "_ ", options: .regularExpression, range: hiddenWord.startIndex..<hiddenWord.endIndex)
     }
     
-    func checkAvailable(inputItem: String) {
+    func checkAvailable(inputItem: String) { //check if letter is available in the hidden word
         var index = 0
         for char in hiddenWord {
             if String(char) == inputItem {
@@ -92,7 +92,7 @@ struct HardGameView: View {
         }
     }
     
-    func checkWinning() {
+    func checkWinning() { //check if players have finished the hidden word
         if currentWord.replacingOccurrences(of: " ", with: "") == hiddenWord {
             if score < 10 {
                 score += 1
@@ -106,7 +106,7 @@ struct HardGameView: View {
         }
     }
     
-    func checkWrongInput(inputItem: String) {
+    func checkWrongInput(inputItem: String) { //check if letter is not available in the hidden word
         if !hiddenWord.contains(inputItem) {
             currentHealth -= 1
             healthReduce = true
@@ -118,7 +118,7 @@ struct HardGameView: View {
         }
     }
     
-    func playerLose(healthStatus: Int) {
+    func playerLose(healthStatus: Int) { //losing conditon
         if healthStatus == 0 {
             played = true
             dismiss()
@@ -238,7 +238,7 @@ struct HardGameView: View {
             
             Spacer()
         }
-        .toolbar(.hidden)
+        .toolbar(.hidden) //hide toolbar
         .onAppear {
             isPause = false
             self.startGame()

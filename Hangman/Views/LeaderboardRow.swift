@@ -19,7 +19,7 @@ struct LeaderboardRow: View {
     var order: Int
     var record: UserRecord
     
-    func checkOrder() {
+    func checkOrder() { //check for order in the leaderboard
         if order == 1 {
             isTop1 = true
             isTop2 = false
@@ -42,8 +42,10 @@ struct LeaderboardRow: View {
             isTop3 = false
         }
     }
+    
     var body: some View {
         VStack {
+            //check condition for order, different order have different achievements
             if isTop1 {
                 VStack {
                     HStack {

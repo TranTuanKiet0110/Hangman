@@ -12,9 +12,9 @@ struct RegisterView: View {
     @AppStorage("saveName") var saveName = ""
     @AppStorage("saveScore") var saveScore = 0
     @AppStorage("isPause") var isPause = false
-    @AppStorage("easyCurrentHealth") var easyCurrentHealth = 5
-    @AppStorage("mediumCurrentHealth") var mediumCurrentHealth = 5
-    @AppStorage("hardCurrentHealth") var hardCurrentHealth = 3
+    @AppStorage("easyCurrentHealth") var easyCurrentHealth = 5 //health for easy mode
+    @AppStorage("mediumCurrentHealth") var mediumCurrentHealth = 5 //health for medium mode
+    @AppStorage("hardCurrentHealth") var hardCurrentHealth = 3 //health for hard mode
     
     @State private var userRecord: [UserRecord] = []
     @State var gameMode: String
@@ -40,7 +40,7 @@ struct RegisterView: View {
         } catch {
             print(error)
         }
-    }
+    } //save result into json file
     
     func load() -> [UserRecord]{
         do {
@@ -53,34 +53,29 @@ struct RegisterView: View {
             print(error)
             return []
         }
-    }
+    } //load json file to get player's results
     
     func addUserRecord() {
         if !userRecord.isEmpty {
-            print(isAvailable)
-            print(isHighScore)
             if isHighScore == true && isAvailable == true {
                 userRecord.removeAll(where: {$0.userName == "\(userInput)"})
-                userRecord.append(UserRecord(id: UUID(), userName: userInput, score: userScore))
-                save(userRecord: userRecord)
-                print(userRecord)
-                playSound(sound: "quit-button", type: "mp3", numOfLoop: 0)
+                userRecord.append(UserRecord(id: UUID(), userName: userInput, score: userScore)) //add new value into array
+                save(userRecord: userRecord) //save to json file
+                playSound(sound: "quit-button", type: "mp3", numOfLoop: 0) //sound effect for quit button
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.1) {
-                    dismiss()
+                    dismiss() //quit to menu view
                 }
             } else if isHighScore == true && isAvailable == false {
                 userRecord.append(UserRecord(id: UUID(), userName: userInput, score: userScore))
                 save(userRecord: userRecord)
-                print(userRecord)
                 playSound(sound: "quit-button", type: "mp3", numOfLoop: 0)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.1) {
                     dismiss()
                 }
             }
-        } else {
+        } else { //if first entry in json file
             userRecord.append(UserRecord(id: UUID(), userName: userInput, score: userScore))
             save(userRecord: userRecord)
-            print(userRecord)
             playSound(sound: "quit-button", type: "mp3", numOfLoop: 0)
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.1) {
                 dismiss()
@@ -88,7 +83,7 @@ struct RegisterView: View {
         }
     }
     
-    func checkAvailable() {
+    func checkAvailable() { //check if already available in json file
         if !userRecord.isEmpty {
             for record in userRecord {
                 if record.userName == userInput {
@@ -305,7 +300,7 @@ struct RegisterView: View {
                     .disabled(isHighScore == false)
                     
                     NavigationLink(destination: {
-                
+                //condition to load game mode
                             if gameMode == "easy" {
                                 EasyGameView(score: $userScore, played: $played, isPause: $pauseIsClicked, currentHealth: $easyCurrentHealth, words: easyWords, gameLanguage: gameLanguage)
                             } else if gameMode == "medium" {
@@ -323,7 +318,7 @@ struct RegisterView: View {
                 }
                 .offset(y: 150)
             }
-            .toolbar(.hidden)
+            .toolbar(.hidden) //hide toolbar
                 .onAppear {
                     isHighScore = false
                     self.userRecord = load()

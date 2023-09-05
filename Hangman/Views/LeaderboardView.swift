@@ -28,7 +28,7 @@ struct LeaderboardView: View {
             print(error)
             return []
         }
-    }
+    } //load json file to get player's results
     
     func resetArray() {
         userRecord.removeAll()
@@ -53,7 +53,7 @@ struct LeaderboardView: View {
                         LeaderboardRow(openAchievement: $openAchievement, order: record.offset + 1, record: record.element)
                     }
                 }
-                .navigationBarBackButtonHidden(true)
+                .navigationBarBackButtonHidden(true) //hide back button
             }
         }
         .onAppear {
@@ -65,7 +65,7 @@ struct LeaderboardView: View {
         .onDisappear {
             resetArray()
         }
-        .toolbar {
+        .toolbar { //modify toolbar with custom button
             ToolbarItem(placement: ToolbarItemPlacement.navigationBarLeading) {
                 Button {
                     dismiss()
