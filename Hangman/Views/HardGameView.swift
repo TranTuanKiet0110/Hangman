@@ -1,9 +1,14 @@
-//
-//  HardGameView.swift
-//  Hangman
-//
-//  Created by Kiet Tran Tuan on 28/08/2023.
-//
+/*
+  RMIT University Vietnam
+  Course: COSC2659 iOS Development
+  Semester: 2023B
+  Assessment: Assignment 2
+  Author: Tran Tuan Kiet
+  ID: 3879300
+  Created  date: 28/08/2023
+  Last modified: 05/09/2023
+  Acknowledgement: 
+*/
 
 import SwiftUI
 
